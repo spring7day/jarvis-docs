@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주식 매도 전략 분석 리포트</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f2f5; color: #1a1a2e; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    color: white; padding: 28px 20px 22px; text-align: center;
+  }
+  .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .header p { font-size: 13px; opacity: 0.75; }
+
+  .summary-box {
+    background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+    border-left: 5px solid #4caf50;
+    margin: 16px; border-radius: 12px; padding: 16px;
+  }
+  .summary-box .big { font-size: 26px; font-weight: 800; color: #e53935; }
+  .summary-box .label { font-size: 12px; color: #666; margin-bottom: 4px; }
+  .summary-row { display: flex; justify-content: space-between; align-items: center; }
+  .gain { color: #e53935; font-weight: 700; font-size: 16px; }
+
+  .section { margin: 0 16px 16px; }
+  .section-title {
+    font-size: 15px; font-weight: 700; color: #1a1a2e;
+    padding: 10px 14px; background: white; border-radius: 10px 10px 0 0;
+    border-bottom: 2px solid #e8eaf6;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .card {
+    background: white; border-radius: 12px; padding: 16px;
+    margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .card-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px;
+  }
+  .stock-name { font-size: 17px; font-weight: 800; }
+  .stock-sub { font-size: 12px; color: #888; margin-top: 2px; }
+  .badge {
+    padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700;
+  }
+  .badge-red { background: #fce4ec; color: #c62828; }
+  .badge-orange { background: #fff3e0; color: #e65100; }
+  .badge-blue { background: #e3f2fd; color: #1565c0; }
+
+  .metrics { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+  .metric { background: #f8f9fa; border-radius: 8px; padding: 10px; text-align: center; }
+  .metric .val { font-size: 14px; font-weight: 700; }
+  .metric .lbl { font-size: 10px; color: #888; margin-top: 3px; }
+  .red { color: #e53935; }
+  .blue { color: #1565c0; }
+  .green { color: #2e7d32; }
+
+  .strategy-box {
+    border-radius: 10px; padding: 14px; margin-top: 8px;
+  }
+  .strategy-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  
+  .stage { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+  .stage-num {
+    width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+  }
+  .stage-content .title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .stage-content .desc { font-size: 12px; color: #555; line-height: 1.5; }
+
+  /* Samsung */
+  .ss-strat { background: #e8eaf6; }
+  .ss-num { background: #3f51b5; color: white; }
+  /* Hyundai */
+  .hd-strat { background: #fce4ec; }
+  .hd-num { background: #e91e63; color: white; }
+  /* SK */
+  .sk-strat { background: #e0f7fa; }
+  .sk-num { background: #00acc1; color: white; }
+
+  .risk-box {
+    background: #fff8e1; border-left: 4px solid #ffc107;
+    border-radius: 0 10px 10px 0; padding: 12px; margin-top: 8px;
+  }
+  .risk-title { font-size: 12px; font-weight: 700; color: #f57c00; margin-bottom: 8px; }
+  .risk-item { font-size: 12px; color: #5d4037; margin-bottom: 4px; line-height: 1.5; }
+
+  .overall {
+    background: white; border-radius: 12px; padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  .priority-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid #f0f0f0;
+  }
+  .priority-row:last-child { border-bottom: none; }
+  .priority-badge {
+    padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; white-space: nowrap;
+  }
+  .p1 { background: #ffebee; color: #c62828; }
+  .p2 { background: #fff3e0; color: #e65100; }
+  .p3 { background: #e8f5e9; color: #2e7d32; }
+  .priority-text { font-size: 13px; line-height: 1.5; }
+
+  .principle-box {
+    background: #f3e5f5; border-radius: 12px; padding: 16px;
+    margin: 0 16px 20px;
+  }
+  .principle-title { font-size: 14px; font-weight: 700; color: #6a1b9a; margin-bottom: 10px; }
+  .principle-item { font-size: 13px; color: #4a148c; margin-bottom: 6px; line-height: 1.5; }
+
+  .footer { text-align: center; padding: 16px; color: #aaa; font-size: 11px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 주식 매도 전략 분석 리포트</h1>
+  <p>분석일: 2026년 2월 27일 (금) &nbsp;|&nbsp; Jarvis AI 분석</p>
+</div>
+
+<!-- 포트폴리오 요약 -->
+<div class="summary-box" style="margin-top:16px;">
+  <div class="label">총 포트폴리오 평가금</div>
+  <div class="summary-row">
+    <div class="big">13,565,500원</div>
+    <div class="gain">+3,406,600원<br><span style="font-size:13px">(+33.5%)</span></div>
+  </div>
+  <div style="margin-top:10px; font-size:12px; color:#444; line-height:1.6;">
+    💰 추정 투자원금: 약 10,158,900원 &nbsp;|&nbsp; 현금: 82,017원 + $13.05
+  </div>
+</div>
+
+<!-- 종목별 현황 -->
+<div style="margin: 0 16px 8px; font-size:14px; font-weight:700; color:#444;">📌 종목별 매도 전략</div>
+
+<!-- 삼성전자 -->
+<div class="card" style="margin: 0 16px 12px;">
+  <div class="card-header">
+    <div>
+      <div class="stock-name">📱 삼성전자</div>
+      <div class="stock-sub">9주 보유 &nbsp;|&nbsp; 평균 매수가 약 167,000원</div>
+    </div>
+    <div class="badge badge-orange">중기 보유</div>
+  </div>
+  <div class="metrics">
+    <div class="metric"><div class="val red">+32.5%</div><div class="lbl">수익률</div></div>
+    <div class="metric"><div class="val">221,500원</div><div class="lbl">현재가(추정)</div></div>
+    <div class="metric"><div class="val red">+490,100원</div><div class="lbl">평가수익</div></div>
+  </div>
+
+  <div class="strategy-box ss-strat">
+    <div class="strategy-title">🎯 분할 매도 전략 (3단계)</div>
+
+    <div class="stage">
+      <div class="stage-num ss-num">1</div>
+      <div class="stage-content">
+        <div class="title">1차 매도 — 즉시 검토 (3주, 33%)</div>
+        <div class="desc">
+          현재가 기준 <strong>3주 즉시 매도</strong> 검토.<br>
+          HBM 경쟁에서 SK하이닉스에 밀리고 있고 DS부문 실적 회복이 불확실한 상황. 이미 +32.5%의 충분한 수익. 차익 일부를 확정해 리스크 완충.
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num ss-num">2</div>
+      <div class="stage-content">
+        <div class="title">2차 매도 — 2026년 2분기 실적 발표 후 (3주)</div>
+        <div class="desc">
+          <strong>2026년 7월</strong> 2분기 실적 확인 후 판단.<br>
+          HBM3E 공급 확대 및 파운드리 수주 성과 확인이 핵심. 실적 개선 확인되면 보유 연장, 미흡하면 추가 매도.
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num ss-num">3</div>
+      <div class="stage-content">
+        <div class="title">3차 매도 — 2026년 하반기 (나머지 3주)</div>
+        <div class="desc">
+          <strong>목표가 260,000원 도달</strong> 시 전량 매도.<br>
+          또는 2026년 4분기까지 HBM4 양산 실적 뚜렷한 개선 없을 경우 보유 의미 재검토.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-box">
+    <div class="risk-title">⚠️ 핵심 리스크</div>
+    <div class="risk-item">• HBM 경쟁에서 엔비디아 납품 지연 시 주가 하방 압력</div>
+    <div class="risk-item">• 반도체 업황 둔화 시 레거시 메모리 가격 하락</div>
+    <div class="risk-item">• 목표가 240,000원 미달 시 손절 기준: 매수가 대비 -10% (약 150,000원)</div>
+  </div>
+</div>
+
+<!-- 현대차 -->
+<div class="card" style="margin: 0 16px 12px;">
+  <div class="card-header">
+    <div>
+      <div class="stock-name">🚗 현대차</div>
+      <div class="stock-sub">14주 보유 &nbsp;|&nbsp; 평균 매수가 약 492,000원</div>
+    </div>
+    <div class="badge badge-red">부분 차익실현 권장</div>
+  </div>
+  <div class="metrics">
+    <div class="metric"><div class="val red">+36.3%</div><div class="lbl">수익률</div></div>
+    <div class="metric"><div class="val">671,000원</div><div class="lbl">현재가(추정)</div></div>
+    <div class="metric"><div class="val red">+2,502,500원</div><div class="lbl">평가수익</div></div>
+  </div>
+
+  <div class="strategy-box hd-strat">
+    <div class="strategy-title">🎯 분할 매도 전략 (3단계)</div>
+
+    <div class="stage">
+      <div class="stage-num hd-num">1</div>
+      <div class="stage-content">
+        <div class="title">1차 매도 — 즉시 (5주, 36%) ← 가장 권장</div>
+        <div class="desc">
+          포트폴리오 69%를 차지하는 <strong>집중 리스크 해소</strong>가 최우선.<br>
+          미국 트럼프 관세 + 원/달러 환율 리스크가 현실화 중. 36.3% 수익에서 5주 매도 시 약 <strong>+893,000원 확정</strong>. 과도한 단일종목 비중 정상화.
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num hd-num">2</div>
+      <div class="stage-content">
+        <div class="title">2차 매도 — 2026년 2분기 실적 + 관세 협상 결과 확인 (5주)</div>
+        <div class="desc">
+          <strong>2026년 7월</strong> 미국 관세 협상 결과 및 현대차 미국 공장 가동률 확인.<br>
+          조지아 메타플랜트 생산 확대로 관세 회피 성공 시 보유 연장 가능. 목표가 750,000원.
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num hd-num">3</div>
+      <div class="stage-content">
+        <div class="title">3차 매도 — 2026년 4분기 (나머지 4주)</div>
+        <div class="desc">
+          <strong>목표가 800,000원 도달</strong> 또는 2026년 연말 이전 전량 정리.<br>
+          전기차 글로벌 경쟁 심화(BYD 등)로 장기 모멘텀 약화 가능성 대비.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-box">
+    <div class="risk-title">⚠️ 핵심 리스크</div>
+    <div class="risk-item">• 미국 자동차 관세 25% 현실화 시 큰 타격 (수출 비중 높음)</div>
+    <div class="risk-item">• 원화 강세 전환 시 수출 채산성 악화</div>
+    <div class="risk-item">• 포트폴리오 69% 집중 — 반드시 비중 축소 필요</div>
+    <div class="risk-item">• 손절 기준: 현재가 대비 -15% (약 570,000원)</div>
+  </div>
+</div>
+
+<!-- SK하이닉스 -->
+<div class="card" style="margin: 0 16px 12px;">
+  <div class="card-header">
+    <div>
+      <div class="stock-name">🖥️ SK하이닉스</div>
+      <div class="stock-sub">2주 보유 &nbsp;|&nbsp; 평균 매수가 약 882,000원</div>
+    </div>
+    <div class="badge badge-blue">장기 보유 권장</div>
+  </div>
+  <div class="metrics">
+    <div class="metric"><div class="val red">+23.4%</div><div class="lbl">수익률</div></div>
+    <div class="metric"><div class="val">1,089,000원</div><div class="lbl">현재가(추정)</div></div>
+    <div class="metric"><div class="val red">+414,000원</div><div class="lbl">평가수익</div></div>
+  </div>
+
+  <div class="strategy-box sk-strat">
+    <div class="strategy-title">🎯 장기 보유 후 매도 전략</div>
+
+    <div class="stage">
+      <div class="stage-num sk-num">1</div>
+      <div class="stage-content">
+        <div class="title">단기 매도 없음 — 2026년 상반기 보유 유지</div>
+        <div class="desc">
+          3종목 중 <strong>가장 강한 펀더멘털</strong>을 보유.<br>
+          엔비디아 HBM3E 독점 공급 지위 + HBM4 선점 경쟁에서 우위. AI 서버 수요는 2026~2027년 지속 성장 전망. 주수가 2주로 적어 분할 매도보다 목표가 도달 시 일괄 매도가 효율적.
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num sk-num">2</div>
+      <div class="stage-content">
+        <div class="title">매도 시점 — 2026년 3분기 목표가 도달 시</div>
+        <div class="desc">
+          <strong>목표가 1,300,000원</strong> (+47% from 현재가) 도달 시 1주 매도.<br>
+          잔여 1주는 HBM4 양산 성과 확인 후 2027년 상반기까지 추가 보유 검토.
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num sk-num">3</div>
+      <div class="stage-content">
+        <div class="title">최종 매도 — 2027년 상반기 또는 업황 피크 시</div>
+        <div class="desc">
+          메모리 반도체 업사이클 정점 신호 시 전량 매도.<br>
+          신호: HBM 재고 증가, 엔비디아 주문 축소, AI 투자 둔화 뉴스.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-box">
+    <div class="risk-title">⚠️ 핵심 리스크</div>
+    <div class="risk-item">• AI 투자 버블 우려 현실화 시 급락 가능</div>
+    <div class="risk-item">• 마이크론, 삼성의 HBM 경쟁력 빠른 추격 시 프리미엄 축소</div>
+    <div class="risk-item">• 손절 기준: 현재가 대비 -20% (약 871,000원 = 매수가 근처)</div>
+  </div>
+</div>
+
+<!-- 종합 우선순위 -->
+<div class="section">
+  <div class="section-title">🏆 매도 우선순위 총정리</div>
+  <div class="overall">
+
+    <div class="priority-row">
+      <div class="priority-badge p1">1순위</div>
+      <div class="priority-text">
+        <strong>현대차 5주 즉시 매도</strong><br>
+        <span style="color:#666;font-size:12px">포트폴리오 69% 집중 리스크 + 관세 불확실성 → 약 335만원 부분 차익실현</span>
+      </div>
+    </div>
+
+    <div class="priority-row">
+      <div class="priority-badge p2">2순위</div>
+      <div class="priority-text">
+        <strong>삼성전자 3주 즉시 또는 단기 매도</strong><br>
+        <span style="color:#666;font-size:12px">HBM 경쟁 열위 지속 시 추가 하락 가능 → 차익 일부 확정 권장</span>
+      </div>
+    </div>
+
+    <div class="priority-row">
+      <div class="priority-badge p3">보유</div>
+      <div class="priority-text">
+        <strong>SK하이닉스 2주 전량 보유 유지</strong><br>
+        <span style="color:#666;font-size:12px">HBM 독점 지위 + AI 성장 수혜 → 목표가 130만원까지 홀딩</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 목표가 요약표 -->
+<div class="card" style="margin: 0 16px 12px;">
+  <div style="font-size:14px; font-weight:700; margin-bottom:12px;">📋 목표가 & 매도 타임라인 요약</div>
+  <table style="width:100%; border-collapse:collapse; font-size:13px;">
+    <thead>
+      <tr style="background:#f8f9fa;">
+        <th style="padding:8px 6px; text-align:left; border-radius:6px 0 0 6px;">종목</th>
+        <th style="padding:8px 6px; text-align:center;">현재가</th>
+        <th style="padding:8px 6px; text-align:center;">1차 목표가</th>
+        <th style="padding:8px 6px; text-align:center; border-radius:0 6px 6px 0;">시점</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #f0f0f0;">
+        <td style="padding:10px 6px; font-weight:700;">삼성전자</td>
+        <td style="padding:10px 6px; text-align:center;">221,500원</td>
+        <td style="padding:10px 6px; text-align:center; color:#1565c0; font-weight:700;">260,000원</td>
+        <td style="padding:10px 6px; text-align:center; font-size:12px; color:#888;">즉시~2Q26</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0f0f0;">
+        <td style="padding:10px 6px; font-weight:700;">현대차</td>
+        <td style="padding:10px 6px; text-align:center;">671,000원</td>
+        <td style="padding:10px 6px; text-align:center; color:#c62828; font-weight:700;">750,000원</td>
+        <td style="padding:10px 6px; text-align:center; font-size:12px; color:#888;">즉시~2Q26</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 6px; font-weight:700;">SK하이닉스</td>
+        <td style="padding:10px 6px; text-align:center;">1,089,000원</td>
+        <td style="padding:10px 6px; text-align:center; color:#00838f; font-weight:700;">1,300,000원</td>
+        <td style="padding:10px 6px; text-align:center; font-size:12px; color:#888;">3Q26~2027</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 매도 원칙 -->
+<div class="principle-box">
+  <div class="principle-title">💡 Jarvis 권장 매도 원칙</div>
+  <div class="principle-item">① <strong>욕심보다 확정</strong> — 목표 수익의 50~70%에서 절반 이상 매도 후 나머지 보유</div>
+  <div class="principle-item">② <strong>뉴스에 팔아라</strong> — 좋은 뉴스(실적 서프라이즈, 대형 수주)가 나왔을 때 매도 타이밍</div>
+  <div class="principle-item">③ <strong>손절선 지키기</strong> — 현대차 -15%, 삼성전자 -10%, SK하이닉스 -20%를 반드시 준수</div>
+  <div class="principle-item">④ <strong>현대차 집중 리스크 해소 최우선</strong> — 포트폴리오 균형 회복 후 SK하이닉스 비중 확대 고려</div>
+  <div class="principle-item">⑤ <strong>세금 고려</strong> — 차익 실현 시 금융투자소득세(2025년 이후 기준) 및 배당소득세 확인</div>
+</div>
+
+<div class="footer">
+  ⚠️ 본 리포트는 Jarvis AI의 분석 의견이며, 투자 결정의 최종 책임은 투자자 본인에게 있습니다.<br>
+  실시간 시세 반영이 어려워 현재가는 추정값입니다. 반드시 증권사 앱에서 최신 시세를 확인하세요.<br><br>
+  📅 2026.02.27 &nbsp;|&nbsp; Jarvis 🤵
+</div>
+
+</body>
+</html>
