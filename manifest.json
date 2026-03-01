@@ -184,9 +184,9 @@
       "웨비나",
       "Tricentis"
     ],
-    "type": "html",
-    "filename": "tosca-webinar-report-v2-2026-02-27.html",
-    "status": "final"
+    "type": "external",
+    "status": "final",
+    "url": "https://spring7day.github.io/jarvis-media/"
   },
   {
     "id": "Tricentis-Roadmap-Report-2026-02-02",
