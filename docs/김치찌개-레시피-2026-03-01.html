@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>김치찌개 레시피 — Mrs macarons 마카롱여사</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+    background: #f7f3ee;
+    color: #2d2d2d;
+    padding: 20px 16px 60px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .hero {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    border-radius: 18px;
+    padding: 28px 22px 22px;
+    color: #fff;
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '🍲';
+    font-size: 80px;
+    position: absolute;
+    right: -10px;
+    bottom: -10px;
+    opacity: 0.25;
+  }
+  .hero .channel {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 14px;
+  }
+  .hero a {
+    display: inline-block;
+    background: rgba(255,255,255,0.22);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1.5px solid rgba(255,255,255,0.5);
+  }
+
+  .section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #c0392b;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  /* 재료 */
+  .ingredient-list { list-style: none; }
+  .ingredient-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0ece8;
+    font-size: 15px;
+  }
+  .ingredient-list li:last-child { border-bottom: none; }
+  .ingredient-list .name { font-weight: 600; }
+  .ingredient-list .amount {
+    background: #fef5f5;
+    color: #c0392b;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .tip {
+    margin-top: 12px;
+    background: #fffbea;
+    border-left: 3px solid #f39c12;
+    border-radius: 0 10px 10px 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #6b5600;
+    line-height: 1.6;
+  }
+
+  /* 조리 순서 */
+  .steps { list-style: none; }
+  .steps li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0ece8;
+    align-items: flex-start;
+  }
+  .steps li:last-child { border-bottom: none; }
+  .step-num {
+    min-width: 32px;
+    height: 32px;
+    background: #c0392b;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .step-text {
+    font-size: 15px;
+    line-height: 1.6;
+    padding-top: 5px;
+  }
+  .step-text strong {
+    color: #c0392b;
+    font-weight: 700;
+  }
+
+  /* 핵심 포인트 */
+  .points { list-style: none; }
+  .points li {
+    padding: 11px 0;
+    border-bottom: 1px solid #f0ece8;
+    font-size: 14px;
+    line-height: 1.6;
+    padding-left: 22px;
+    position: relative;
+  }
+  .points li:last-child { border-bottom: none; }
+  .points li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: 800;
+  }
+
+  .source-note {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="channel">📺 Mrs macarons 마카롱여사</div>
+  <h1>김치찌개는 끓이는 게 아닙니다<br>끓이는 순간 모든 게 무너져요 😄</h1>
+  <a href="https://youtu.be/41JRl1fIU_g" target="_blank">▶ 영상 보기</a>
+</div>
+
+<!-- 재료 -->
+<div class="section">
+  <h2>🛒 재료 <span style="font-weight:400;font-size:13px;color:#888">(2~3인분)</span></h2>
+  <ul class="ingredient-list">
+    <li>
+      <span class="name">익은 김치 (김장김치)</span>
+      <span class="amount">¼포기</span>
+    </li>
+    <li>
+      <span class="name">돼지고기 목살</span>
+      <span class="amount">300g</span>
+    </li>
+    <li>
+      <span class="name">두부</span>
+      <span class="amount">1모</span>
+    </li>
+    <li>
+      <span class="name">대파</span>
+      <span class="amount">1대 (넉넉히)</span>
+    </li>
+    <li>
+      <span class="name">멸치·다시마 육수</span>
+      <span class="amount">400~600ml</span>
+    </li>
+    <li>
+      <span class="name">고춧가루</span>
+      <span class="amount">1T</span>
+    </li>
+    <li>
+      <span class="name">참치액</span>
+      <span class="amount">1T</span>
+    </li>
+    <li>
+      <span class="name">참기름 또는 들기름</span>
+      <span class="amount">1T</span>
+    </li>
+    <li>
+      <span class="name">설탕 (김치 신맛 조절용)</span>
+      <span class="amount">1t (선택)</span>
+    </li>
+    <li>
+      <span class="name">소금</span>
+      <span class="amount">간 맞춰 적당량</span>
+    </li>
+  </ul>
+  <div class="tip">
+    💡 <strong>양파는 넣지 않고 대파를 많이!</strong><br>
+    양파 대신 대파를 넉넉히 넣으면 국물이 훨씬 시원해져요.<br>
+    참치액이 없거나 김치가 이미 짜다면 생략해도 OK.
+  </div>
+</div>
+
+<!-- 조리 순서 -->
+<div class="section">
+  <h2>👨‍🍳 조리 순서</h2>
+  <ol class="steps">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-text">
+        김치를 <strong>먹기 좋은 크기</strong>로 잘라 준비한다.
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-text">
+        팬을 달군 뒤 <strong>참기름(또는 들기름)</strong>을 두르고, 목살을 먼저 달달 볶다가 <strong>김치를 함께 볶는다</strong>. (고기 볶음이 핵심!)
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <strong>설탕 1t · 참치액 1T · 고춧가루 1T</strong>를 넣고 한 번 더 볶아준다.
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-text">
+        <strong>멸치·다시마 육수 400~600ml</strong>를 붓고 끓이기 시작한다.
+      </div>
+    </li>
+    <li>
+      <div class="step-num">5</div>
+      <div class="step-text">
+        끓기 시작하면 <strong>두부와 대파</strong>를 올리고 뚜껑을 닫아 두부에 간이 배도록 끓인다.
+      </div>
+    </li>
+    <li>
+      <div class="step-num">6</div>
+      <div class="step-text">
+        <strong>중불 이상</strong>으로 불 조절하며 <strong>10분 이상</strong> 끓인다. 싱거우면 소금으로 간을 맞춘다.
+      </div>
+    </li>
+  </ol>
+</div>
+
+<!-- 핵심 포인트 -->
+<div class="section">
+  <h2>⭐ 맛있는 김치찌개 포인트</h2>
+  <ul class="points">
+    <li>고기와 김치를 <strong>먼저 볶는 것</strong>이 핵심 — 볶지 않고 그냥 끓이면 맛이 무너진다</li>
+    <li>양파 대신 <strong>대파를 넉넉히</strong> 넣으면 국물이 시원해짐</li>
+    <li><strong>멸치·다시마 육수</strong>를 쓰면 간도 맞고 깊은 맛이 남</li>
+    <li>김치가 많이 시면 <strong>설탕 1t</strong>로 신맛 잡기</li>
+    <li>두부는 끓기 시작한 뒤 넣고 <strong>뚜껑 닫아</strong> 간이 배도록</li>
+    <li>마지막 <strong>중불 이상 10분</strong> — 충분히 끓여야 국물 맛이 진해짐</li>
+  </ul>
+</div>
+
+<p class="source-note">출처: Mrs macarons 마카롱여사 유튜브 채널<br>
+<a href="https://youtu.be/41JRl1fIU_g" style="color:#c0392b">youtu.be/41JRl1fIU_g</a></p>
+
+</body>
+</html>

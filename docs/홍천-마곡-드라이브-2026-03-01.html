@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>03/01 홍천→마곡 드라이브 코스</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'Apple SD Gothic Neo', sans-serif; background: #f5f5f5; color: #333; }
+  .header { background: linear-gradient(135deg, #2E7D32, #43A047); color: white; padding: 24px 20px; }
+  .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .header p { font-size: 13px; opacity: 0.9; }
+  .route-bar { background: #fff; padding: 12px 20px; border-bottom: 1px solid #e5e5e5; font-size: 13px; color: #555; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .route-bar span { color: #1a73e8; font-weight: 600; }
+  .timeline { padding: 16px; }
+  .card { background: white; border-radius: 16px; margin-bottom: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .card-header { padding: 14px 16px 10px; display: flex; align-items: center; gap: 10px; }
+  .time-badge { background: #E8F5E9; color: #2E7D32; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .type-badge { font-size: 11px; color: white; padding: 3px 8px; border-radius: 10px; font-weight: 600; }
+  .type-lunch { background: #FF7043; }
+  .type-activity { background: #1976D2; }
+  .type-dinner { background: #7B1FA2; }
+  .type-alt { background: #78909C; }
+  .place-name { font-size: 16px; font-weight: 700; margin: 0 16px 4px; }
+  .place-addr { font-size: 12px; color: #888; margin: 0 16px 10px; }
+  .memo-box { background: #F9FBE7; border-left: 3px solid #C5E1A5; margin: 0 16px 12px; padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: 13px; color: #555; line-height: 1.5; }
+  .info-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 16px 12px; }
+  .info-chip { background: #F5F5F5; border-radius: 20px; padding: 4px 12px; font-size: 12px; color: #555; display: flex; align-items: center; gap: 4px; }
+  .info-chip.pet { background: #E3F2FD; color: #1565C0; }
+  .info-chip.kid { background: #FFF3E0; color: #E65100; }
+  .info-chip.warn { background: #FFF3E0; color: #BF360C; }
+  .btn-naver { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 16px 16px; background: #03C75A; color: white; padding: 12px; border-radius: 12px; text-decoration: none; font-size: 14px; font-weight: 600; }
+  .btn-naver img { width: 20px; height: 20px; border-radius: 4px; }
+  .divider { height: 1px; background: #F5F5F5; margin: 0 16px; }
+  .section-label { font-size: 11px; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px 0; }
+  .summary-card { background: white; border-radius: 16px; margin-bottom: 14px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .summary-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #2E7D32; }
+  .timeline-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
+  .tl-time { font-size: 13px; font-weight: 700; color: #1976D2; width: 60px; flex-shrink: 0; padding-top: 2px; }
+  .tl-dot { width: 10px; height: 10px; border-radius: 50%; background: #43A047; margin-top: 5px; flex-shrink: 0; }
+  .tl-text { font-size: 13px; color: #444; line-height: 1.5; }
+  .note-box { background: #FFF8E1; border-radius: 12px; margin: 0 0 14px; padding: 14px 16px; }
+  .note-box h4 { font-size: 13px; font-weight: 700; color: #F57F17; margin-bottom: 8px; }
+  .note-box p { font-size: 12px; color: #666; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🚗 03/01 홍천 → 서울 마곡</h1>
+  <p>반스힐리조트 체크아웃 → 보리 🐕 + 아들 🧒 동반 드라이브</p>
+</div>
+
+<div class="route-bar">
+  <span>홍천 서면</span> → 양평 서종면 → 두물머리 → 남양주 → <span>마곡</span>
+  <span style="margin-left:auto; color:#666; font-size:12px">총 거리 약 150km · 9시 도착</span>
+</div>
+
+<div class="timeline" style="padding-top:12px">
+
+  <!-- 타임라인 요약 -->
+  <div class="summary-card">
+    <h3>📋 오늘 일정 타임라인</h3>
+    <div class="timeline-row"><div class="tl-time">11:00</div><div class="tl-dot"></div><div class="tl-text">반스힐리조트 체크아웃 출발</div></div>
+    <div class="timeline-row"><div class="tl-time">12:30</div><div class="tl-dot"></div><div class="tl-text"><b>점심</b> — 소근리막국수 서종본점 (양평 서종면, 약 50km)</div></div>
+    <div class="timeline-row"><div class="tl-time">14:00</div><div class="tl-dot"></div><div class="tl-text"><b>활동</b> — 두물머리 산책 (양평 양서면, 약 20분 이동)</div></div>
+    <div class="timeline-row"><div class="tl-time">17:00</div><div class="tl-dot"></div><div class="tl-text">남양주 방향 이동 출발</div></div>
+    <div class="timeline-row"><div class="tl-time">18:30</div><div class="tl-dot"></div><div class="tl-text"><b>저녁</b> — 오리덕 남양주 (북한강, 약 30분 이동)</div></div>
+    <div class="timeline-row"><div class="tl-time">20:30</div><div class="tl-dot"></div><div class="tl-text">서울 마곡 방향 출발</div></div>
+    <div class="timeline-row"><div class="tl-time">21:00</div><div class="tl-dot" style="background:#E91E63"></div><div class="tl-text"><b>집 도착</b> 🏠 마곡</div></div>
+  </div>
+
+  <!-- 점심 -->
+  <div style="color:#FF7043; font-size:12px; font-weight:700; padding: 4px 4px 8px; letter-spacing:0.5px">🍜 점심</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="time-badge">12:30 ~ 13:30</span>
+      <span class="type-badge type-lunch">점심 추천</span>
+    </div>
+    <div class="place-name">소근리막국수 서종본점</div>
+    <div class="place-addr">📍 경기도 양평군 서종면 서종로 626</div>
+    <div class="info-row">
+      <span class="info-chip pet">🐕 반려견 동반 환영</span>
+      <span class="info-chip kid">🧒 아이 OK</span>
+      <span class="info-chip">⏰ 11:00~20:00</span>
+      <span class="info-chip">🅿️ 주차 넓음</span>
+    </div>
+    <div class="memo-box">막국수 맛집으로 반려견 동반 환영. 비빔막국수·물막국수·수육·왕만두. 홍천에서 양평 가는 길목에 위치. 야외 테라스 있어 보리도 편하게.</div>
+    <a class="btn-naver" href="https://map.naver.com/p/search/소근리막국수%20서종본점" target="_blank">
+      🗺️ 네이버 지도에서 보기 / 저장
+    </a>
+  </div>
+
+  <div class="card" style="border: 1px dashed #ddd;">
+    <div class="card-header">
+      <span class="time-badge">12:30 대안</span>
+      <span class="type-badge type-alt">점심 대안</span>
+    </div>
+    <div class="place-name">레스토랑 알베로</div>
+    <div class="place-addr">📍 경기도 양평군 용문면 양평로 1546</div>
+    <div class="info-row">
+      <span class="info-chip pet">🐕 반려견 펫존 별도</span>
+      <span class="info-chip">🍝 이탈리안 파스타·피자</span>
+      <span class="info-chip">📸 인생샷 명소</span>
+    </div>
+    <div class="memo-box">반려견 전용 펫존 마련. 이탈리안 레스토랑+카페 연결. 용문역 근처. 소근리막국수보다 조금 더 남쪽 경로.</div>
+    <a class="btn-naver" href="https://map.naver.com/p/search/레스토랑%20알베로%20양평" target="_blank">
+      🗺️ 네이버 지도에서 보기 / 저장
+    </a>
+  </div>
+
+  <!-- 활동 -->
+  <div style="color:#1976D2; font-size:12px; font-weight:700; padding: 4px 4px 8px; letter-spacing:0.5px; margin-top:4px">🐕 활동</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="time-badge">14:00 ~ 17:00</span>
+      <span class="type-badge type-activity">활동 추천</span>
+    </div>
+    <div class="place-name">두물머리</div>
+    <div class="place-addr">📍 경기도 양평군 양서면 양수로 93 (두물머리 주차장)</div>
+    <div class="info-row">
+      <span class="info-chip pet">🐕 반려견 동반 O</span>
+      <span class="info-chip kid">🧒 어린이 좋아함</span>
+      <span class="info-chip">🆓 입장 무료</span>
+      <span class="info-chip">🅿️ 유료 주차 (인근 무료도 있음)</span>
+    </div>
+    <div class="memo-box">남한강+북한강이 만나는 곳. 반려견 동반 가능 (세미원은 반려견 불가). 포토스팟·핫도그 노점·느티나무 명소. 8세 아이 뛰어놀기 딱 좋음. 약 1~2시간 산책 코스.</div>
+    <div class="note-box" style="margin:0 16px 12px; padding:10px 12px">
+      <h4>⚠️ 참고</h4>
+      <p>세미원(연꽃정원)은 반려견 입장 불가. 두물머리는 자유 산책 가능. 바로 옆이라 함께 방문 후 두물머리만 산책하는 코스 추천.</p>
+    </div>
+    <a class="btn-naver" href="https://map.naver.com/p/search/두물머리%20양평" target="_blank">
+      🗺️ 네이버 지도에서 보기 / 저장
+    </a>
+  </div>
+
+  <!-- 저녁 -->
+  <div style="color:#7B1FA2; font-size:12px; font-weight:700; padding: 4px 4px 8px; letter-spacing:0.5px; margin-top:4px">🦆 저녁</div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="time-badge">18:30 ~ 20:00</span>
+      <span class="type-badge type-dinner">저녁 추천</span>
+    </div>
+    <div class="place-name">오리덕 남양주</div>
+    <div class="place-addr">📍 경기도 남양주시 조안면 북한강로 (금남리, 북한강 근처)</div>
+    <div class="info-row">
+      <span class="info-chip pet">🐕 실내 애견동반 가능</span>
+      <span class="info-chip kid">🧒 가족 룸 가능</span>
+      <span class="info-chip">🏞️ 북한강 통창뷰</span>
+      <span class="info-chip warn">📞 예약 시 애견 동반 선택</span>
+    </div>
+    <div class="memo-box">북한강 전망 오리고기 맛집. 2~3층 규모. 예약 시 애견 동반 여부 선택하면 1층 반려견 구역 배정. 담백한 오리고기·오리백숙. 부모님·가족 외식 딱.</div>
+    <a class="btn-naver" href="https://map.naver.com/p/search/오리덕%20남양주%20북한강" target="_blank">
+      🗺️ 네이버 지도에서 보기 / 저장
+    </a>
+  </div>
+
+  <div class="card" style="border: 1px dashed #ddd;">
+    <div class="card-header">
+      <span class="time-badge">18:30 대안</span>
+      <span class="type-badge type-alt">저녁 대안</span>
+    </div>
+    <div class="place-name">베베키즈그릴</div>
+    <div class="place-addr">📍 경기도 남양주시 별내면 용암비루개길 66-26</div>
+    <div class="info-row">
+      <span class="info-chip pet">🐕 반려견 동반 O</span>
+      <span class="info-chip kid">🧒 키즈존 + 놀이시설</span>
+      <span class="info-chip">🍖 야외 바베큐</span>
+    </div>
+    <div class="memo-box">아이 키즈존 + 반려견 동반 동시 가능. 야외 바베큐. 8세 아들이 특히 좋아할 듯. 마곡에서 조금 먼 편 (별내). 평일~주말 운영 시간 상이하니 확인 필요.</div>
+    <a class="btn-naver" href="https://map.naver.com/p/search/베베키즈그릴%20남양주" target="_blank">
+      🗺️ 네이버 지도에서 보기 / 저장
+    </a>
+  </div>
+
+  <!-- 안내 -->
+  <div class="note-box" style="margin-bottom:20px">
+    <h4>📌 네이버 지도 저장 방법</h4>
+    <p>위 "네이버 지도에서 보기" 버튼 클릭 → 장소 선택 → ☆ 저장 버튼 → <b>"03/01 홍천→마곡 드라이브"</b> 목록으로 저장</p>
+  </div>
+
+</div>
+</body>
+</html>

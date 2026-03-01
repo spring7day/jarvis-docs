@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarvis 문서 저장소</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+  background: #0f0f13;
+  color: #e8e8f0;
+  min-height: 100vh;
+}
+
+/* 헤더 */
+.header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 28px 20px 20px;
+  border-bottom: 1px solid #2a2a3e;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.logo { font-size: 28px; }
+.header h1 { font-size: 20px; font-weight: 800; color: #fff; }
+.header h1 span { color: #7c6dfa; }
+.doc-count {
+  margin-left: auto;
+  background: #7c6dfa22;
+  color: #a69dff;
+  border: 1px solid #7c6dfa44;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 검색 */
+.search-box {
+  width: 100%;
+  background: #1e1e2e;
+  border: 1.5px solid #2e2e4e;
+  border-radius: 12px;
+  padding: 11px 16px;
+  color: #e8e8f0;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-box:focus { border-color: #7c6dfa; }
+.search-box::placeholder { color: #555; }
+
+/* 카테고리 탭 */
+.tabs {
+  display: flex;
+  gap: 8px;
+  padding: 16px 20px 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  white-space: nowrap;
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: none;
+  background: #1e1e2e;
+  color: #888;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.tab.active {
+  background: #7c6dfa;
+  color: #fff;
+}
+.tab:hover:not(.active) { background: #2a2a3e; color: #ccc; }
+
+/* 문서 목록 */
+.docs-grid {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.doc-card {
+  background: #1a1a2e;
+  border: 1px solid #2a2a3e;
+  border-radius: 16px;
+  padding: 18px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.doc-card:hover {
+  border-color: #7c6dfa66;
+  background: #1e1e38;
+  transform: translateY(-1px);
+}
+.doc-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--cat-color, #7c6dfa);
+  border-radius: 3px 0 0 3px;
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.card-icon { font-size: 22px; flex-shrink: 0; }
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e8e8f0;
+  line-height: 1.4;
+}
+.card-arrow {
+  margin-left: auto;
+  color: #444;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.doc-card:hover .card-arrow { color: #7c6dfa; }
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.card-date {
+  font-size: 12px;
+  color: #666;
+}
+.card-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.tag {
+  background: #2a2a3e;
+  color: #888;
+  border-radius: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+}
+
+/* 카테고리별 색상 */
+.cat-레시피 { --cat-color: #e74c3c; }
+.cat-드라이브 { --cat-color: #2ecc71; }
+.cat-리포트 { --cat-color: #3498db; }
+.cat-분석 { --cat-color: #f39c12; }
+.cat-링크 { --cat-color: #9b59b6; }
+
+/* 빈 상태 */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #444;
+}
+.empty .icon { font-size: 48px; margin-bottom: 12px; }
+
+/* 업데이트 시각 */
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #333;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div class="logo">🤵</div>
+    <h1><span>Jarvis</span> 문서 저장소</h1>
+    <div class="doc-count" id="docCount">0개</div>
+  </div>
+  <input class="search-box" id="search" type="text" placeholder="문서 검색...">
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab active" data-cat="전체">전체</button>
+</div>
+
+<div class="docs-grid" id="grid"></div>
+<div class="footer" id="footer"></div>
+
+<script>
+const CATEGORY_ICONS = {
+  '레시피': '🍳',
+  '드라이브': '🚗',
+  '리포트': '📊',
+  '분석': '🔍',
+  '링크': '🔗',
+  '기타': '📄',
+};
+
+let allDocs = [];
+let activeCategory = '전체';
+let searchQuery = '';
+
+async function loadManifest() {
+  try {
+    const res = await fetch('manifest.json?t=' + Date.now());
+    allDocs = await res.json();
+    render();
+  } catch(e) {
+    document.getElementById('grid').innerHTML = '<div class="empty"><div class="icon">⚠️</div><div>문서를 불러올 수 없어요</div></div>';
+  }
+}
+
+function buildTabs() {
+  const cats = ['전체', ...new Set(allDocs.map(d => d.category))];
+  const tabsEl = document.getElementById('tabs');
+  tabsEl.innerHTML = cats.map(c =>
+    `<button class="tab${c === activeCategory ? ' active' : ''}" data-cat="${c}">${c}</button>`
+  ).join('');
+  tabsEl.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.dataset.cat;
+      render();
+    });
+  });
+}
+
+function getDocUrl(doc) {
+  if (doc.url) return doc.url;
+  if (doc.filename) return 'docs/' + doc.filename;
+  return '#';
+}
+
+function render() {
+  buildTabs();
+  const filtered = allDocs.filter(d => {
+    if (d.status !== 'final') return false;
+    if (activeCategory !== '전체' && d.category !== activeCategory) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      return d.title.toLowerCase().includes(q) ||
+             (d.tags||[]).some(t => t.toLowerCase().includes(q));
+    }
+    return true;
+  });
+
+  document.getElementById('docCount').textContent = `${filtered.length}개`;
+
+  if (filtered.length === 0) {
+    document.getElementById('grid').innerHTML = '<div class="empty"><div class="icon">📭</div><div>문서가 없어요</div></div>';
+    return;
+  }
+
+  const sorted = [...filtered].sort((a, b) => b.date.localeCompare(a.date));
+
+  document.getElementById('grid').innerHTML = sorted.map(doc => {
+    const icon = CATEGORY_ICONS[doc.category] || '📄';
+    const tags = (doc.tags||[]).map(t => `<span class="tag">${t}</span>`).join('');
+    const url = getDocUrl(doc);
+    return `
+      <a class="doc-card cat-${doc.category}" href="${url}" target="_blank">
+        <div class="card-top">
+          <div class="card-icon">${icon}</div>
+          <div class="card-title">${doc.title}</div>
+          <div class="card-arrow">›</div>
+        </div>
+        <div class="card-meta">
+          <span class="card-date">📅 ${doc.date}</span>
+          <div class="card-tags">${tags}</div>
+        </div>
+      </a>`;
+  }).join('');
+
+  document.getElementById('footer').textContent = `마지막 업데이트: ${new Date().toLocaleDateString('ko-KR')}`;
+}
+
+document.getElementById('search').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  render();
+});
+
+loadManifest();
+</script>
+</body>
+</html>
