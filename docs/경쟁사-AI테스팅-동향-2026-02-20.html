@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경쟁사 AI 테스팅 동향 분석 | LG CNS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif; background: #C8C8C8; padding: 28px; }
+
+:root {
+  --red: #C8102E;
+  --dark: #1A1A1A;
+  --gray: #4A4A4A;
+  --gray2: #888888;
+  --border: #D8D8D8;
+  --bg: #F5F5F5;
+  --navy: #1C3557;
+}
+
+.slide {
+  width: 960px; height: 720px;
+  background: #fff;
+  position: relative; overflow: hidden;
+  box-shadow: 0 5px 22px rgba(0,0,0,0.25);
+  margin: 0 auto 28px auto;
+}
+
+/* ────────── COVER ELEMENTS ────────── */
+.l-brk::before {
+  content: ''; position: absolute;
+  top: 26px; left: 26px;
+  width: 5px; height: 80px; background: var(--red);
+}
+.l-brk::after {
+  content: ''; position: absolute;
+  top: 26px; left: 26px;
+  width: 80px; height: 5px; background: var(--red);
+}
+.lg-wrap {
+  position: absolute; bottom: 22px; right: 26px;
+  display: flex; align-items: flex-end;
+}
+.lg-c {
+  width: 36px; height: 36px;
+  border: 2.5px solid var(--red); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9.5px; font-weight: 900; color: var(--red); letter-spacing: -0.5px;
+}
+.r-brk { width: 30px; height: 44px; position: relative; margin-left: 2px; }
+.r-brk::before { content: ''; position: absolute; bottom: 0; right: 0; width: 30px; height: 5px; background: var(--red); }
+.r-brk::after  { content: ''; position: absolute; bottom: 0; right: 0; width: 5px; height: 44px; background: var(--red); }
+
+/* ────────── CONTENT SLIDE HEADER ────────── */
+.sh {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  padding-bottom: 8px; border-bottom: 2px solid var(--dark); margin-bottom: 12px;
+}
+.sh-l { font-size: 16px; font-weight: 700; color: var(--dark); }
+.sh-r { font-size: 12px; font-weight: 700; color: var(--dark); }
+
+/* ────────── KEY MESSAGE ────────── */
+.km {
+  font-size: 11.5px; font-weight: 500; line-height: 1.8;
+  color: var(--dark); margin-bottom: 14px;
+  padding-bottom: 11px; border-bottom: 1px solid var(--border);
+}
+.km u { text-decoration-thickness: 1.5px; }
+
+/* ────────── CHECKBOX BULLETS ────────── */
+.cb { display: flex; gap: 8px; margin-bottom: 10px; }
+.cb-s { font-size: 12px; font-weight: 700; min-width: 13px; padding-top: 0.5px; }
+.cb-b { flex: 1; font-size: 11px; line-height: 1.8; color: var(--dark); }
+.cb-b strong { font-weight: 700; }
+.cb-b u { text-decoration-thickness: 1px; }
+
+/* sub (max 2 levels) */
+.sub { display: flex; gap: 5px; margin: 3px 0 3px 4px; }
+.sub-d { font-size: 10.5px; min-width: 10px; color: var(--gray); }
+.sub-t { font-size: 10.5px; color: var(--gray); line-height: 1.6; flex: 1; }
+.arr { display: flex; gap: 5px; margin: 3px 0 3px 4px; }
+.arr-s { font-size: 10.5px; min-width: 12px; color: var(--red); font-weight: 700; }
+.arr-t { font-size: 10.5px; color: var(--gray); line-height: 1.6; flex: 1; }
+
+/* ────────── TAGS ────────── */
+.tag {
+  display: inline-block; padding: 1px 6px;
+  font-size: 9px; font-weight: 700; border-radius: 2px; margin-right: 4px; vertical-align: middle;
+}
+.td { background: #2A2A2A; color: #fff; }
+.tr { background: var(--red); color: #fff; }
+.tn { background: var(--navy); color: #fff; }
+.tg { background: #777; color: #fff; }
+
+/* ────────── STAT BOX ────────── */
+.stat-row { display: flex; gap: 10px; margin-bottom: 16px; }
+.stat {
+  flex: 1; border: 1px solid var(--border); border-top: 3px solid var(--red);
+  padding: 14px 10px 12px; background: var(--bg); text-align: center;
+}
+.stat-n { font-size: 32px; font-weight: 900; color: var(--red); line-height: 1; margin-bottom: 6px; }
+.stat-l { font-size: 10px; color: var(--gray); line-height: 1.6; }
+.stat-src { font-size: 9px; color: var(--gray2); margin-top: 4px; }
+
+/* ────────── STEP DIAGRAM ────────── */
+.steps { display: flex; margin-bottom: 14px; }
+.step {
+  flex: 1; border: 1px solid var(--border); padding: 12px 12px;
+  position: relative;
+}
+.step + .step { border-left: none; }
+.step.hl { border-top: 3px solid var(--red); }
+.step-n { font-size: 9px; font-weight: 700; color: var(--red); margin-bottom: 5px; letter-spacing: 0.3px; }
+.step-t { font-size: 11.5px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+.step-sub { font-size: 9px; color: var(--gray2); margin-bottom: 6px; }
+.step-d { font-size: 9.5px; color: var(--gray); line-height: 1.6; }
+.step-arr {
+  position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; background: var(--red); color: #fff;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 700; z-index: 2;
+}
+
+/* ────────── TABLE ────────── */
+.tbl { width: 100%; border-collapse: collapse; font-size: 9.5px; }
+.tbl th {
+  background: #2A2A2A; color: #fff; padding: 5px 8px;
+  font-size: 9.5px; font-weight: 700; text-align: center;
+}
+.tbl td { padding: 5px 8px; border: 1px solid var(--border); text-align: center; }
+.tbl .rh { background: var(--bg); font-weight: 700; text-align: left; }
+.tbl .neg { color: var(--red); font-weight: 700; }
+.tbl .pos { color: #1a7a1a; font-weight: 700; }
+
+/* ────────── COMPARE TABLE ────────── */
+.cmp { width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 13px; }
+.cmp th { padding: 7px 10px; font-size: 10px; font-weight: 700; text-align: center; }
+.cmp th:first-child { background: #2A2A2A; color: #fff; }
+.cmp th.t1 { background: var(--red); color: #fff; }
+.cmp th.t2 { background: var(--navy); color: #fff; }
+.cmp td { padding: 7px 10px; border: 1px solid var(--border); font-size: 10px; line-height: 1.5; }
+.cmp td:first-child { background: var(--bg); font-weight: 700; }
+.cmp .good { background: #1a6e1a; color: #fff; font-weight: 700; }
+.cmp .neutral { background: #e8f4e8; color: #1a6e1a; font-weight: 500; }
+.cmp .weak { background: #fff5f5; color: var(--red); font-size: 9.5px; }
+
+/* ────────── IMPLICATION BOX ────────── */
+.simbox { background: #222; padding: 12px 18px 10px; border-radius: 3px; }
+.sim-hd {
+  font-size: 10.5px; font-weight: 700; color: #fff;
+  margin-bottom: 8px; padding-bottom: 7px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; gap: 7px;
+}
+.sim-hd::before { content: ''; width: 16px; height: 2.5px; background: var(--red); display: inline-block; }
+.si { display: flex; gap: 7px; margin-bottom: 6px; }
+.si-c { color: var(--red); font-weight: 700; font-size: 10.5px; min-width: 13px; }
+.si-t { font-size: 10px; color: rgba(255,255,255,0.85); line-height: 1.65; flex: 1; }
+.si-t strong { color: #fff; }
+.si-t u { text-decoration-color: rgba(255,255,255,0.6); }
+
+/* ────────── LAYOUT ────────── */
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+.col-hd { font-size: 10px; font-weight: 700; color: var(--dark); margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid var(--border); }
+
+/* ────────── INLINE 시사점 화살표 ────────── */
+.inline-sim {
+  font-size: 11px; font-weight: 700;
+  color: var(--red);
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  margin-top: 5px; margin-bottom: 12px;
+  line-height: 1.7;
+  display: block;
+}
+
+/* ────────── NOTE / ANNOTATION ────────── */
+.note { font-size: 8.5px; color: var(--gray2); padding-top: 5px; line-height: 1.5; }
+
+/* ────────── FOOTER ────────── */
+.pgn { position: absolute; bottom: 11px; right: 28px; font-size: 9px; color: var(--gray2); }
+.conf { position: absolute; bottom: 11px; left: 50%; transform: translateX(-50%); font-size: 9px; color: #BBBBBB; font-weight: 500; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     SLIDE 1: COVER
+══════════════════════════════════════ -->
+<div class="slide">
+  <div class="l-brk"></div>
+
+  <!-- 메인 콘텐츠: 좌우 2컬럼, 상단 여백~하단 스트립 상단까지 꽉 채움 -->
+  <div style="position:absolute; top:30px; left:70px; right:50px; bottom:110px; display:flex; gap:28px; align-items:stretch;">
+
+    <!-- 좌측: 제목 블록 -->
+    <div style="flex:1.1; display:flex; flex-direction:column; justify-content:space-between; padding-top:20px;">
+      <div>
+        <div style="font-size:10.5px; color:var(--gray2); margin-bottom:16px; letter-spacing:0.5px; text-transform:uppercase;">엔터프라이즈 솔루션 개발팀 · PerfecTwin ERP Edition</div>
+        <div style="font-size:38px; font-weight:900; color:var(--dark); line-height:1.15; margin-bottom:16px;">경쟁사 AI 테스팅<br>동향 분석</div>
+        <div style="width:60px; height:4px; background:var(--red); margin-bottom:18px;"></div>
+        <div style="font-size:13px; color:var(--gray); line-height:1.85;">
+          Agentic AI의 부상과 SAP ERP 테스팅 시장 변화<br>
+          PerfecTwin ERP Edition 전략 시사점
+        </div>
+      </div>
+
+      <!-- 핵심 메시지 인용 박스 -->
+      <div style="border-left:4px solid var(--red); padding:12px 18px; background:var(--bg); margin-top:20px;">
+        <div style="font-size:10px; color:var(--red); font-weight:700; margin-bottom:6px;">핵심 메시지</div>
+        <div style="font-size:11px; color:var(--dark); line-height:1.75; font-style:italic;">
+          "AI 테스팅 자동화는 2026년 SAP 클라우드 전환 성공의 핵심 변수로 부상 중이며,
+          경쟁사(Tricentis)의 Agentic AI 전략은 이미 PerfecTwin ERP Edition과
+          직접 경쟁 단계에 진입했다."
+        </div>
+      </div>
+
+      <!-- 분류 태그 -->
+      <div style="display:flex; gap:8px; margin-top:18px; flex-wrap:wrap;">
+        <span style="border:1px solid var(--border); padding:4px 10px; font-size:9px; color:var(--gray);">⬛ 엔터프라이즈 솔루션</span>
+        <span style="border:1px solid var(--border); padding:4px 10px; font-size:9px; color:var(--gray);">⬛ AI 테스팅 자동화</span>
+        <span style="background:var(--red); padding:4px 10px; font-size:9px; color:#fff; font-weight:700;">CONFIDENTIAL</span>
+      </div>
+    </div>
+
+    <!-- 구분선 -->
+    <div style="width:1px; background:var(--border); flex-shrink:0;"></div>
+
+    <!-- 우측: 수치 + 목차 -->
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:space-between; padding-top:20px;">
+      <!-- 수치 3개 -->
+      <div>
+        <div style="font-size:9px; font-weight:700; color:var(--gray2); margin-bottom:10px; letter-spacing:0.5px;">시장 핵심 수치</div>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:22px;">
+          <div style="border:1px solid var(--border); border-left:4px solid var(--red); padding:12px 16px; display:flex; align-items:center; gap:16px; background:var(--bg);">
+            <div style="font-size:32px; font-weight:900; color:var(--red); line-height:1; min-width:70px;">70%<span style="font-size:18px;">+</span></div>
+            <div><div style="font-size:10px; font-weight:700; color:var(--dark); margin-bottom:2px;">ERP AI 가치 중 Agentic AI 비중</div><div style="font-size:9px; color:var(--gray2);">Gartner 2027년 전망</div></div>
+          </div>
+          <div style="border:1px solid var(--border); border-left:4px solid var(--red); padding:12px 16px; display:flex; align-items:center; gap:16px; background:var(--bg);">
+            <div style="font-size:32px; font-weight:900; color:var(--red); line-height:1; min-width:70px;">50%</div>
+            <div><div style="font-size:10px; font-weight:700; color:var(--dark); margin-bottom:2px;">SAP 클라우드 전환 예산 중 테스팅 소요</div><div style="font-size:9px; color:var(--gray2);">Tricentis 웨비나 인용</div></div>
+          </div>
+          <div style="border:1px solid var(--border); border-left:4px solid var(--red); padding:12px 16px; display:flex; align-items:center; gap:16px; background:var(--bg);">
+            <div style="font-size:32px; font-weight:900; color:var(--red); line-height:1; min-width:70px;">10×</div>
+            <div><div style="font-size:10px; font-weight:700; color:var(--dark); margin-bottom:2px;">AI 도입 시 코드 출력량 증가</div><div style="font-size:9px; color:var(--gray2);">테스트 부담 동일 비례 증가</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 목차 -->
+      <div style="border:1px solid var(--border); overflow:hidden;">
+        <div style="background:#2A2A2A; padding:7px 14px; font-size:9.5px; font-weight:700; color:#fff; letter-spacing:0.5px;">목차</div>
+        <div style="padding:8px 14px 7px; border-bottom:1px solid var(--border); display:flex; gap:10px; align-items:baseline;">
+          <span style="color:var(--red); font-weight:700; font-size:10px; min-width:60px;">보고에 앞서</span>
+          <span style="font-size:10px; color:var(--dark);">핵심 메시지 및 보고서 배경</span>
+        </div>
+        <div style="padding:8px 14px 7px; border-bottom:1px solid var(--border); display:flex; gap:10px; align-items:baseline;">
+          <span style="color:var(--red); font-weight:700; font-size:10px; min-width:60px;">I.</span>
+          <span style="font-size:10px; color:var(--dark);">Agentic AI 테스팅 패러다임의 전환</span>
+        </div>
+        <div style="padding:8px 14px 7px; border-bottom:1px solid var(--border); display:flex; gap:10px; align-items:baseline;">
+          <span style="color:var(--red); font-weight:700; font-size:10px; min-width:60px;">II.</span>
+          <span style="font-size:10px; color:var(--dark);">경쟁사(Tricentis) Agentic AI 전략 현황</span>
+        </div>
+        <div style="padding:8px 14px 7px; display:flex; gap:10px; align-items:baseline;">
+          <span style="color:var(--red); font-weight:700; font-size:10px; min-width:60px;">III.</span>
+          <span style="font-size:10px; color:var(--dark);">시사점 및 PerfecTwin 대응 방향</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 스트립 (고정) -->
+  <div style="position:absolute; bottom:50px; left:0; right:0; border-top:2px solid var(--dark); display:grid; grid-template-columns:1fr 1fr 1fr 1fr; background:#1A1A1A;">
+    <div style="padding:10px 22px; border-right:1px solid rgba(255,255,255,0.15);">
+      <div style="font-size:8px; color:rgba(255,255,255,0.5); margin-bottom:3px; letter-spacing:0.5px;">분석 근거</div>
+      <div style="font-size:9.5px; color:#fff; font-weight:500;">Tricentis 공식 웨비나 (2026.02)</div>
+    </div>
+    <div style="padding:10px 22px; border-right:1px solid rgba(255,255,255,0.15);">
+      <div style="font-size:8px; color:rgba(255,255,255,0.5); margin-bottom:3px; letter-spacing:0.5px;">분석 대상</div>
+      <div style="font-size:9.5px; color:#fff; font-weight:500;">Tricentis ARIA 품질 에이전트</div>
+    </div>
+    <div style="padding:10px 22px; border-right:1px solid rgba(255,255,255,0.15);">
+      <div style="font-size:8px; color:rgba(255,255,255,0.5); margin-bottom:3px; letter-spacing:0.5px;">작성 주체</div>
+      <div style="font-size:9.5px; color:#fff; font-weight:500;">엔터프라이즈 솔루션 개발팀</div>
+    </div>
+    <div style="padding:10px 22px;">
+      <div style="font-size:8px; color:rgba(255,255,255,0.5); margin-bottom:3px; letter-spacing:0.5px;">작성일</div>
+      <div style="font-size:9.5px; color:#fff; font-weight:500;">2026. 02. 20.</div>
+    </div>
+  </div>
+
+  <!-- 최하단 -->
+  <div style="position:absolute; bottom:14px; left:70px; font-size:9px; color:var(--gray2);">LG CNS</div>
+  <div class="lg-wrap"><div class="lg-c">LG</div><div class="r-brk"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 2: 보고에 앞서…
+══════════════════════════════════════ -->
+<div class="slide">
+<div style="position:absolute; top:0; left:0; right:0; bottom:32px; display:flex; flex-direction:column; justify-content:space-between; padding:26px 44px 14px;">
+
+  <div class="sh">
+    <div class="sh-l">보고에 앞서…</div>
+  </div>
+
+  <div class="cb" style="margin-bottom:0;">
+    <div class="cb-s">□</div>
+    <div class="cb-b">
+      SAP ERP 테스팅 시장에서 경쟁사(Tricentis)를 중심으로 <strong><u>Agentic AI 기반 테스팅 자동화 솔루션</u></strong>이 본격 출시되고 있으며,
+      2026년부터 당사 PerfecTwin ERP Edition과의 직접 경쟁 구도 형성이 예상됨
+      <div class="sub">
+        <div class="sub-d">※</div>
+        <div class="sub-t">2026년 2월 Tricentis 공식 웨비나 "The future of testing is agentic"에서 ARIA 품질 에이전트 출시 및 AI 3단계 전략 공식화. 대상 고객: SAP S/4HANA 전환·운영 기업</div>
+      </div>
+      <div class="sub">
+        <div class="sub-d">※</div>
+        <div class="sub-t">Tricentis는 SAP Endorsed App 파트너로서 S/4HANA Migration 전용 패키지 영업을 확대 중 — 국내 LG전자 등 당사 진행 현장과 경쟁 가능성 상존</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cb" style="margin-bottom:0;">
+    <div class="cb-s">□</div>
+    <div class="cb-b">
+      Gartner는 <strong><u>2027년까지 ERP AI 가치의 70% 이상이 생성형 AI가 아닌 Agentic / Embedded AI에서 창출</u></strong>될 것으로 전망하며,
+      SAP 클라우드 전환 고객을 중심으로 AI 기반 테스팅 자동화 수요가 빠르게 증가하는 추세
+      <div class="sub">
+        <div class="sub-d">-</div>
+        <div class="sub-t">SAP 클라우드 전환 예산의 50%가 테스팅에 소요되고 있어 AI 자동화의 ROI가 명확 — 구매 의사결정 시 AI 기능 유무가 평가 기준으로 부상</div>
+      </div>
+      <div class="sub">
+        <div class="sub-d">-</div>
+        <div class="sub-t">AI 도구 도입으로 코드 출력량이 10배 증가함에 따라 테스트 부담도 비례 증가 → 자동화 없이는 품질 보증 불가한 환경으로 전환 중</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cb" style="margin-bottom:0;">
+    <div class="cb-s">□</div>
+    <div class="cb-b">
+      당사 PerfecTwin ERP Edition은 레코딩 기반 테스팅 자동화 솔루션으로 국내 SAP 고객 레퍼런스에서 강점을 보유하고 있으나,
+      경쟁사의 <strong>AI 에이전트 기능 강화</strong>에 따른 <strong><u>차별화 전략 재정립이 2026년 최우선 과제</u></strong>로 부상
+      <div class="sub">
+        <div class="sub-d">-</div>
+        <div class="sub-t"><span class="tag tn">기회</span> 국내 SAP ERP 레퍼런스 고객(LG전자 N-ERP 등)을 활용한 AI 기능 조기 실증(PoC) 추진 가능. 현장 데이터를 AI 학습에 활용할 수 있는 구조적 이점 보유</div>
+      </div>
+      <div class="sub">
+        <div class="sub-d">-</div>
+        <div class="sub-t"><span class="tag tr">위협</span> Tricentis ARIA의 요구사항 자동분석·스크립트 자동생성 기능이 PerfecTwin의 레코딩 기반 시나리오 제작과 직접 대체 관계 형성 가능</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cb" style="margin-bottom:0;">
+    <div class="cb-s">□</div>
+    <div class="cb-b">
+      본 보고서는 Tricentis 공식 웨비나 내용을 기반으로 <strong>경쟁사의 AI 전략 방향 및 PerfecTwin ERP Edition에 대한 전략적 시사점</strong>을 정리한 것임
+      <div class="sub">
+        <div class="sub-d">-</div>
+        <div class="sub-t">이후 경쟁사 AI 동향을 정기적으로 모니터링하고 제품 로드맵에 지속 반영할 수 있는 체계 수립 필요</div>
+      </div>
+      <div class="sub">
+        <div class="sub-d">-</div>
+        <div class="sub-t">보고 구성: I. Agentic AI 패러다임 전환 배경 → II. 경쟁사(Tricentis) 전략 현황 → III. 시사점 및 PerfecTwin 대응 방향</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="simbox" style="padding:16px 20px 14px;">
+    <div class="sim-hd">시사점</div>
+    <div class="si">
+      <div class="si-c">✓</div>
+      <div class="si-t"><strong>AI 기능은 더 이상 선택이 아님</strong> — 2026년 상반기 내 PerfecTwin AI 기능 로드맵을 확정하고 Sprint#5 이후 중기 제품 전략에 즉시 반영 필요</div>
+    </div>
+    <div class="si">
+      <div class="si-c">✓</div>
+      <div class="si-t">당사 강점인 <strong><u>레코딩 기반 신속 도입·SAP ERP 도메인 특화</u></strong>를 유지하면서, Tricentis 대비 진입 장벽 낮은 AI 기능(자연어→시나리오 변환 등)부터 단계적 내재화 추진</div>
+    </div>
+    <div class="si" style="margin-bottom:0;">
+      <div class="si-c">✓</div>
+      <div class="si-t">이룩디앤씨 등 SAP 전문 외부 파트너와의 협업을 통해 AI 기반 테스팅의 SAP 도메인 완성도를 조기 확보하는 방안 병행 검토</div>
+    </div>
+  </div>
+
+
+</div>
+<div class="conf">[CONFIDENTIAL]</div>
+<div class="lg-wrap"><div class="lg-c">LG</div><div class="r-brk"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 3: I. Agentic AI 패러다임 전환
+══════════════════════════════════════ -->
+<div class="slide">
+<div style="position:absolute;top:0;left:0;right:0;bottom:32px;display:flex;flex-direction:column;justify-content:space-between;padding:26px 44px 14px;">
+
+  <div class="sh">
+    <div class="sh-l">I. Agentic AI 테스팅 패러다임의 전환</div>
+    <div class="sh-r">1. 시장 환경 및 배경</div>
+  </div>
+
+  <div class="km">
+    Agentic AI는 단순 코드 제안·자동완성 수준을 넘어 <u><strong>테스트 설계·실행·분석을 자율 수행하는 AI 에이전트</strong></u>로 진화하고 있으며,
+    Gartner는 2027년까지 ERP AI 가치의 70% 이상이 이 영역에서 창출될 것으로 전망함
+    <span class="inline-sim">☞ AI 테스팅 자동화는 SAP 클라우드 전환 성공의 핵심 변수로 부상 — 경쟁사 대응 전략 수립 시급</span>
+  </div>
+
+  <!-- 수치 3개 - 크게 -->
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-n">70%<span style="font-size:16px;">+</span></div>
+      <div class="stat-l">2027년 ERP AI 가치 창출 비중<br><strong>Agentic / Embedded AI</strong>에서 발생</div>
+      <div class="stat-src">※ Gartner 전망 (Gen AI는 30% 미만)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">50%</div>
+      <div class="stat-l">SAP 클라우드 전환 예산 중<br><strong>테스팅</strong>에 소요되는 비율</div>
+      <div class="stat-src">※ Tricentis 웨비나 인용</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">10×</div>
+      <div class="stat-l">AI 도구 도입 시<br><strong>코드 출력량 증가</strong> 배율</div>
+      <div class="stat-src">※ 테스트 부담도 동일 비례 증가</div>
+    </div>
+  </div>
+
+  <div class="two">
+    <!-- Left: AI 진화 단계 -->
+    <div>
+      <div class="col-hd">Agentic AI 진화 단계</div>
+      <div class="steps" style="margin-bottom:10px;">
+        <div class="step">
+          <div class="step-n">Stage 1</div>
+          <div class="step-t">Copilot</div>
+          <div class="step-sub">(코드 제안·자동완성)</div>
+          <div class="step-d">코드 추천·자동완성 수준.<br>사람이 최종 실행·결정 주도</div>
+          <div class="step-arr">▶</div>
+        </div>
+        <div class="step">
+          <div class="step-n">Stage 2</div>
+          <div class="step-t">AI Agent</div>
+          <div class="step-sub">(자율 실행)</div>
+          <div class="step-d">목표 부여 시 계획·실행·<br>검증을 자율 수행</div>
+          <div class="step-arr">▶</div>
+        </div>
+        <div class="step hl">
+          <div class="step-n" style="color:var(--red);">Stage 3 ★현재</div>
+          <div class="step-t">AI Workspace</div>
+          <div class="step-sub">(멀티에이전트)</div>
+          <div class="step-d">복수 에이전트 MCP 기반<br>협력. Tricentis 2026 출시</div>
+        </div>
+      </div>
+      <div class="cb" style="margin-bottom:0;">
+        <div class="cb-s">□</div>
+        <div class="cb-b">
+          <strong>테스팅 담당자 역할 변화</strong>
+          <div class="arr">
+            <div class="arr-s">→</div>
+            <div class="arr-t">"테스트 실행자" 에서 <strong>AI 감독자·전략 설계자</strong>로 전환</div>
+          </div>
+          <div class="arr">
+            <div class="arr-s">→</div>
+            <div class="arr-t">목표: "최대 테스트 커버리지" → <strong>"최대 리스크 커버리지"</strong> 패러다임 이동</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: SAP ERP 환경 -->
+    <div>
+      <div class="col-hd">SAP ERP 환경에서의 특수성</div>
+      <div class="cb">
+        <div class="cb-s">□</div>
+        <div class="cb-b">
+          <strong>S/4HANA 전환 국면에서 테스팅 리스크 최고조</strong>
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">전환 예산의 50%가 테스팅 소요. AI 없이는 일정·품질 동시 달성 불가한 구조</div>
+          </div>
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">SAP Clean Core 정책 강화 → 커스터마이징 감소, 표준 시나리오 기반 테스팅 자산화 중요성 증대</div>
+          </div>
+        </div>
+      </div>
+      <div class="cb">
+        <div class="cb-s">□</div>
+        <div class="cb-b">
+          <strong>SAP 생태계 내 AI 기반 인프라 구축 완료</strong>
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">SAP Joule for Developers 출시(2025년 초) — SAP 생태계 내 AI 에이전트 연동 기반 완성</div>
+          </div>
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">SAP Cloud ALM·Integration Suite 등 클라우드 오케스트레이션 레이어 성숙 → AI 테스팅 연동 환경 최적화</div>
+          </div>
+        </div>
+      </div>
+      <div class="cb" style="margin-bottom:0;">
+        <div class="cb-s">□</div>
+        <div class="cb-b">
+          <strong>AI 도구 확산으로 테스트 부담 10배 증가</strong>
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">개발팀의 AI 코딩 도구 활용으로 코드 출력량 급증 → 기존 수동 테스팅으로는 품질 보증 물리적 불가</div>
+          </div>
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">AI 기반 자동화 테스팅 도입 ROI가 가장 명확한 영역으로 수요 상승 가속</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 분석 근거 노트 -->
+  <div style="margin-top:14px; border-top:1px solid var(--border); padding-top:10px; display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+    <div style="border:1px solid var(--border); padding:8px 12px; background:var(--bg);">
+      <div style="font-size:9px; font-weight:700; color:var(--red); margin-bottom:4px;">※ Gartner 전망 (2027)</div>
+      <div style="font-size:9px; color:var(--gray); line-height:1.6;">ERP 내 Agentic/Embedded AI가 GenAI를 초과하여 비즈니스 가치의 70% 이상 창출 전망. <strong>Gen AI → Agentic AI</strong>로 전략적 전환 필요 시점 도래</div>
+    </div>
+    <div style="border:1px solid var(--border); padding:8px 12px; background:var(--bg);">
+      <div style="font-size:9px; font-weight:700; color:var(--red); margin-bottom:4px;">※ Tricentis 웨비나 (2026.02)</div>
+      <div style="font-size:9px; color:var(--gray); line-height:1.6;">"The future of testing is agentic" 공식 주제로 ARIA 에이전트 출시 발표. SAP S/4HANA 전환 고객 대상 E2E 테스팅 자동화 데모 시연 완료</div>
+    </div>
+    <div style="border:1px solid var(--border); padding:8px 12px; background:var(--bg);">
+      <div style="font-size:9px; font-weight:700; color:var(--red); margin-bottom:4px;">※ SAP Joule for Developers</div>
+      <div style="font-size:9px; color:var(--gray); line-height:1.6;">2025년 초 SAP 생태계 내 AI 에이전트 연동 기반 완성. Cloud ALM·Integration Suite 성숙으로 AI 테스팅 인프라 본격화</div>
+    </div>
+  </div>
+
+</div>
+<div class="conf">[CONFIDENTIAL]</div>
+<div class="pgn">1 / 3</div>
+<div class="lg-wrap"><div class="lg-c">LG</div><div class="r-brk"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 4: II. Tricentis AI 전략
+══════════════════════════════════════ -->
+<div class="slide">
+<div style="position:absolute;top:0;left:0;right:0;bottom:32px;display:flex;flex-direction:column;justify-content:space-between;padding:26px 44px 14px;">
+
+  <div class="sh">
+    <div class="sh-l">II. 경쟁사(Tricentis) Agentic AI 전략 현황</div>
+    <div class="sh-r">2. AI 전략 및 제품 로드맵</div>
+  </div>
+
+  <div class="km">
+    Tricentis는 SAP ERP 테스팅 시장에서 <u><strong>3단계 AI 전략을 통해 Agentic AI 선도기업 포지션을 확보</strong></u> 중이며,
+    품질 에이전트 ARIA를 통해 요구사항 분석 → 테스트 설계 → 실행 → 결과 분석의 End-to-End 자동화를 구현 중
+    <span class="inline-sim">☞ ARIA의 레코딩 없는 AI 시나리오 자동생성은 PerfecTwin의 핵심 기능 영역과 직접 경쟁 구도 진입</span>
+  </div>
+
+  <!-- 3단계 전략 -->
+  <div style="font-size:9.5px; font-weight:700; color:var(--dark); margin-bottom:7px;"><span class="tag td">Tricentis AI 3단계 전략</span></div>
+  <div class="steps" style="margin-bottom:14px;">
+    <div class="step">
+      <div class="step-n">Phase 1</div>
+      <div class="step-t">BYOA</div>
+      <div class="step-sub">(Bring Your Own AI)</div>
+      <div class="step-d">고객 보유 AI 모델과 연동 가능한 개방형 아키텍처. AI 전환 진입 장벽 최소화</div>
+      <div class="step-arr">▶</div>
+    </div>
+    <div class="step hl">
+      <div class="step-n" style="color:var(--red);">Phase 2 ★출시완료</div>
+      <div class="step-t">AI Agent (ARIA)</div>
+      <div class="step-sub">(품질 에이전트)</div>
+      <div class="step-d">요구사항 분석 → 테스트 설계 → 스크립트 생성 → 실행 → 결과 분석 E2E 자율 수행</div>
+      <div class="step-arr">▶</div>
+    </div>
+    <div class="step">
+      <div class="step-n">Phase 3</div>
+      <div class="step-t">AI Workspace</div>
+      <div class="step-sub">(멀티에이전트, 2026년)</div>
+      <div class="step-d">MCP(Model Context Protocol) 기반 복수 에이전트 협력 환경. 2026년 출시 예정</div>
+    </div>
+  </div>
+
+  <div class="two">
+    <!-- Left: ARIA 기능 -->
+    <div>
+      <div class="col-hd"><span class="tag tr">ARIA 품질 에이전트</span> 주요 기능</div>
+      <div class="cb">
+        <div class="cb-s">□</div>
+        <div class="cb-b">
+          <strong>Requirements Intelligence</strong> — 자연어 요구사항 → 테스트 시나리오 자동 변환
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">비개발자도 자연어로 테스트 케이스 생성 가능. 테스트 설계 시간 대폭 단축</div>
+          </div>
+        </div>
+      </div>
+      <div class="cb">
+        <div class="cb-s">□</div>
+        <div class="cb-b">
+          <strong>Automated Script Generation</strong> — SAP 모듈별 테스트 스크립트 AI 자동 생성
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">SAP FI/MM/SD/PP 표준 T-Code 기반 스크립트 자동 생성. 레코딩 없이 시나리오 구성 가능</div>
+          </div>
+        </div>
+      </div>
+      <div class="cb">
+        <div class="cb-s">□</div>
+        <div class="cb-b">
+          <strong>Risk-based Smart Execution</strong> — 변경 영향 분석 기반 테스트 범위 최적화
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">불필요한 테스트 최소화, 핵심 리스크 집중 실행 → 테스트 사이클 타임 단축</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: SAP 파트너십 + 경쟁 영향 -->
+    <div>
+      <div class="col-hd"><span class="tag tn">SAP 파트너십 현황 및 경쟁 영향</span></div>
+      <div class="cb">
+        <div class="cb-s">□</div>
+        <div class="cb-b">
+          <strong>SAP Endorsed App 지위 확보</strong> — SAP 공식 마켓플레이스 최상위 파트너 등급
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">SAP Integration Suite, Cloud ALM 네이티브 연동 지원. SAP 생태계 내 완결성 강화</div>
+          </div>
+        </div>
+      </div>
+      <div class="cb">
+        <div class="cb-s">□</div>
+        <div class="cb-b">
+          <strong>S/4HANA Migration 전용 패키지 제공</strong>
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">전환 프로젝트 통합 패키지 영업으로 당사 진행 현장(LG전자 N-ERP 등)에서 직접 경쟁 가능성</div>
+          </div>
+          <div class="arr">
+            <div class="arr-s">→</div>
+            <div class="arr-t">국내 SAP 전환 프로젝트 수주 경쟁에서 글로벌 AI 기능 차이가 선택 요인으로 작용 가능</div>
+          </div>
+        </div>
+      </div>
+      <div class="cb">
+        <div class="cb-s">□</div>
+        <div class="cb-b">
+          <strong>ARIA 데모 성과</strong>: SAP FI 구매주문 기반 6단계 E2E 테스트 자동화 구현 시연
+          <div class="sub">
+            <div class="sub-d">-</div>
+            <div class="sub-t">요구사항 입력부터 결과 분석까지 전 구간 자동화. 실 업무 적용 수준의 완성도 확인</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 시사점 노트 -->
+  <div style="margin-top:12px; border:1px solid var(--border); background:var(--bg); padding:10px 14px;">
+    <div style="font-size:9.5px; font-weight:700; color:var(--dark); margin-bottom:7px;">
+      <span class="tag td">PerfecTwin vs. Tricentis — 핵심 차이점 요약</span>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+      <div>
+        <div style="font-size:9px; font-weight:700; color:var(--red); margin-bottom:3px;">Tricentis 강점 (위협)</div>
+        <div style="font-size:9.5px; color:var(--gray); line-height:1.6;">자연어 기반 시나리오 자동 생성, SAP Endorsed App 지위, Cloud ALM 네이티브 연동, AI Workspace 로드맵 보유</div>
+      </div>
+      <div>
+        <div style="font-size:9px; font-weight:700; color:var(--navy); margin-bottom:3px;">PerfecTwin 강점 (기회)</div>
+        <div style="font-size:9.5px; color:var(--gray); line-height:1.6;">국내 SAP 고객 레퍼런스 다수, 로우코드 신속 도입, SAP ERP 표준 Prebuilt 자산, LG 계열사 연계 기반</div>
+      </div>
+      <div>
+        <div style="font-size:9px; font-weight:700; color:var(--dark); margin-bottom:3px;">공통 Gap (대응 필요)</div>
+        <div style="font-size:9.5px; color:var(--gray); line-height:1.6;">AI 기반 시나리오 자동 생성 기능 부재. 2026년 상반기 내 AI 로드맵 수립 및 제품 전략 반영 시급</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="conf">[CONFIDENTIAL]</div>
+<div class="pgn">2 / 3</div>
+<div class="lg-wrap"><div class="lg-c">LG</div><div class="r-brk"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SLIDE 5: III. 시사점 및 대응 방향
+══════════════════════════════════════ -->
+<div class="slide">
+<div style="position:absolute;top:0;left:0;right:0;bottom:32px;display:flex;flex-direction:column;justify-content:space-between;padding:26px 44px 14px;">
+
+  <div class="sh">
+    <div class="sh-l">III. 시사점 및 PerfecTwin 대응 방향</div>
+    <div class="sh-r">3. 전략적 대응 과제</div>
+  </div>
+
+  <div class="km">
+    경쟁사의 Agentic AI 전략이 구체화됨에 따라, <u><strong>PerfecTwin ERP Edition의 AI 기능 고도화 및 차별화 포인트 재정립이 2026년 최우선 과제</strong></u>로 부상하고 있음
+    <span class="inline-sim">☞ 레코딩 기반 국내 레퍼런스 강점을 유지하면서 AI 자동화 기능을 단계적으로 내재화하는 투트랙 전략 필요</span>
+  </div>
+
+  <!-- 비교표 -->
+  <div style="margin-bottom:13px;">
+    <div style="font-size:9.5px; font-weight:700; color:var(--dark); margin-bottom:6px;"><span class="tag td">PerfecTwin vs. Tricentis ARIA 기능 비교</span></div>
+    <table class="cmp">
+      <tr>
+        <th style="width:22%; text-align:left; padding:5px 10px;">비교 항목</th>
+        <th class="t1">Tricentis ARIA</th>
+        <th class="t2">PerfecTwin ERP Edition</th>
+      </tr>
+      <tr>
+        <td>테스트 시나리오 생성</td>
+        <td class="good">자연어→시나리오 AI 자동 생성</td>
+        <td class="weak">레코딩 기반 수동 생성 (AI 기능 개발 필요)</td>
+      </tr>
+      <tr>
+        <td>SAP 표준 T-Code 지원</td>
+        <td class="neutral">AI 기반 자동 스크립트 생성</td>
+        <td class="good">Prebuilt 자산 보유 (국내 특화)</td>
+      </tr>
+      <tr>
+        <td>SAP 파트너십</td>
+        <td class="good">Endorsed App, Cloud ALM 연동</td>
+        <td class="neutral">국내 SAP 고객 레퍼런스 강점</td>
+      </tr>
+      <tr>
+        <td>도입 난이도</td>
+        <td class="weak">글로벌 대형 고객 중심 (국내 도입 장벽)</td>
+        <td class="good">로우코드·신속 도입 (국내 특화)</td>
+      </tr>
+      <tr>
+        <td>AI Roadmap</td>
+        <td class="good">Phase 3 (AI Workspace, 2026 출시)</td>
+        <td class="weak">수립 필요 (2026년 상반기 내)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="two" style="margin-bottom:12px;">
+    <div>
+      <div class="col-hd">단기 대응 과제</div>
+      <div class="cb">
+        <div class="cb-s">□</div>
+        <div class="cb-b"><span class="tag tn">즉시</span> <strong>AI 기능 로드맵 수립</strong> — Sprint#5 이후 중기 전략에 반영
+          <div class="sub"><div class="sub-d">-</div><div class="sub-t">요구사항 자동 분석·스크립트 생성 등 우선순위 AI 기능 정의</div></div>
+        </div>
+      </div>
+      <div class="cb" style="margin-bottom:0;">
+        <div class="cb-s">□</div>
+        <div class="cb-b"><span class="tag tn">단기</span> <strong>국내 레퍼런스 기반 AI PoC 추진</strong>
+          <div class="sub"><div class="sub-d">-</div><div class="sub-t">LG전자 N-ERP, SAP Prebuilt 자산을 AI 학습 기반으로 활용</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="col-hd">중장기 대응 과제</div>
+      <div class="cb">
+        <div class="cb-s">□</div>
+        <div class="cb-b"><span class="tag tg">중기</span> <strong>이룩디앤씨 등 SAP 전문 파트너 협업</strong>으로 AI 도메인 완성도 조기 확보
+          <div class="sub"><div class="sub-d">-</div><div class="sub-t">내부 AI 개발 리드타임 단축 목적의 파트너 소싱 검토</div></div>
+        </div>
+      </div>
+      <div class="cb" style="margin-bottom:0;">
+        <div class="cb-s">□</div>
+        <div class="cb-b"><span class="tag tg">상시</span> <strong>경쟁사 AI 동향 정기 모니터링</strong>
+          <div class="sub"><div class="sub-d">-</div><div class="sub-t">Tricentis·Tosca·Worksoft 릴리즈 노트 및 웨비나 정기 검토 체계 수립</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 추진 일정 (안) -->
+  <div style="margin-bottom:12px; border:1px solid var(--border); overflow:hidden;">
+    <div style="background:#2A2A2A; padding:5px 14px; font-size:9px; font-weight:700; color:#fff; letter-spacing:0.4px;">추진 일정 (안)</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; font-size:9.5px;">
+      <div style="padding:8px 12px; border-right:1px solid var(--border);">
+        <div style="font-weight:700; color:var(--red); margin-bottom:4px;">2026년 1Q</div>
+        <div style="color:var(--gray); line-height:1.6;">• AI 기능 로드맵 확정<br>• 경쟁사 기능 벤치마킹<br>• AI PoC 대상 현장 선정</div>
+      </div>
+      <div style="padding:8px 12px; border-right:1px solid var(--border);">
+        <div style="font-weight:700; color:var(--dark); margin-bottom:4px;">2026년 2Q</div>
+        <div style="color:var(--gray); line-height:1.6;">• 자연어→시나리오 AI 기능 개발 착수<br>• LG전자 N-ERP PoC 수행<br>• 파트너 소싱 검토</div>
+      </div>
+      <div style="padding:8px 12px; border-right:1px solid var(--border);">
+        <div style="font-weight:700; color:var(--dark); margin-bottom:4px;">2026년 3Q</div>
+        <div style="color:var(--gray); line-height:1.6;">• AI 기능 Beta 출시<br>• PoC 결과 기반 제품 반영<br>• 국내 SAP 고객 AI 기능 소개</div>
+      </div>
+      <div style="padding:8px 12px;">
+        <div style="font-weight:700; color:var(--dark); margin-bottom:4px;">2026년 4Q</div>
+        <div style="color:var(--gray); line-height:1.6;">• AI 기능 정식 출시<br>• 경쟁사 대비 차별화 포지셔닝<br>• 차년도 AI 고도화 계획 수립</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="simbox">
+    <div class="sim-hd">종합 시사점</div>
+    <div class="si">
+      <div class="si-c">✓</div>
+      <div class="si-t"><strong>AI는 더 이상 선택 아님</strong> — Agentic AI 기능 미보유 시 2026년 하반기 이후 영업 경쟁력 약화 불가피. 2026년 상반기 내 AI 로드맵 확정 필요</div>
+    </div>
+    <div class="si">
+      <div class="si-c">✓</div>
+      <div class="si-t">당사 강점인 <strong><u>레코딩 기반 신속 도입·국내 SAP 레퍼런스</u></strong>를 유지하되, Tricentis 대비 진입 장벽 낮은 AI 기능(자연어→시나리오)부터 단계적 내재화 추진</div>
+    </div>
+    <div class="si" style="margin-bottom:0;">
+      <div class="si-c">✓</div>
+      <div class="si-t">LG전자 N-ERP 등 진행 현장을 AI 기반 테스팅 <strong>조기 실증(PoC) 레퍼런스</strong>로 활용하여 국내 시장 선점 및 글로벌 경쟁사 대비 로컬 차별화 포지셔닝 강화</div>
+    </div>
+  </div>
+
+</div>
+<div class="conf">[CONFIDENTIAL]</div>
+<div class="pgn">3 / 3</div>
+<div class="lg-wrap"><div class="lg-c">LG</div><div class="r-brk"></div></div>
+</div>
+
+</body>
+</html>
