@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAP Public Cloud ERP - Configuration 개념 리서치</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f6fa; color: #2d3436; font-size: 15px; line-height: 1.7; }
+
+  .header { background: linear-gradient(135deg, #1a73e8, #0d47a1); color: white; padding: 24px 20px 22px; }
+  .header h1 { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+  .header .sub { font-size: 13px; opacity: 0.85; }
+  .header .sources { margin-top: 10px; font-size: 11px; opacity: 0.7; }
+
+  .summary-box { background: #e8f0fe; border-left: 4px solid #1a73e8; margin: 14px 16px; padding: 14px 16px; border-radius: 0 10px 10px 0; }
+  .summary-box .label { font-size: 11px; font-weight: 700; color: #1a73e8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .summary-box p { font-size: 14px; color: #2d3436; line-height: 1.6; }
+
+  .section { background: white; margin: 12px 16px; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .sec-header { padding: 14px 16px 12px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 8px; }
+  .sec-header .icon { font-size: 18px; }
+  .sec-header h2 { font-size: 15px; font-weight: 700; }
+
+  /* 비교 테이블 */
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th { background: #f8f9fa; padding: 10px 14px; font-size: 12px; font-weight: 700; text-align: left; color: #636e72; border-bottom: 2px solid #e0e0e0; }
+  .compare-table td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid #f5f5f5; vertical-align: top; }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table .col-head { font-weight: 600; color: #2d3436; background: #fafafa; }
+  .tag-ok { color: #00b894; font-weight: 700; }
+  .tag-no { color: #d63031; font-weight: 700; }
+
+  /* CBC 4단계 플로우 */
+  .flow-container { padding: 16px; display: flex; flex-direction: column; gap: 0; }
+  .flow-step { display: flex; gap: 12px; position: relative; }
+  .flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 40px;
+    bottom: -12px;
+    width: 2px;
+    background: #dee2e6;
+  }
+  .step-num {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative; z-index: 1;
+  }
+  .step-1 { background: #e3f2fd; color: #1565c0; }
+  .step-2 { background: #e8f5e9; color: #2e7d32; }
+  .step-3 { background: #fff3e0; color: #e65100; }
+  .step-4 { background: #f3e5f5; color: #6a1b9a; }
+  .step-body { flex: 1; padding-bottom: 20px; }
+  .step-body .step-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .step-body .step-desc { font-size: 13px; color: #636e72; }
+  .step-body ul { margin-top: 6px; padding-left: 18px; }
+  .step-body ul li { font-size: 13px; color: #636e72; margin-bottom: 2px; }
+
+  /* Clean Core */
+  .cleancore-grid { padding: 14px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cc-item { background: #f8f9fa; border-radius: 8px; padding: 12px; }
+  .cc-item .cc-icon { font-size: 20px; margin-bottom: 6px; }
+  .cc-item .cc-title { font-size: 13px; font-weight: 700; color: #2d3436; margin-bottom: 4px; }
+  .cc-item .cc-desc { font-size: 12px; color: #636e72; }
+
+  /* Extension 타입 */
+  .ext-list { padding: 0 16px 12px; }
+  .ext-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f5f5f5; align-items: flex-start; }
+  .ext-item:last-child { border-bottom: none; }
+  .ext-badge { background: #e8f4fd; color: #0984e3; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .ext-info .ext-name { font-size: 14px; font-weight: 600; color: #2d3436; margin-bottom: 2px; }
+  .ext-info .ext-desc { font-size: 12px; color: #636e72; }
+
+  /* PerfecTwin 시사점 */
+  .insight-list { padding: 0 16px 12px; }
+  .insight-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
+  .insight-item:last-child { border-bottom: none; }
+  .insight-dot { width: 8px; height: 8px; border-radius: 50%; background: #6c5ce7; margin-top: 7px; flex-shrink: 0; }
+  .insight-text { font-size: 13px; color: #2d3436; }
+  .insight-text strong { color: #6c5ce7; }
+
+  .benefit-grid { padding: 14px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .benefit-item { background: #f0fff4; border-radius: 8px; padding: 10px 12px; }
+  .benefit-item .b-icon { font-size: 16px; margin-bottom: 4px; }
+  .benefit-item .b-title { font-size: 12px; font-weight: 700; color: #00b894; margin-bottom: 2px; }
+  .benefit-item .b-desc { font-size: 11px; color: #636e72; }
+
+  .source-list { padding: 10px 16px 14px; }
+  .source-item { font-size: 12px; color: #74b9ff; padding: 4px 0; }
+  .source-item a { color: #74b9ff; text-decoration: none; }
+
+  .footer { padding: 20px 16px; text-align: center; color: #b2bec3; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔍 SAP Public Cloud ERP — Configuration이란?</h1>
+  <div class="sub">SAP S/4HANA Cloud, Public Edition 기준 · 2026-02-26 리서치</div>
+  <div class="sources">출처: eursap.eu · gauravconsulting.com · SAP PRESS Blog</div>
+</div>
+
+<!-- 핵심 요약 -->
+<div class="summary-box">
+  <div class="label">💡 한 줄 요약</div>
+  <p>SAP Public Cloud에서 <strong>Configuration</strong>이란 코딩 없이 SAP가 제공하는 Best Practice 범위 내에서 시스템 파라미터를 설정하는 행위입니다. 기존 On-Premise의 <strong>Customization(SPRO/ABAP)</strong>과는 완전히 다른 개념으로, <strong>Clean Core 원칙</strong>의 핵심입니다.</p>
+</div>
+
+<!-- Configuration vs Customization 비교 -->
+<div class="section">
+  <div class="sec-header">
+    <span class="icon">⚖️</span>
+    <h2>Configuration vs Customization — 핵심 차이</h2>
+  </div>
+  <table class="compare-table">
+    <tr>
+      <th>구분</th>
+      <th style="color:#1a73e8">Configuration ✅</th>
+      <th style="color:#d63031">Customization ❌</th>
+    </tr>
+    <tr>
+      <td class="col-head">정의</td>
+      <td>SAP 표준 파라미터 범위 내 설정 조정</td>
+      <td>ABAP 코딩으로 SAP 코어 직접 수정</td>
+    </tr>
+    <tr>
+      <td class="col-head">방식</td>
+      <td>No-code / Low-code<br>(CBC 도구 사용)</td>
+      <td>SPRO, ABAP 개발<br>(개발자 필요)</td>
+    </tr>
+    <tr>
+      <td class="col-head">Public Cloud</td>
+      <td><span class="tag-ok">✅ 허용</span></td>
+      <td><span class="tag-no">❌ 원칙적 불허</span></td>
+    </tr>
+    <tr>
+      <td class="col-head">업그레이드 영향</td>
+      <td>없음 (SAP가 관리)</td>
+      <td>있음 (매 업그레이드 충돌 위험)</td>
+    </tr>
+    <tr>
+      <td class="col-head">대표 예시</td>
+      <td>회계연도 변형, 통화 설정,<br>기업구조(조직단위) 정의</td>
+      <td>T-code 화면 수정,<br>커스텀 비즈니스 로직 추가</td>
+    </tr>
+  </table>
+</div>
+
+<!-- CBC 4단계 -->
+<div class="section">
+  <div class="sec-header">
+    <span class="icon">🛠️</span>
+    <h2>Configuration 실행 도구 — SAP Central Business Configuration (CBC)</h2>
+  </div>
+  <div class="flow-container">
+    <div class="flow-step">
+      <div class="step-num step-1">1</div>
+      <div class="step-body">
+        <div class="step-title">Scope (스코핑) — 무엇을 쓸지 선택</div>
+        <div class="step-desc">비즈니스 프로세스의 범위를 결정</div>
+        <ul>
+          <li>국가/지역 선택 → 현지화 자동 적용 (한국 세법, US GAAP 등)</li>
+          <li>Scope Items 선택: FI, SD, MM, PP, Asset Accounting 등</li>
+          <li>필수 선택 / 선택 선택 / 잠김(티켓 신청) 구분</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num step-2">2</div>
+      <div class="step-body">
+        <div class="step-title">Primary Finance Settings — 재무 기반 설정</div>
+        <div class="step-desc">기업구조 생성 전 반드시 선행해야 하는 설정</div>
+        <ul>
+          <li>회계연도 변형 (Fiscal Year Variant)</li>
+          <li>그룹 통화 (Group Currency)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num step-3">3</div>
+      <div class="step-body">
+        <div class="step-title">Organizational Structure — 기업구조 정의</div>
+        <div class="step-desc">회사의 법인·운영 단위 설정</div>
+        <ul>
+          <li>Company / Company Code 생성</li>
+          <li>Plant, Sales Organization, Distribution Channel, Division</li>
+          <li>Purchasing Organization 등 → CBC가 순서 자동 보장</li>
+        </ul>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num step-4">4</div>
+      <div class="step-body">
+        <div class="step-title">Configuration — 상세 비즈니스 설정</div>
+        <div class="step-desc">스코프·기업구조 기반의 세부 시스템 설정</div>
+        <ul>
+          <li>가이드된 Configuration Tasks (필수/권장/선택 구분)</li>
+          <li>QAS 배포 → 테스트 → PRD 이관 (Transport Request)</li>
+          <li>Business Process Unit Test 수행 필수</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Clean Core -->
+<div class="section">
+  <div class="sec-header">
+    <span class="icon">🧹</span>
+    <h2>왜 Configuration인가? — Clean Core 원칙</h2>
+  </div>
+  <div class="cleancore-grid">
+    <div class="cc-item">
+      <div class="cc-icon">🚫</div>
+      <div class="cc-title">Zero Modification</div>
+      <div class="cc-desc">SAP 코어 코드 직접 수정 금지. 표준을 그대로 유지</div>
+    </div>
+    <div class="cc-item">
+      <div class="cc-icon">📦</div>
+      <div class="cc-title">Standard First</div>
+      <div class="cc-desc">"Why not standard?" 먼저 묻기. 이유 없이 커스텀하지 않기</div>
+    </div>
+    <div class="cc-item">
+      <div class="cc-icon">🔌</div>
+      <div class="cc-title">API-First Integration</div>
+      <div class="cc-desc">외부 연계는 OData/SOAP API + SAP Integration Suite 사용</div>
+    </div>
+    <div class="cc-item">
+      <div class="cc-icon">☁️</div>
+      <div class="cc-title">BTP Extension</div>
+      <div class="cc-desc">추가 기능은 SAP BTP에서 Extension으로 개발 (코어 분리)</div>
+    </div>
+  </div>
+</div>
+
+<!-- Extension 타입 -->
+<div class="section">
+  <div class="sec-header">
+    <span class="icon">🧩</span>
+    <h2>Configuration으로 안 되는 건? → Extension 3종</h2>
+  </div>
+  <div class="ext-list">
+    <div class="ext-item">
+      <div class="ext-badge">Type 1</div>
+      <div class="ext-info">
+        <div class="ext-name">Key User Extension (on-stack)</div>
+        <div class="ext-desc">코딩 없이 SAP Fiori 앱에서 UI 필드 추가, 검증 룰 설정 등. 가장 권장</div>
+      </div>
+    </div>
+    <div class="ext-item">
+      <div class="ext-badge">Type 2</div>
+      <div class="ext-info">
+        <div class="ext-name">Developer Extension (on-stack, ABAP)</div>
+        <div class="ext-desc">Released API/BAdI만 사용. SAP 내부 on-stack에서 ABAP 개발. 제한적 허용</div>
+      </div>
+    </div>
+    <div class="ext-item">
+      <div class="ext-badge">Type 3</div>
+      <div class="ext-info">
+        <div class="ext-name">Side-by-side Extension (SAP BTP)</div>
+        <div class="ext-desc">코어와 완전 분리. SAP BTP에서 개발. 복잡한 커스텀 요건에 권장</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Clean Core 이점 -->
+<div class="section">
+  <div class="sec-header">
+    <span class="icon">🎯</span>
+    <h2>Clean Core (= Configuration 중심) 채택 시 이점</h2>
+  </div>
+  <div class="benefit-grid">
+    <div class="benefit-item">
+      <div class="b-icon">⚡</div>
+      <div class="b-title">자동 업그레이드</div>
+      <div class="b-desc">반기별 SAP 업그레이드를 코드 충돌 없이 수용</div>
+    </div>
+    <div class="benefit-item">
+      <div class="b-icon">💰</div>
+      <div class="b-title">TCO 절감</div>
+      <div class="b-desc">기술 부채 최소화, 유지보수 비용 감소</div>
+    </div>
+    <div class="benefit-item">
+      <div class="b-icon">🤖</div>
+      <div class="b-title">AI 혁신 즉시 접근</div>
+      <div class="b-desc">Joule AI 등 최신 SAP 혁신을 바로 활용 가능</div>
+    </div>
+    <div class="benefit-item">
+      <div class="b-icon">🔒</div>
+      <div class="b-title">시스템 안정성</div>
+      <div class="b-desc">표준화된 코어로 오류·비호환 위험 최소화</div>
+    </div>
+  </div>
+</div>
+
+<!-- PerfecTwin 관점 시사점 -->
+<div class="section">
+  <div class="sec-header">
+    <span class="icon">🎭</span>
+    <h2>PerfecTwin 관점의 시사점</h2>
+  </div>
+  <div class="insight-list">
+    <div class="insight-item">
+      <div class="insight-dot"></div>
+      <div class="insight-text"><strong>SPRO 없음 → Fiori 기반</strong>: Public Cloud는 T-code/SPRO 직접 접근이 없거나 제한적. Fiori 앱 기반 UI 테스트 자동화가 필요</div>
+    </div>
+    <div class="insight-item">
+      <div class="insight-dot"></div>
+      <div class="insight-text"><strong>Configuration 변경 후 회귀 테스트</strong>: CBC에서 Configuration 변경 → QAS 배포 → 비즈니스 프로세스 테스트 자동화가 핵심 니즈</div>
+    </div>
+    <div class="insight-item">
+      <div class="insight-dot"></div>
+      <div class="insight-text"><strong>ERP Edition의 적합성</strong>: Fiori/웹 UI 기반 시나리오 레코딩·재현 기능이 Public Cloud 테스트에 직접 대응. 기존 WebGUI 기반은 맞지 않음</div>
+    </div>
+    <div class="insight-item">
+      <div class="insight-dot"></div>
+      <div class="insight-text"><strong>반기 업그레이드 대응</strong>: SAP Public Cloud는 연 2회 자동 업그레이드. 업그레이드 후 비즈니스 프로세스 전체 회귀 테스트 수요가 정기적으로 발생</div>
+    </div>
+    <div class="insight-item">
+      <div class="insight-dot"></div>
+      <div class="insight-text"><strong>SaaS 타겟 시장</strong>: PerfecTwin의 4월 SaaS 전환 시 Public Cloud 고객이 핵심 타겟. Configuration 이후 테스트 자동화가 주요 가치 제안</div>
+    </div>
+  </div>
+</div>
+
+<!-- 출처 -->
+<div class="section">
+  <div class="sec-header">
+    <span class="icon">📎</span>
+    <h2>출처</h2>
+  </div>
+  <div class="source-list">
+    <div class="source-item">📄 <a href="https://eursap.eu/blog/configuring-sap-s-4hana-cloud-public-edition-an-overview">Configuring SAP S/4HANA Cloud, Public Edition - An Overview</a> — eursap.eu (2023-08)</div>
+    <div class="source-item">📄 <a href="https://www.gauravconsulting.com/post/sap-central-business-configuration-cbc-in-s-4hana-public-cloud">SAP Central Business Configuration (CBC) in S/4HANA Public Cloud</a> — gauravconsulting.com (2025-12)</div>
+    <div class="source-item">📄 <a href="https://blog.sap-press.com/sap-s4hana-clean-core-principles-benefits-and-best-practices">SAP S/4HANA Clean Core: Principles, Benefits, and Best Practices</a> — SAP PRESS Blog</div>
+  </div>
+</div>
+
+<div class="footer">Jarvis · SAP Expert Research · 2026-02-26<br>📁 sap-knowledge/technical/2026-02-26_SAP-Public-Cloud-Configuration-개념.md</div>
+</body>
+</html>
