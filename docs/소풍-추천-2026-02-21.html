@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧺 아이 + 반려견 서울 근교 소풍 장소 추천</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', 'Segoe UI', sans-serif;
+      background: #f5f7fa;
+      color: #1a1a2e;
+      padding-bottom: 40px;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #2d6a4f, #1b4332);
+      color: white;
+      padding: 28px 20px 24px;
+    }
+    .header-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #95d5b2;
+      margin-bottom: 6px;
+    }
+    .header h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+    .header-sub { font-size: 13px; color: #b7e4c7; line-height: 1.6; }
+    .header-tags {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;
+    }
+    .htag {
+      background: rgba(255,255,255,0.15);
+      padding: 3px 10px; border-radius: 12px;
+      font-size: 12px; color: #d8f3dc;
+    }
+
+    /* Card */
+    .section { margin: 16px 14px 0; }
+    .card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    /* Card top color bar */
+    .card-top {
+      padding: 18px 18px 0;
+      position: relative;
+    }
+    .place-num {
+      font-size: 11px; font-weight: 800; letter-spacing: 1px;
+      color: #888; margin-bottom: 4px;
+    }
+    .place-name { font-size: 20px; font-weight: 800; margin-bottom: 2px; }
+    .place-subtitle { font-size: 13px; color: #666; margin-bottom: 10px; }
+
+    /* Badges */
+    .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .badge {
+      font-size: 11px; font-weight: 700;
+      padding: 3px 9px; border-radius: 10px;
+    }
+    .badge-green  { background: #d8f3dc; color: #1b4332; }
+    .badge-blue   { background: #dbeafe; color: #1e40af; }
+    .badge-yellow { background: #fef9c3; color: #854d0e; }
+    .badge-red    { background: #fee2e2; color: #991b1b; }
+    .badge-purple { background: #ede9fe; color: #4c1d95; }
+
+    /* Divider */
+    .divider { height: 1px; background: #f0f2f5; margin: 0 18px; }
+
+    /* Info rows */
+    .info-block { padding: 14px 18px; }
+    .info-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 6px 0; font-size: 13px; line-height: 1.55;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .info-label { font-weight: 700; color: #444; min-width: 48px; flex-shrink: 0; }
+    .info-val { color: #555; flex: 1; }
+    strong.hl { color: #2d6a4f; }
+
+    /* Highlight box */
+    .highlight-box {
+      background: #f0fdf4;
+      border-left: 3px solid #2d6a4f;
+      margin: 0 18px 14px;
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13px;
+      color: #1b4332;
+      line-height: 1.6;
+    }
+
+    /* Tips */
+    .tip-box {
+      background: #fffbeb;
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin: 0 18px 16px;
+      font-size: 12px;
+      color: #92400e;
+      line-height: 1.6;
+    }
+    .tip-box::before { content: "💡 "; }
+
+    /* Distance ribbon */
+    .dist-ribbon {
+      position: absolute;
+      top: 18px; right: 18px;
+      background: #2d6a4f;
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    /* Color accents per card */
+    .c1 .place-name { color: #1b4332; }
+    .c2 .place-name { color: #1e3a5f; }
+    .c3 .place-name { color: #4a1d8c; }
+    .c4 .place-name { color: #7c2d12; }
+    .c5 .place-name { color: #164e63; }
+
+    .c1 .dist-ribbon { background: #2d6a4f; }
+    .c2 .dist-ribbon { background: #1d4ed8; }
+    .c3 .dist-ribbon { background: #6d28d9; }
+    .c4 .dist-ribbon { background: #c2410c; }
+    .c5 .dist-ribbon { background: #0e7490; }
+
+    /* Summary table */
+    .summary {
+      background: #1b4332;
+      color: white;
+      border-radius: 18px;
+      padding: 18px;
+      margin: 6px 14px 0;
+    }
+    .summary h3 { font-size: 15px; margin-bottom: 12px; color: #95d5b2; }
+    .sum-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: 13px;
+    }
+    .sum-row:last-child { border-bottom: none; }
+    .sum-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; flex-shrink: 0;
+    }
+    .sum-name { flex: 1; font-weight: 700; }
+    .sum-dist { font-size: 11px; color: #95d5b2; }
+    .sum-tag { font-size: 11px; color: #d8f3dc; }
+
+    /* Footer */
+    .footer {
+      text-align: center; font-size: 11px; color: #aaa;
+      margin-top: 24px; padding: 0 20px;
+    }
+
+    /* Map link button */
+    .map-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: #f0fdf4; color: #2d6a4f;
+      border: 1px solid #86efac;
+      padding: 6px 14px; border-radius: 20px;
+      font-size: 12px; font-weight: 700;
+      text-decoration: none; margin: 0 18px 16px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-label">Picnic Guide · 2026</div>
+  <h1>🧺 아이 + 🐕 반려견<br>서울 근교 소풍 추천</h1>
+  <div class="header-sub">
+    네이버 블로그 · 카페 리뷰 기반<br>
+    날씨 좋은 날 함께 떠나기 좋은 곳 5선
+  </div>
+  <div class="header-tags">
+    <span class="htag">👦 초등 2학년</span>
+    <span class="htag">🐕 시바견 보리</span>
+    <span class="htag">🌤️ 봄 · 가을 추천</span>
+    <span class="htag">🅿️ 주차 정보 포함</span>
+  </div>
+</div>
+
+<!-- 요약 표 -->
+<div class="section">
+  <div class="summary">
+    <h3>📍 5곳 한눈에 보기</h3>
+    <div class="sum-row">
+      <div class="sum-num">1</div>
+      <div class="sum-name">서울창포원</div>
+      <div class="sum-tag">잔디 피크닉</div>
+      <div class="sum-dist">서울 도봉 · 무료</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-num">2</div>
+      <div class="sum-name">하늘공원 + 반려견놀이터</div>
+      <div class="sum-tag">광활한 잔디</div>
+      <div class="sum-dist">서울 마포 · 무료</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-num">3</div>
+      <div class="sum-name">용산어린이정원</div>
+      <div class="sum-tag">아이 특화</div>
+      <div class="sum-dist">서울 용산 · 무료</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-num">4</div>
+      <div class="sum-name">양평 카페 소풍</div>
+      <div class="sum-tag">꽃밭 피크닉</div>
+      <div class="sum-dist">경기 양평 · 차 1시간</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-num">5</div>
+      <div class="sum-name">안성 같이파크</div>
+      <div class="sum-tag">오프리쉬 가능</div>
+      <div class="sum-dist">경기 안성 · 차 1시간</div>
+    </div>
+  </div>
+</div>
+
+<!-- Card 1 -->
+<div class="section">
+  <div class="card c1">
+    <div class="card-top">
+      <div class="dist-ribbon">🚇 대중교통 OK</div>
+      <div class="place-num">PLACE 01</div>
+      <div class="place-name">서울창포원</div>
+      <div class="place-subtitle">도봉산 자락 아래 꽃밭 피크닉 명소</div>
+      <div class="badges">
+        <span class="badge badge-green">🐕 애견 동반 가능</span>
+        <span class="badge badge-blue">💰 무료 입장</span>
+        <span class="badge badge-yellow">🌸 봄 꽃 명소</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="highlight-box">
+      도봉산역 근처, 창포꽃 가득한 넓은 잔디 공원. 아이가 뛰어놀 공간이 넓고 반려견도 목줄만 하면 자유롭게 산책 가능. 봄에는 창포꽃이 장관이고 가을엔 단풍도 멋짐. 공원 규모가 크지 않아 아이 관리도 편함.
+    </div>
+    <div class="info-block">
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <span class="info-label">위치</span>
+        <span class="info-val">서울 도봉구 마들로 916 일대</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🚇</span>
+        <span class="info-label">교통</span>
+        <span class="info-val">지하철 <strong class="hl">도봉산역</strong> 하차 후 도보 5분</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🅿️</span>
+        <span class="info-label">주차</span>
+        <span class="info-val">창포원 주차장 또는 도봉산역 환승주차장 이용 (협소, 주말 혼잡)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🕐</span>
+        <span class="info-label">운영</span>
+        <span class="info-val">연중 개방 (무료)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🐕</span>
+        <span class="info-label">반려견</span>
+        <span class="info-val">목줄 착용 시 동반 가능. 별도 입장 제한 없음</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">⭐</span>
+        <span class="info-label">포인트</span>
+        <span class="info-val">봄: 창포꽃 · 가을: 단풍 / 잔디 피크닉 명당 다수</span>
+      </div>
+    </div>
+    <div class="tip-box">
+      주말 오전 일찍 가면 주차 가능. 도시락 싸가기 좋고 근처에 도봉산 초입 카페도 많음. 강아지 배변봉투 필수!
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card c2">
+    <div class="card-top">
+      <div class="dist-ribbon" style="background:#1d4ed8">🌿 반려견 놀이터 포함</div>
+      <div class="place-num">PLACE 02</div>
+      <div class="place-name">하늘공원 + 난지천 반려견놀이터</div>
+      <div class="place-subtitle">월드컵공원 내 광활한 잔디 & 반려견 전용 놀이터</div>
+      <div class="badges">
+        <span class="badge badge-green">🐕 애견 동반 가능</span>
+        <span class="badge badge-blue">💰 무료 입장</span>
+        <span class="badge badge-purple">🎪 반려견 놀이터</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="highlight-box">
+      월드컵공원 내 하늘공원은 서울 최고의 피크닉 명소 중 하나. 바로 옆 난지천공원에 <strong>반려견 전용 놀이터</strong>가 있어 목줄 없이 뛰어놀 수 있음. 언덕 위에서 보는 한강 뷰가 일품. 아이는 맹꽁이 전기차도 탈 수 있음.
+    </div>
+    <div class="info-block">
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <span class="info-label">위치</span>
+        <span class="info-val">서울 마포구 하늘공원로 95 (월드컵공원)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🚇</span>
+        <span class="info-label">교통</span>
+        <span class="info-val">지하철 6호선 <strong class="hl">월드컵경기장역</strong> 1번 출구 도보 10분</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🅿️</span>
+        <span class="info-label">주차</span>
+        <span class="info-val">평화의공원 주차장 이용 가능 (1대 4,000원/일)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🕐</span>
+        <span class="info-label">운영</span>
+        <span class="info-val">연중 개방 / 맹꽁이 전기차 편도 2,000원</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🐕</span>
+        <span class="info-label">반려견</span>
+        <span class="info-val"><strong class="hl">동물등록 내장칩 or 외장인식표 필수</strong>. 하늘공원은 목줄 착용 산책 가능</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">⭐</span>
+        <span class="info-label">포인트</span>
+        <span class="info-val">가을 억새 장관 (10월) / 한강 파노라마 뷰 / 반려견 놀이터 오프리쉬 OK</span>
+      </div>
+    </div>
+    <div class="tip-box">
+      하늘공원은 계단이 많아 오르내리기가 있음. 아이가 전기차 타는 걸 좋아함. 반려견 놀이터는 평화의공원 내 별도 위치 — 지도 검색 시 "마포구 반려견 놀이터"로.
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card c3">
+    <div class="card-top">
+      <div class="dist-ribbon" style="background:#6d28d9">🪖 구 미군기지 개방</div>
+      <div class="place-num">PLACE 03</div>
+      <div class="place-name">용산어린이정원</div>
+      <div class="place-subtitle">구 미군기지 개방 공간 · 아이+반려견 모두 환영</div>
+      <div class="badges">
+        <span class="badge badge-green">🐕 애견 동반 가능</span>
+        <span class="badge badge-blue">💰 무료 입장</span>
+        <span class="badge badge-red">📅 예약 권장</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="highlight-box">
+      구 미군기지가 시민에게 개방된 특별한 공간. 넓은 잔디밭, 미국식 건물 등 이색적인 분위기. 아이가 넓은 공간에서 자유롭게 뛰어놀 수 있고 반려견도 목줄 착용 시 동반 가능. 무료이면서도 관리가 잘 되어 있어 쾌적함.
+    </div>
+    <div class="info-block">
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <span class="info-label">위치</span>
+        <span class="info-val">서울 용산구 한강대로 38길 21</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🚇</span>
+        <span class="info-label">교통</span>
+        <span class="info-val">지하철 <strong class="hl">삼각지역·신용산역</strong> 근처 (대중교통 권장)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🅿️</span>
+        <span class="info-label">주차</span>
+        <span class="info-val"><strong class="hl">주차 불가</strong> — 대중교통 이용 필수</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🕐</span>
+        <span class="info-label">운영</span>
+        <span class="info-val">화~일 09:00~18:00 (토 ~21:00) / 월요일·명절 휴무<br>입장마감 17:00 (회차별 운영)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🐕</span>
+        <span class="info-label">반려견</span>
+        <span class="info-val">목줄·배변봉투 지참 시 동반 가능. 입장 시 동물등록 확인</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">⭐</span>
+        <span class="info-label">포인트</span>
+        <span class="info-val">이색적인 미군기지 감성 / 아이 뛰어놀기 좋은 넓은 잔디 / 무료</span>
+      </div>
+    </div>
+    <div class="tip-box">
+      주차 불가이므로 차 가져가면 곤란함. 삼각지역이나 신용산역에서 걸어가는 게 최선. 현장 예약 또는 온라인 예약 모두 가능 (공식 홈페이지 확인).
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card c4">
+    <div class="card-top">
+      <div class="dist-ribbon" style="background:#c2410c">🚗 차로 약 1시간</div>
+      <div class="place-num">PLACE 04</div>
+      <div class="place-name">양평 카페 소풍</div>
+      <div class="place-subtitle">넓은 꽃밭 + 모닥불 · 반려견 동반 피크닉 카페</div>
+      <div class="badges">
+        <span class="badge badge-green">🐕 애견 동반 가능</span>
+        <span class="badge badge-yellow">🌸 꽃밭 포토존</span>
+        <span class="badge badge-red">💳 유료 입장</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="highlight-box">
+      양평에 위치한 피크닉 특화 카페. 넓은 꽃밭과 포토존, 모닥불(불멍)까지 즐길 수 있는 공간. 반려견 전용 입장료를 받지만 그만큼 쾌적하게 운영됨. 아이들 놀이 시설도 있어 가족 나들이로 안성맞춤.
+    </div>
+    <div class="info-block">
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <span class="info-label">위치</span>
+        <span class="info-val">경기도 양평군 (정확 주소: 네이버 "양평 소풍 카페" 검색)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🚗</span>
+        <span class="info-label">교통</span>
+        <span class="info-val">서울에서 차로 약 <strong class="hl">1시간 내외</strong> (강변북로 → 6번 국도)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🅿️</span>
+        <span class="info-label">주차</span>
+        <span class="info-val">카페 자체 주차장 있음 (무료)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">💰</span>
+        <span class="info-label">입장료</span>
+        <span class="info-val">성인 7,000원 / 24개월 미만 무료<br>반려견: 소형견 4,000원 / 8kg 이상 별도</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🐕</span>
+        <span class="info-label">반려견</span>
+        <span class="info-val">동반 가능 (입장료 별도). 목줄 필수</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">⭐</span>
+        <span class="info-label">포인트</span>
+        <span class="info-val">꽃밭 포토존 / 모닥불 불멍 / 피크닉 매트 지참 추천</span>
+      </div>
+    </div>
+    <div class="tip-box">
+      봄·가을 주말엔 사람이 많으니 오전 일찍 방문 권장. 반려견 보리가 8kg 이상인 시바견이므로 대형견 입장료 확인 필요. 가기 전에 전화로 운영 여부 확인 추천.
+    </div>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card c5">
+    <div class="card-top">
+      <div class="dist-ribbon" style="background:#0e7490">🐾 오프리쉬 OK · 무료</div>
+      <div class="place-num">PLACE 05</div>
+      <div class="place-name">안성 같이파크 + 안성맞춤랜드</div>
+      <div class="place-subtitle">반려견 전용 공공 놀이터 · 목줄 없이 자유롭게!</div>
+      <div class="badges">
+        <span class="badge badge-green">🐕 오프리쉬 가능</span>
+        <span class="badge badge-blue">💰 무료 입장</span>
+        <span class="badge badge-purple">🎠 공연·놀이 시설</span>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="highlight-box">
+      안성시에서 운영하는 공공 반려견 놀이터(4,320㎡). <strong>목줄 없이 자유롭게 뛰어놀 수 있는 유일한 공공 공간</strong> 중 하나. 바로 옆 안성맞춤랜드엔 아이들이 즐길 수 있는 공연·놀이 시설도 있어 함께 즐기기 좋음. 입장료가 없어 부담 없음.
+    </div>
+    <div class="info-block">
+      <div class="info-row">
+        <span class="info-icon">📍</span>
+        <span class="info-label">위치</span>
+        <span class="info-val">경기도 안성시 보개면 남사당로 198 (안성맞춤랜드 내)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🚗</span>
+        <span class="info-label">교통</span>
+        <span class="info-val">서울에서 차로 약 <strong class="hl">1시간~1시간 30분</strong> (경부고속도로 안성IC)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🅿️</span>
+        <span class="info-label">주차</span>
+        <span class="info-val">안성맞춤랜드 주차장 이용 가능 (넓음)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🕐</span>
+        <span class="info-label">운영</span>
+        <span class="info-val">09:00~21:00 / 연중 운영 (날씨 따라 변동 가능)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">🐕</span>
+        <span class="info-label">반려견</span>
+        <span class="info-val">전용 놀이터 내 <strong class="hl">오프리쉬(목줄 해제) 가능</strong>. 입장료 무료</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">☎️</span>
+        <span class="info-label">문의</span>
+        <span class="info-val">031-678-2672</span>
+      </div>
+      <div class="info-row">
+        <span class="info-icon">⭐</span>
+        <span class="info-label">포인트</span>
+        <span class="info-val">보리가 마음껏 뛰어놀 수 있는 유일한 무료 공간 / 아이 공연 관람 병행 가능</span>
+      </div>
+    </div>
+    <div class="tip-box">
+      차로 좀 더 멀지만 보리가 목줄 없이 신나게 뛸 수 있는 곳은 거의 없으므로 강추. 안성맞춤랜드 내 공연·먹거리도 있어 하루 코스로 알차게 즐길 수 있음.
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Jarvis · 네이버 블로그 · 공식 사이트 기반 조사 · 2026-02-21<br>
+  ※ 방문 전 운영 여부 및 애견 정책 변경 여부 확인 권장
+</div>
+
+</body>
+</html>
