@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주간 회고 | 2026년 2월 3주차</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      color: #1a1a2e;
+      font-size: 15px;
+      padding-bottom: 40px;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: white;
+      padding: 28px 20px 22px;
+    }
+    .header-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7ecbff;
+      margin-bottom: 6px;
+    }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .header-sub {
+      font-size: 13px;
+      color: #aab8c2;
+    }
+
+    /* Section */
+    .section {
+      margin: 16px 14px 0;
+    }
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .card-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .card-meta {
+      flex: 1;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 3px;
+    }
+    .card-date {
+      font-size: 12px;
+      color: #888;
+    }
+
+    /* Bullet items */
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+    }
+    .bullet-list li {
+      display: flex;
+      gap: 8px;
+      padding: 5px 0;
+      font-size: 14px;
+      line-height: 1.55;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .bullet-list li:last-child { border-bottom: none; }
+    .bullet-list li::before {
+      content: "·";
+      color: #7ecbff;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .highlight {
+      font-weight: 700;
+      color: #0077cc;
+    }
+
+    /* Divider inside card */
+    .card-divider {
+      height: 1px;
+      background: #f0f2f5;
+      margin: 10px -16px;
+    }
+
+    /* Sub-group label */
+    .sub-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #999;
+      text-transform: uppercase;
+      margin: 10px 0 6px;
+    }
+
+    /* Status badge */
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      margin-left: 6px;
+    }
+    .badge-blue { background: #e8f4fd; color: #0077cc; }
+    .badge-red  { background: #fde8e8; color: #cc0000; }
+    .badge-green{ background: #e8fde8; color: #007700; }
+    .badge-yellow{ background: #fdf6e8; color: #996600; }
+
+    /* Summary table */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .summary-cell {
+      background: white;
+      border-radius: 12px;
+      padding: 14px 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .summary-cell-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .summary-cell-text {
+      font-size: 13px;
+      color: #1a1a2e;
+      line-height: 1.5;
+    }
+
+    /* Risk bar */
+    .risk-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f5f5f5;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .risk-item:last-child { border-bottom: none; }
+    .risk-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .dot-red { background: #e74c3c; }
+    .dot-yellow { background: #f39c12; }
+    .dot-blue { background: #3498db; }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #bbb;
+      margin-top: 28px;
+      padding: 0 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-label">Weekly Retrospective</div>
+  <h1>2월 3주차 주간 회고</h1>
+  <div class="header-sub">2026.02.17 – 2026.02.21 &nbsp;·&nbsp; 회의록 5건 기반</div>
+</div>
+
+<!-- ───── 영업 트랙 ───── -->
+<div class="section">
+  <div class="section-title">📊 영업 · 사업 트랙</div>
+
+  <!-- 이행·라이선스 전략 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🤝</div>
+      <div class="card-meta">
+        <div class="card-title">이행 일정·라이선스·파이프라인 전략</div>
+        <div class="card-date">02/19 · 이건국 단장, 지선민 팀장, 지민님</div>
+      </div>
+    </div>
+    <div class="sub-label">이행 현황</div>
+    <ul class="bullet-list">
+      <li><span>에이블리·카이 <span class="highlight">4월 시작</span> 확정. 이행 주도는 지선민 팀장 측, 단에서 초반 1~2회 동행</span></li>
+      <li><span>고려해운·CJ 검토 중, HD현대·한화 제안 중, 전자·이노텍 진행 중</span></li>
+    </ul>
+    <div class="sub-label" style="margin-top:12px">라이선스 전략</div>
+    <ul class="bullet-list">
+      <li><span>이노텍: 3년/1년 검토, Tricentis 대비 가격 차별화 포지셔닝</span></li>
+      <li><span>고려해운: 라이선스 무상 + 이행 인건비만 수취 (거의 확정)</span></li>
+      <li><span>H전세(HD 관련): 제안 규모 <span class="highlight">10억 → 5억 하향</span></span></li>
+    </ul>
+    <div class="sub-label" style="margin-top:12px">파트너·컨설팅 전략</div>
+    <ul class="bullet-list">
+      <li><span>연간 목표 <span class="highlight">"생 50개"</span>로 상향. 파트너·직영 병행 전략 필요</span></li>
+      <li><span>컨설팅 펌 팔로업: PwC → 딜로이트(설 이후) → EY → KPMG(에이블리 결과 후) 순</span></li>
+      <li><span>CJ제일제당: 시그나비오-PerfecTwin 연동 스토리 준비 후 의사결정자 전화 컨택 예정</span></li>
+    </ul>
+  </div>
+
+  <!-- 사업 전망·국가별 영업 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🌏</div>
+      <div class="card-meta">
+        <div class="card-title">사업 전망 · 국가별 영업 전략</div>
+        <div class="card-date">02/20 · 이건국 단장, 서준휘 팀장</div>
+      </div>
+    </div>
+    <ul class="bullet-list">
+      <li><span>연간 목표: <span class="highlight">유상 고객 97개</span> (기본) / <span class="highlight">112개</span> (스트레치, 미국 40개 포함)</span></li>
+      <li><span>KPI: 수주 기준(biweekly) 관리. 매출은 Outlook 숫자 기준</span></li>
+    </ul>
+    <div class="card-divider"></div>
+    <div class="sub-label">국가별 현황</div>
+    <ul class="bullet-list">
+      <li><span>🇰🇷 한국: 전환율 높지만 리드 양 부족. 금융 편중 → 타 섹터 확장 시급</span></li>
+      <li><span>🇯🇵 일본: 파트너 중심 96개 리드 확보. 한정 자원 대비 선전</span></li>
+      <li><span>🇺🇸 미국: 리드 수·전환율 <span class="highlight" style="color:#cc0000">모두 낮음</span>. 원인 분석 및 실행계획 수립 시급</span></li>
+    </ul>
+    <div class="card-divider"></div>
+    <ul class="bullet-list">
+      <li><span>클라우드 3월 베타 → 비즈테크아이 고객사 3곳 파일럿. "생 50개"는 클라우드 없이 달성 어려움</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ───── 개발/기술 트랙 ───── -->
+<div class="section">
+  <div class="section-title">🛠️ 개발 · 기술 트랙</div>
+
+  <!-- NERP 마이그레이션 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">🏭</div>
+      <div class="card-meta">
+        <div class="card-title">LG전자 NERP 마이그레이션·테스트 전략</div>
+        <div class="card-date">02/13 회의록 · 대규모 다자 회의 (~20명)</div>
+      </div>
+    </div>
+    <ul class="bullet-list">
+      <li><span>2/27 P100 카피 → R400 리허설 환경 구축 시작 (4주 소요, 3월 말 완료 목표)</span></li>
+      <li><span>인도 법인(Q312): <span class="highlight">2/26까지 셋업 완료</span> 필수. 현재 트랜잭션 오류 발생</span></li>
+      <li><span>브라질: 세제 개편 대응, 3월 초 전용 서버 운영 여부 확정</span></li>
+      <li><span>PerfecTwin 활용: 스냅샷 → 시계열 재현 자동화 테스트로 전환 시도</span></li>
+      <li><span>교육 방식: 집합 교육 → 실무 시나리오 기반 실습 전환. 인사 평가 연계 강제성 도입 논의</span></li>
+    </ul>
+  </div>
+
+  <!-- 라이브 테스트 정의 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">⚙️</div>
+      <div class="card-meta">
+        <div class="card-title">라이브 테스트 정의·환경 카피·일정 확정</div>
+        <div class="card-date">02/20 · 지선민 팀장, 지민님 등</div>
+      </div>
+    </div>
+    <ul class="bullet-list">
+      <li><span><span class="highlight">"라이브 테스트" 용어 통일</span>: 실시간 아님 → 운영 데이터 데일리 주입 후 QA 환경 재현</span></li>
+      <li><span>2/27 20시~3/1: S4Q312 카피 작업 예정</span></li>
+      <li><span>테스트 범위: <span class="highlight">최대 2개 도메인</span>으로 제한, ATP는 우선 제외</span></li>
+      <li><span>PerfecTwin/Tosca 활용 자동화 + OData 기반 연계 테스트 병행 검토</span></li>
+      <li><span>목표: <span class="highlight">4/1 테스트 시작</span>. 시나리오 확정이 최우선 과제</span></li>
+    </ul>
+  </div>
+
+  <!-- 클라우드·AI·OData -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">☁️</div>
+      <div class="card-meta">
+        <div class="card-title">클라우드 출시·AI 에이전트·SAP OData 전략</div>
+        <div class="card-date">02/19 · 이건국 단장, 이용우 선임, 김지현 책임</div>
+      </div>
+    </div>
+    <div class="sub-label">COE 재편</div>
+    <ul class="bullet-list">
+      <li><span>핵심 인력 2~3명만 본사 밀착, 나머지는 운영/현장 축소. 2분기부터 개발 프로세스 전환</span></li>
+    </ul>
+    <div class="sub-label" style="margin-top:12px">AI 에이전트 파일럿</div>
+    <ul class="bullet-list">
+      <li><span>상반기 중 제로코딩·토큰 전략 포함 에이전트 기반 개발 실험 제안</span></li>
+      <li><span>3월까지 현 모드 유지, 이후 고객 증가 전 시도</span></li>
+    </ul>
+    <div class="sub-label" style="margin-top:12px">OData 연계 테스트</div>
+    <ul class="bullet-list">
+      <li><span>RFC 지양 → <span class="highlight">OData 중심</span>으로 전환. 시뮬레이터 개념 도입</span></li>
+      <li><span>Tosca API Scan으로 OData $metadata 자동 수집 탐색</span></li>
+      <li><span>이노텍 최소 기능 파일럿 대상 검토</span></li>
+    </ul>
+    <div class="sub-label" style="margin-top:12px">3월 주요 일정</div>
+    <ul class="bullet-list">
+      <li><span>템플릿 기획, QGate 대응(3/9~3/20), VNB 출장 예정</span></li>
+      <li><span>⚠️ QGate와 출장 일정 중복 리스크 조정 필요</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ───── 종합 요약 ───── -->
+<div class="section">
+  <div class="section-title">📌 종합 요약</div>
+  <div class="summary-grid">
+    <div class="summary-cell">
+      <div class="summary-cell-label">🔥 뜨거운 키워드</div>
+      <div class="summary-cell-text">클라우드 베타<br>OData 연계 테스트<br>생 50개 목표</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-cell-label">⚠️ 주요 리스크</div>
+      <div class="summary-cell-text">미국 영업 부진<br>NERP 기준일 혼선<br>QGate·출장 충돌</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-cell-label">✅ 합의된 사항</div>
+      <div class="summary-cell-text">에이블리 4월 착수<br>라이브 테스트 정의<br>OData 중심 전환</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-cell-label">🗓️ 다음 데드라인</div>
+      <div class="summary-cell-text">2/26 인도 셋업<br>2/27 환경 카피<br>3월 초 클라우드 베타</div>
+    </div>
+  </div>
+</div>
+
+<!-- ───── 리스크 레이더 ───── -->
+<div class="section">
+  <div class="section-title">🚨 미결 리스크 레이더</div>
+  <div class="card">
+    <div class="risk-item">
+      <div class="risk-dot dot-red"></div>
+      <div><strong>미국 영업 부진</strong> — 리드 수·전환율 모두 낮음. 구체적 원인 분석 및 실행계획 미수립</div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-dot dot-red"></div>
+      <div><strong>NERP 라이브 테스트 기준일 혼선</strong> — 2/27 vs 3/31 단일 기준 미확정. 데이터 정합성 리스크</div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-dot dot-yellow"></div>
+      <div><strong>QGate & VNB 출장 일정 충돌</strong> — 3/9~3/20 QGate와 출장 겹침. 리소스 배분 계획 필요</div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-dot dot-yellow"></div>
+      <div><strong>"생 50개" 실행계획 모호</strong> — SE/EE 비중, 월별 목표 브레이크다운 미완성</div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-dot dot-blue"></div>
+      <div><strong>CJ제일제당 의사결정자 컨택 미완</strong> — 메일 무응답, 전화 컨택 및 연동 스토리 준비 필요</div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-dot dot-blue"></div>
+      <div><strong>인도 Q312 셋업 지연</strong> — 2/26 마감. 현재 트랜잭션 오류 발생 중</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Jarvis · 자동 생성 · 2026-02-21<br>
+  기반 회의록: 5건 (02-13, 02-19×2, 02-20×2)
+</div>
+
+</body>
+</html>
