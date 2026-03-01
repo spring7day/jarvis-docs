@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optapex 지원 면담 준비 자료</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f4f8; color: #1a202c; font-size: 15px; line-height: 1.7; }
+
+  .hero { background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); color: white; padding: 28px 20px 20px; text-align: center; }
+  .hero h1 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .hero .subtitle { font-size: 13px; opacity: 0.75; }
+  .hero .meta { margin-top: 10px; font-size: 12px; opacity: 0.55; }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 16px; }
+
+  .alert { border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; display: flex; gap: 12px; align-items: flex-start; }
+  .alert-red { background: #fff5f5; border: 1px solid #fed7d7; }
+  .alert-blue { background: #ebf8ff; border: 1px solid #bee3f8; }
+  .alert-green { background: #f0fff4; border: 1px solid #9ae6b4; }
+  .alert-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .alert-body strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .alert-body span { font-size: 13px; color: #4a5568; }
+
+  .section { background: white; border-radius: 12px; padding: 20px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .section-title { font-size: 16px; font-weight: 700; color: #2d3748; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #edf2f7; display: flex; align-items: center; gap: 8px; }
+
+  .info-row { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f7fafc; font-size: 14px; }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { flex-shrink: 0; width: 120px; font-weight: 600; color: #4a5568; font-size: 13px; }
+  .info-value { color: #1a202c; flex: 1; }
+
+  .timeline-item { padding: 10px 0 10px 20px; border-left: 3px solid #e2e8f0; margin-left: 8px; position: relative; font-size: 14px; }
+  .timeline-item::before { content: ''; position: absolute; left: -7px; top: 14px; width: 12px; height: 12px; border-radius: 50%; background: #4a5568; border: 2px solid white; }
+  .timeline-item.red::before { background: #e53e3e; }
+  .timeline-item.orange::before { background: #dd6b20; }
+  .timeline-item.green::before { background: #38a169; }
+  .timeline-item .tl-date { font-size: 12px; font-weight: 700; color: #718096; margin-bottom: 2px; }
+  .timeline-item.red .tl-date { color: #c53030; }
+  .timeline-item.orange .tl-date { color: #c05621; }
+  .timeline-item.green .tl-date { color: #276749; }
+  .timeline-item .tl-content { font-size: 13px; color: #2d3748; }
+
+  .qa-item { margin-bottom: 14px; padding: 14px; background: #f7fafc; border-radius: 8px; border-left: 3px solid #4299e1; }
+  .qa-q { font-weight: 700; font-size: 14px; color: #2b6cb0; margin-bottom: 6px; }
+  .qa-a { font-size: 13px; color: #2d3748; line-height: 1.7; }
+
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin: 2px 3px 2px 0; }
+  .tag-blue { background: #bee3f8; color: #2b6cb0; }
+  .tag-green { background: #c6f6d5; color: #276749; }
+  .tag-red { background: #fed7d7; color: #c53030; }
+  .tag-orange { background: #feebc8; color: #c05621; }
+  .tag-gray { background: #edf2f7; color: #4a5568; }
+
+  .action-item { display: flex; gap: 10px; padding: 10px 12px; background: #fffff0; border: 1px solid #faf089; border-radius: 8px; margin-bottom: 8px; font-size: 13px; }
+  .action-item .ai-icon { font-size: 16px; flex-shrink: 0; }
+  .action-item strong { display: block; margin-bottom: 2px; }
+  .action-item span { color: #4a5568; }
+
+  .highlight { background: #ebf8ff; border-radius: 8px; padding: 12px 14px; margin: 10px 0; font-size: 13px; border-left: 3px solid #4299e1; }
+  .highlight strong { color: #2b6cb0; display: block; margin-bottom: 4px; }
+
+  ul.clean { padding-left: 18px; font-size: 14px; }
+  ul.clean li { margin-bottom: 6px; }
+  ul.clean li::marker { color: #4299e1; }
+
+  .footer { text-align: center; font-size: 12px; color: #a0aec0; padding: 20px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>📋 Optapex 지원 면담 준비 자료</h1>
+  <div class="subtitle">팀원 개인 면담 전 확인 사항 — 전화 논의 내용 전문 정리</div>
+  <div class="meta">2026년 2월 25일 · 김지민 팀장 사용 (비공개)</div>
+</div>
+
+<div class="container">
+
+  <!-- 핵심 요약 -->
+  <div class="alert alert-red">
+    <div class="alert-icon">🚨</div>
+    <div class="alert-body">
+      <strong>협력사 전원 철수 임박 — 전담 공백 발생 예정</strong>
+      <span>기존 협력사 4명 → 3월 3명 철수, 4월 1명 철수. 이후 Optapex 전담 인력이 <b>전혀 없는 상황</b>. 이번 면담 대상자가 그 공백을 메우는 유일한 내재화 핵심 인력.</span>
+    </div>
+  </div>
+  <div class="alert alert-blue">
+    <div class="alert-icon">🎯</div>
+    <div class="alert-body">
+      <strong>면담 목적</strong>
+      <span>대상자에게 Optapex 솔루션 오너 역할 파견/지원을 제안하고, 역할·범위·기간에 대해 사전 설명 및 동의 여부 확인. 정보가 한 번에 전달되는 만큼 대상자의 궁금증 충분히 청취 필요.</span>
+    </div>
+  </div>
+
+  <!-- 배경 & 상황 -->
+  <div class="section">
+    <div class="section-title">📌 배경 상황 — 왜 이 면담을 하는가</div>
+
+    <div class="timeline-item red">
+      <div class="tl-date">2026년 3월</div>
+      <div class="tl-content">협력사 인원 3명 철수 (COE 전체 약 18명 중 핵심 개발 4명이 단계적 철수)</div>
+    </div>
+    <div class="timeline-item red">
+      <div class="tl-date">2026년 4월</div>
+      <div class="tl-content">협력사 나머지 1명 최종 철수 → Optapex <b>전담 인력 완전 공백</b></div>
+    </div>
+    <div class="timeline-item orange">
+      <div class="tl-date">2026년 상반기</div>
+      <div class="tl-content">AI 에이전트 담당 빌드센터 인력도 상반기까지만 — 이 영역도 내재화 필요</div>
+    </div>
+    <div class="timeline-item green">
+      <div class="tl-date">목표</div>
+      <div class="tl-content">자사 인력(책임급 1명 + 추가 2~3명 예정)이 솔루션 오너로서 로드맵 지속 수행</div>
+    </div>
+  </div>
+
+  <!-- 역할 정의 -->
+  <div class="section">
+    <div class="section-title">🧩 역할 정의 — 면담 대상자가 할 일</div>
+
+    <div class="info-row">
+      <div class="info-label">주 담당</div>
+      <div class="info-value"><b>Optapex 메인</b> (MOP 일부 병행 가능)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">포지션</div>
+      <div class="info-value"><b>솔루션 오너</b> — 전담 체제. 단순 지원이 아닌 오너십을 갖고 주도</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">팀 구조</div>
+      <div class="info-value">운영팀(시스템·솔루션 개발 전담) + 개발팀(알고리즘 개발) 분리 운영. 대상자는 <b>운영팀 업무</b> 담당</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">인원 규모</div>
+      <div class="info-value">자사 측 2~3명 규모로 영역 분배 예정 (면담 대상자가 리딩)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">리딩 역할</div>
+      <div class="info-value">담당자가 <b>책임급·파트 리더 역량</b>을 명시적으로 기대. "아끼는 분"이라고 직접 표현</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">투입 기간</div>
+      <div class="info-value">"연말까지" 같은 달력 기준 아님 → <b>"퓨어 SaaS 제품 완성까지"</b>로 정의. 사실상 장기 전담</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">형태</div>
+      <div class="info-value">파견 또는 지원 (조직 이동은 아님) — 추후 팀장 면담 시 구체화 예정</div>
+    </div>
+
+    <div class="highlight" style="margin-top:12px">
+      <strong>📌 역할 비유 참고 (면담 시 활용 가능)</strong>
+      리버피 사례: 보성 체인님 → 수집·보안·OTL 전담 분배처럼, Optapex에서도 기술·시스템 영역별로 2~3명이 역할을 나눠 전담하는 구조.
+    </div>
+  </div>
+
+  <!-- 알고리즘 배경 우려 → 답변 -->
+  <div class="section">
+    <div class="section-title">❓ 예상 질문 & 확인된 답변</div>
+
+    <div class="qa-item">
+      <div class="qa-q">Q1. 최적화 알고리즘 배경지식이 없는데 괜찮을까?</div>
+      <div class="qa-a">
+        <b>✅ 괜찮다.</b> 알고리즘 개발은 개발팀(DS 인력 별도 존재)이 담당하며, 투입 인력은 <b>운영팀 업무(시스템·솔루션 개발)</b>를 맡는다. 알고리즘 관련해서는 <b>커뮤니케이션이 가능한 수준의 이해</b>만 있으면 됨. 직접 개발하지 않아도 된다.
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Q2. AI 코딩 에이전트 같은 도구 자유롭게 쓸 수 있나?</div>
+      <div class="qa-a">
+        <b>✅ 전혀 제한 없다.</b> AIND 형태 활용 포함, COE 인원들도 광범위하게 사용 중. AI 에이전트가 DAX에 연동되어 있고 빌드센터에서 개발 중인데, <b>빌드센터도 상반기 철수 예정이므로 이 에이전트 영역까지 담당하게 될 가능성이 높다.</b>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Q3. 업무 강도는 어떤가?</div>
+      <div class="qa-a">
+        <b>솔직하게 전달 필요.</b> 담당자 본인도 "일이 많을 수 있다"고 인정. 로드맵이 올해·내년·후년까지 확정되어 있는 장기 과제이며, AI 에이전트 영역 인수까지 더해지면 업무량이 상당할 수 있음. 단, 경험 측면에서는 "솔루션 오너로서 경험을 매우 많이 쌓을 수 있는 기회"라는 표현을 전달받음.
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Q4. 퓨어 SaaS 완성까지라는 게 언제까지인가?</div>
+      <div class="qa-a">
+        <b>현재 명확한 날짜 미확정.</b> 올해 로드맵은 확정, 내년/후년 방향성도 존재. R&B 구조화 자료와 유사한 중장기 방향성. 면담 시 "완성 시점까지 함께 간다"는 장기 파트너십으로 설명하되, 구체적 완료 시점은 팀장과 추가 확인이 필요함을 솔직하게 전달.
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">Q5. 추가 질문이 있으면 어디에 물어보나?</div>
+      <div class="qa-a">
+        <b>후속 Q&A 자리 마련 예정.</b> 오늘 면담 이후 반응이 긍정적이면, 담당님 또는 팀장님과 1:1(혹은 3자) 사전 질의 자리를 별도로 마련해드릴 수 있다고 안내. 완강한 반대는 예상하지 않지만 궁금증이 많을 수 있으므로 충분히 청취.
+      </div>
+    </div>
+  </div>
+
+  <!-- 면담 흐름 제안 -->
+  <div class="section">
+    <div class="section-title">🗣️ 면담 진행 흐름 (참고)</div>
+    <ul class="clean">
+      <li><b>도입:</b> "요즘 상황 어떠세요?" 가볍게 시작 — 갑작스러운 제안 완충</li>
+      <li><b>배경 설명:</b> Optapex 협력사 3~4월 전원 철수 → 전담 공백 발생 상황 설명</li>
+      <li><b>역할 제안:</b> 솔루션 오너로서 Optapex 메인 담당 요청 (담당님이 리딩 역량 직접 요청)</li>
+      <li><b>구체 내용:</b>
+        <ul class="clean" style="margin-top:6px">
+          <li>운영팀 업무 중심 (알고리즘 개발 X, 커뮤니케이션 수준 O)</li>
+          <li>AI 코딩 에이전트 자유롭게 사용 가능</li>
+          <li>빌드센터 철수 후 AI 에이전트 영역도 포함 가능성</li>
+          <li>기간: 퓨어 SaaS 완성까지 (장기 전담 성격)</li>
+          <li>업무량: 많을 수 있으나 경험 측면에서 큰 기회</li>
+        </ul>
+      </li>
+      <li><b>질의응답:</b> 궁금한 점 충분히 청취 — 오늘 답 못 하는 것은 팀장/담당자 미팅 자리 안내</li>
+      <li><b>마무리:</b> "오늘 바로 결정 안 해도 됩니다. 충분히 생각하고 말씀해주세요." 여유 부여</li>
+    </ul>
+  </div>
+
+  <!-- 출장비 관련 (참고) -->
+  <div class="section">
+    <div class="section-title">💳 출장비 처리 이슈 (별도 확인 필요)</div>
+    <div class="alert alert-blue" style="margin-bottom:0">
+      <div class="alert-icon">ℹ️</div>
+      <div class="alert-body">
+        <strong>면담과 직접 관련 없으나, 후속 처리 필요</strong>
+        <span>오늘 면담 내용과는 별개로, 내부 비용 처리 건 확인 필요.</span>
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <div class="action-item">
+        <div class="ai-icon">📞</div>
+        <div>
+          <strong>RND 사무국 (최지련 책임)에 문의 필요</strong>
+          <span>RND 코드로 출장비 집행 가능 여부 확인 + 사업기획팀 가이드(어렵다)와 정합성 확인. 별도 M/L 코드 발급 후 이관 처리 방안도 논의.</span>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="ai-icon">📋</div>
+        <div>
+          <strong>손정민 사장 가이드 내용</strong>
+          <span>L/M 코드 별도 발급 → RND 코드(릴리프 RND)에서 출장비 청구 후 이관 처리. 사업부 통제예산 한도·결재 이슈 회피 목적.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 오늘 할 일 -->
+  <div class="section">
+    <div class="section-title">✅ 오늘 면담 후 할 일</div>
+    <div class="action-item">
+      <div class="ai-icon">📢</div>
+      <div>
+        <strong>면담 결과 담당님 + 팀장님께 공유</strong>
+        <span>대상자 반응, 추가 질문 내용, 후속 Q&A 자리 필요 여부 포함</span>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="ai-icon">🤝</div>
+      <div>
+        <strong>긍정적 반응 시: 3자 미팅 일정 조율</strong>
+        <span>담당자 + 팀장 + 대상자(또는 지민님 포함) Q&A 세션 마련</span>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="ai-icon">📞</div>
+      <div>
+        <strong>RND 사무국(최지련 책임) 출장비 처리 문의</strong>
+        <span>면담과 별개로 비용 처리 방안 확정 필요</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="footer">
+  Optapex 면담 준비 자료 · 2026.02.25 · PLAUD 회의록 기반 Jarvis 정리<br>
+  원본 회의록: notes/meetings/2026-02-25_옵타픽스_솔루션_오너십...
+</div>
+</body>
+</html>
