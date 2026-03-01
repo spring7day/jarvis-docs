@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tricentis 제품 비교 분석 - SeaLights, LiveCompare, qTest</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 0;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header .meta {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .section h3 {
+            color: #764ba2;
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .summary-table th {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 0.5rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .summary-table td {
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .summary-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .summary-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.6rem 0.4rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background: #764ba2;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box strong {
+            color: #856404;
+        }
+        
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+        
+        .product-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .product-card h4 {
+            color: #2c3e50;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-card .role {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 0.75rem;
+        }
+        
+        .product-card ul {
+            margin-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
+        
+        .product-card li {
+            margin: 0.3rem 0;
+        }
+        
+        .flow-diagram {
+            background: #f8f9fa;
+            border: 2px dashed #667eea;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+        
+        .flow-container {
+            margin: 1.5rem 0;
+        }
+        
+        .flow-step {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .flow-step::after {
+            content: '↓';
+            display: block;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #667eea;
+            margin: 0.5rem 0;
+            font-weight: bold;
+        }
+        
+        .flow-step:last-child::after {
+            content: '';
+        }
+        
+        .flow-step-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .flow-step-content {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .flow-step.success {
+            border-color: #28a745;
+            background: #f0fff4;
+        }
+        
+        .flow-step.success .flow-step-title {
+            color: #28a745;
+        }
+        
+        .flow-step.warning {
+            border-color: #ffc107;
+            background: #fffdf0;
+        }
+        
+        .flow-step.warning .flow-step-title {
+            color: #f57c00;
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin: 0.25rem;
+        }
+        
+        .tag.success {
+            background: #28a745;
+        }
+        
+        .tag.warning {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .tag.danger {
+            background: #dc3545;
+        }
+        
+        ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        li {
+            margin: 0.5rem 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.25rem;
+            }
+            
+            .section {
+                padding: 1rem;
+            }
+            
+            .comparison-table {
+                font-size: 0.75rem;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.4rem 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Tricentis 제품 비교 분석</h1>
+        <div class="meta">SeaLights · LiveCompare · qTest 완전 해부</div>
+        <div class="meta">작성일: 2026년 2월 15일</div>
+    </div>
+    
+    <div class="container">
+        <!-- Executive Summary -->
+        <div class="section">
+            <h2>🎯 한눈에 보는 핵심 요약</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>제품</th>
+                        <th>카테고리</th>
+                        <th>한 줄 정의</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>qTest</strong></td>
+                        <td><span class="tag">Test Management</span></td>
+                        <td>테스트 관리 시스템</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SeaLights</strong></td>
+                        <td><span class="tag warning">Quality Intelligence</span></td>
+                        <td>코드 품질 인텔리전스</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LiveCompare</strong></td>
+                        <td><span class="tag danger">SAP Change Analytics</span></td>
+                        <td>SAP 전용 변경 분석</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="highlight-box">
+                <strong>💡 핵심 메시지:</strong> 세 제품은 겹치는 듯 보이지만, 실제로는 테스팅 라이프사이클의 <strong>다른 단계</strong>를 담당합니다.
+            </div>
+        </div>
+        
+        <!-- SeaLights 상세 -->
+        <div class="section">
+            <h2>🔍 SeaLights - 코드 품질의 눈</h2>
+            
+            <div class="product-card">
+                <h4>역할: "이 테스트가 코드의 어디를 커버했나?"</h4>
+                <div class="role">코드 레벨 품질 인텔리전스 플랫폼</div>
+                
+                <h5>주요 기능:</h5>
+                <ul>
+                    <li>🔍 실행된 테스트가 <strong>실제로 어떤 코드</strong>를 탔는지 추적</li>
+                    <li>📊 User Story별 코드 커버리지 시각화</li>
+                    <li>⚠️ <strong>미테스트 메서드</strong> 자동 감지</li>
+                    <li>🎯 코드 변경 → 영향받는 테스트 자동 선택</li>
+                    <li>⚡ 테스트 사이클 시간 최대 <strong>90% 단축</strong></li>
+                </ul>
+                
+                <h5>지원 언어:</h5>
+                <div>
+                    <span class="tag success">Java</span>
+                    <span class="tag success">C/C++</span>
+                    <span class="tag success">Node.js</span>
+                    <span class="tag success">.NET</span>
+                    <span class="tag success">Python</span>
+                    <span class="tag success">JavaScript</span>
+                    <span class="tag success">Go</span>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <strong>비유:</strong> "코드의 CCTV" - 테스트가 어떤 코드를 건드렸는지 24시간 감시하고 기록
+            </div>
+            
+            <h3>SAP 환경 지원</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>항목</th>
+                    <th>지원 여부</th>
+                    <th>비고</th>
+                </tr>
+                <tr>
+                    <td>ABAP 코드</td>
+                    <td>✅ 지원</td>
+                    <td>별도 모듈 (SeaLights for SAP ABAP)</td>
+                </tr>
+                <tr>
+                    <td>Non-code 객체</td>
+                    <td>✅ 지원</td>
+                    <td>설정 변경 추적</td>
+                </tr>
+                <tr>
+                    <td>Transport 분석</td>
+                    <td>✅ 지원</td>
+                    <td>Transport별 커버리지</td>
+                </tr>
+                <tr>
+                    <td>SAP 툴체인 통합</td>
+                    <td>✅ 지원</td>
+                    <td>DevOps 파이프라인 연동</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- qTest 상세 -->
+        <div class="section">
+            <h2>📝 qTest - 테스트 관리의 허브</h2>
+            
+            <div class="product-card">
+                <h4>역할: "테스트 케이스를 어디에 저장하고 관리할까?"</h4>
+                <div class="role">엔터프라이즈 테스트 관리 시스템</div>
+                
+                <h5>주요 기능:</h5>
+                <ul>
+                    <li>✅ 테스트 케이스/플랜/데이터 중앙 관리</li>
+                    <li>🤖 Jira 연동 → User Story에서 테스트 케이스 <strong>AI 자동 생성</strong></li>
+                    <li>📈 테스트 실행 결과 추적 및 보고</li>
+                    <li>🔗 DevOps 파이프라인 통합 (Jenkins, GitHub 등)</li>
+                    <li>👥 팀 간 협업 및 가시성 확보</li>
+                </ul>
+            </div>
+            
+            <div class="info-box">
+                <strong>비유:</strong> "테스트의 Jira" - 테스트 케이스와 실행 이력을 관리하는 중앙 허브
+            </div>
+            
+            <h3>SeaLights와의 협업 (AI 자동화 루프)</h3>
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="flow-step-title">1️⃣ qTest: 테스트 케이스 자동 생성</div>
+                    <div class="flow-step-content">User Story JIRA-1234로 테스트 10개 만들었어!</div>
+                </div>
+                
+                <div class="flow-step warning">
+                    <div class="flow-step-title">2️⃣ SeaLights: 코드 커버리지 분석</div>
+                    <div class="flow-step-content">
+                        • 7개는 코드 커버함 ✅<br>
+                        • <strong>3개 메서드는 안 건드림</strong> ⚠️<br>
+                        → 테스트 갭 감지!
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-step-title">3️⃣ qTest AI Agent: 추가 테스트 생성</div>
+                    <div class="flow-step-content">미테스트 메서드 3개를 위한 테스트 3개 자동 생성!</div>
+                </div>
+                
+                <div class="flow-step success">
+                    <div class="flow-step-title">4️⃣ 완전한 커버리지 달성! ✅</div>
+                    <div class="flow-step-content">모든 변경 코드가 테스트됨</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- LiveCompare 상세 -->
+        <div class="section">
+            <h2>🔬 LiveCompare - SAP 전용 탐정</h2>
+            
+            <div class="product-card">
+                <h4>역할: "SAP에서 이거 바꾸면 뭐가 영향받나?"</h4>
+                <div class="role">SAP 변경 영향 분석 전문 도구</div>
+                
+                <h5>주요 기능:</h5>
+                <ul>
+                    <li>🔍 <strong>ABAP 코드</strong> 변경 영향 분석</li>
+                    <li>📦 <strong>Non-code 객체</strong> (설정, Transport) 변경 추적</li>
+                    <li>🚦 SAP Transport별 영향 범위 시각화</li>
+                    <li>⚙️ SAP Solution Manager, ChaRM 네이티브 통합</li>
+                    <li>🎯 T-code, Function Module 단위 영향도 분석</li>
+                </ul>
+            </div>
+            
+            <div class="success-box">
+                <strong>비유:</strong> "SAP 전용 X-Ray" - SAP 시스템 내부의 변경 영향을 투시
+            </div>
+            
+            <h3>SeaLights vs LiveCompare</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>비교 항목</th>
+                    <th>SeaLights</th>
+                    <th>LiveCompare</th>
+                </tr>
+                <tr>
+                    <td><strong>대상 환경</strong></td>
+                    <td>일반 애플리케이션<br>(Java, .NET, Python 등)</td>
+                    <td><strong>SAP 전용</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>분석 단위</strong></td>
+                    <td>메서드, 클래스, 모듈</td>
+                    <td>T-code, Function Module, Transport</td>
+                </tr>
+                <tr>
+                    <td><strong>커버리지</strong></td>
+                    <td>테스트별 코드 커버리지</td>
+                    <td>Transport별 영향 범위</td>
+                </tr>
+                <tr>
+                    <td><strong>통합 대상</strong></td>
+                    <td>qTest, Tosca, Jenkins</td>
+                    <td>SAP Solution Manager, ChaRM</td>
+                </tr>
+                <tr>
+                    <td><strong>SAP ABAP</strong></td>
+                    <td>별도 모듈로 지원</td>
+                    <td>네이티브 지원</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- 통합 비교 -->
+        <div class="section">
+            <h2>🔄 세 제품의 관계와 협업</h2>
+            
+            <h3>일반 애플리케이션 워크플로우</h3>
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="flow-step-title">1. Jira: User Story 생성</div>
+                    <div class="flow-step-content">비즈니스 요구사항 정의</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-step-title">2. qTest: AI로 테스트 케이스 자동 생성</div>
+                    <div class="flow-step-content">Agentic Test Creation (ATC)</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-step-title">3. Tosca: 테스트 자동 실행</div>
+                    <div class="flow-step-content">자동화된 테스트 수행</div>
+                </div>
+                
+                <div class="flow-step warning">
+                    <div class="flow-step-title">4. SeaLights: 코드 커버리지 분석</div>
+                    <div class="flow-step-content">
+                        • 44개 메서드 변경됨<br>
+                        • 38개 테스트됨 ✅<br>
+                        • 6개 미테스트 ⚠️
+                    </div>
+                </div>
+                
+                <div class="flow-step success">
+                    <div class="flow-step-title">5. qTest AI: 미테스트 메서드용 테스트 6개 추가 생성</div>
+                    <div class="flow-step-content">자동 피드백 루프 완성! 🔄</div>
+                </div>
+            </div>
+            
+            <h3>SAP 환경 워크플로우</h3>
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="flow-step-title">1. SAP Transport 생성</div>
+                    <div class="flow-step-content">ABAP 코드 / 설정 변경</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-step-title">2. LiveCompare: SAP 변경 영향 분석</div>
+                    <div class="flow-step-content">
+                        • 영향받는 T-code 식별<br>
+                        • Transport 범위 시각화
+                    </div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-step-title">3. qTest: 영향받는 영역 테스트 케이스 관리</div>
+                    <div class="flow-step-content">테스트 계획 수립 및 관리</div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-step-title">4. Tosca: SAP 테스트 실행</div>
+                    <div class="flow-step-content">SAP GUI / Fiori 자동화 테스트</div>
+                </div>
+                
+                <div class="flow-step success">
+                    <div class="flow-step-title">5. SeaLights (ABAP): ABAP 커버리지 분석</div>
+                    <div class="flow-step-content">ABAP 코드 레벨 커버리지 확인</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PerfecTwin 포지셔닝 -->
+        <div class="section">
+            <h2>💎 PerfecTwin 차별화 전략</h2>
+            
+            <h3>Tricentis의 전략: "전방위 커버"</h3>
+            <div class="info-box">
+                Tricentis는 <strong>전체 테스트 라이프사이클</strong>과 <strong>모든 기술 스택</strong>을 커버하는 포트폴리오 전략을 구사합니다.
+            </div>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>영역</th>
+                    <th>Tricentis</th>
+                    <th>PerfecTwin</th>
+                </tr>
+                <tr>
+                    <td><strong>폭 (Breadth)</strong></td>
+                    <td>모든 애플리케이션</td>
+                    <td><strong>SAP ERP 전문</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>깊이 (Depth)</strong></td>
+                    <td>범용 + SAP 모듈</td>
+                    <td><strong>SAP 비즈니스 프로세스 Deep Dive</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>접근 방식</strong></td>
+                    <td>테스트 최적화<br>(기존 테스트 효율화)</td>
+                    <td><strong>시나리오 자동 생성</strong><br>(실거래 기반)</td>
+                </tr>
+                <tr>
+                    <td><strong>핵심 차별점</strong></td>
+                    <td>포트폴리오 통합<br>(qTest+Tosca+SeaLights)</td>
+                    <td><strong>실거래 재현 + AI Agent</strong><br>(운영 시나리오 자동화)</td>
+                </tr>
+                <tr>
+                    <td><strong>타겟 고객</strong></td>
+                    <td>범용 엔터프라이즈</td>
+                    <td><strong>SAP 전환/운영 기업</strong></td>
+                </tr>
+            </table>
+            
+            <h3>경쟁 포지셔닝 메시지</h3>
+            <div class="highlight-box">
+                <strong>Tricentis:</strong> "코드 변경 → 어떤 테스트를 실행할까?"<br>
+                <strong>PerfecTwin:</strong> "SAP 비즈니스 프로세스 → 실거래 기반 시나리오 자동 생성"
+            </div>
+            
+            <div class="success-box">
+                <strong>💡 PerfecTwin의 강점:</strong>
+                <ul>
+                    <li>✅ SAP 도메인 전문성 (표준 vs. 커스텀 구분)</li>
+                    <li>✅ 실거래/운영 시나리오 기반 접근 (Tricentis는 코드 중심)</li>
+                    <li>✅ AI Agent 기반 시나리오 생성 (Tricentis는 기존 테스트 최적화)</li>
+                    <li>✅ SAP S/4HANA 전환 특화</li>
+                </ul>
+            </div>
+            
+            <h3>모니터링 포인트</h3>
+            <ul>
+                <li>🔍 Tricentis의 SAP 사례 증가 추이</li>
+                <li>🔍 LiveCompare와 SeaLights 통합 움직임</li>
+                <li>🔍 SAP Integrated Toolchain 내 포지셔닝</li>
+                <li>🔍 Tosca-SeaLights 통합의 SAP 적용 사례</li>
+            </ul>
+        </div>
+        
+        <!-- 핵심 요약 -->
+        <div class="section">
+            <h2>🎯 결론: 겹치는가, 보완인가?</h2>
+            
+            <div class="highlight-box">
+                <strong>질문:</strong> "qTest, SeaLights, LiveCompare가 다 겹치는 거 아닌가요?"
+            </div>
+            
+            <h3>답변: 보완 관계입니다</h3>
+            <table class="summary-table">
+                <tr>
+                    <th>제품</th>
+                    <th>역할</th>
+                    <th>핵심 질문</th>
+                </tr>
+                <tr>
+                    <td><strong>qTest</strong></td>
+                    <td>관리 (Manage)</td>
+                    <td>"테스트를 어디에 저장하고 추적할까?"</td>
+                </tr>
+                <tr>
+                    <td><strong>Tosca</strong></td>
+                    <td>실행 (Execute)</td>
+                    <td>"어떻게 테스트를 자동화할까?"</td>
+                </tr>
+                <tr>
+                    <td><strong>SeaLights</strong></td>
+                    <td>분석 (Analyze)</td>
+                    <td>"어떤 코드가 테스트됐고 안 됐나?"</td>
+                </tr>
+                <tr>
+                    <td><strong>LiveCompare</strong></td>
+                    <td>분석 (SAP)</td>
+                    <td>"SAP 변경이 뭐에 영향 주나?"</td>
+                </tr>
+            </table>
+            
+            <h3>겹치는 부분</h3>
+            <div class="info-box">
+                <strong>SeaLights vs LiveCompare:</strong> 둘 다 "변경 영향 분석"을 하지만,<br>
+                • SeaLights: 일반 애플리케이션 (메서드 단위)<br>
+                • LiveCompare: SAP 전용 (Transport/T-code 단위)
+            </div>
+            
+            <h3>Tricentis의 의도</h3>
+            <div class="success-box">
+                "한 회사에서 모든 테스팅 니즈를 해결" = <strong>포트폴리오 판매 전략</strong><br>
+                → 고객 락인(lock-in) 효과 극대화
+            </div>
+            
+            <h3>PerfecTwin의 기회</h3>
+            <div class="highlight-box">
+                SAP 고객은 여전히 <strong>"SAP 전문가"</strong>를 원합니다.<br><br>
+                <strong>Tricentis:</strong> 범용 접근 (폭넓지만 얕음)<br>
+                <strong>PerfecTwin:</strong> SAP Deep Dive (좁지만 깊음)<br><br>
+                → <strong>차별화 가능!</strong>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>📊 Tricentis 제품 비교 분석 리포트</p>
+        <p>작성: Jarvis AI Assistant | 2026년 2월 15일</p>
+        <p>PerfecTwin 경쟁 전략 수립을 위한 심층 조사</p>
+    </div>
+</body>
+</html>
