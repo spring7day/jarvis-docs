@@ -4,7 +4,13 @@
     "title": "홍천→마곡 드라이브 코스 (반려견+아이)",
     "category": "드라이브",
     "date": "2026-03-01",
-    "tags": ["드라이브", "반려견", "아이", "맛집"],
+    "tags": [
+      "드라이브",
+      "반려견",
+      "아이",
+      "양평",
+      "두물머리"
+    ],
     "type": "html",
     "filename": "홍천-마곡-드라이브-2026-03-01.html",
     "status": "final"
@@ -14,9 +20,357 @@
     "title": "김치찌개 레시피 (마카롱여사)",
     "category": "레시피",
     "date": "2026-03-01",
-    "tags": ["레시피", "요리", "김치찌개"],
+    "tags": [
+      "레시피",
+      "요리",
+      "김치찌개"
+    ],
     "type": "html",
     "filename": "김치찌개-레시피-2026-03-01.html",
+    "status": "final"
+  },
+  {
+    "id": "비밀이야-전망명소35",
+    "title": "비밀이야 전망명소 35선",
+    "category": "드라이브",
+    "date": "2026-02-21",
+    "tags": [
+      "드라이브",
+      "전망",
+      "여행"
+    ],
+    "type": "html",
+    "filename": "비밀이야-전망명소35-2026-02-21.html",
+    "status": "final"
+  },
+  {
+    "id": "소풍-추천-2026-02-21",
+    "title": "소풍 장소 추천",
+    "category": "드라이브",
+    "date": "2026-02-21",
+    "tags": [
+      "소풍",
+      "아이",
+      "나들이"
+    ],
+    "type": "html",
+    "filename": "소풍-추천-2026-02-21.html",
+    "status": "final"
+  },
+  {
+    "id": "양양-반려견-해변",
+    "title": "양양 반려견 동반 해변 가이드",
+    "category": "드라이브",
+    "date": "2026-02-01",
+    "tags": [
+      "양양",
+      "반려견",
+      "해변",
+      "드라이브"
+    ],
+    "type": "html",
+    "filename": "양양-반려견-해변-2026-02.html",
+    "status": "final"
+  },
+  {
+    "id": "주간회고-2026-02-21",
+    "title": "주간 회고 (2026.02 1-2주차)",
+    "category": "회고",
+    "date": "2026-02-21",
+    "tags": [
+      "회고",
+      "업무",
+      "주간"
+    ],
+    "type": "html",
+    "filename": "주간회고-2026-02-21.html",
+    "status": "final"
+  },
+  {
+    "id": "daily-recap-2026-02-25",
+    "title": "일일 업무 요약 (2026-02-25)",
+    "category": "회고",
+    "date": "2026-02-25",
+    "tags": [
+      "회고",
+      "업무",
+      "일일"
+    ],
+    "type": "html",
+    "filename": "daily-recap-2026-02-25.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-webinar-final-2026-02-20",
+    "title": "Tricentis 웨비나 요약 리포트",
+    "category": "리포트",
+    "date": "2026-02-20",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "SAP",
+      "테스팅"
+    ],
+    "type": "html",
+    "filename": "tricentis-webinar-FINAL-2026-02-20.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-webinar-pdf-2026-02-20",
+    "title": "Tricentis 웨비나 요약 리포트 (PDF)",
+    "category": "리포트",
+    "date": "2026-02-20",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "SAP",
+      "테스팅",
+      "PDF"
+    ],
+    "type": "pdf",
+    "status": "final",
+    "note": "로컬 파일 (Telegram으로 전송됨)"
+  },
+  {
+    "id": "tricentis-agentic-webinar-2026-02-20",
+    "title": "Tricentis Agentic AI 웨비나 요약",
+    "category": "리포트",
+    "date": "2026-02-20",
+    "tags": [
+      "Tricentis",
+      "Agentic AI",
+      "웨비나"
+    ],
+    "type": "html",
+    "filename": "tricentis-agentic-webinar-summary-2026-02-20.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-products-comparison-2026-02-15",
+    "title": "Tricentis 제품 비교 분석",
+    "category": "리포트",
+    "date": "2026-02-15",
+    "tags": [
+      "Tricentis",
+      "제품비교",
+      "Tosca",
+      "NeoLoad"
+    ],
+    "type": "html",
+    "filename": "tricentis-products-comparison-2026-02-15.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-webinars-2026-02-27",
+    "title": "Tricentis 웨비나 일정 정리",
+    "category": "리포트",
+    "date": "2026-02-27",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "일정"
+    ],
+    "type": "html",
+    "filename": "tricentis-webinars-responsive-2026-02-27.html",
+    "status": "final"
+  },
+  {
+    "id": "tosca-webinar-report-2026-02-27",
+    "title": "Tosca 웨비나 리포트",
+    "category": "리포트",
+    "date": "2026-02-27",
+    "tags": [
+      "Tosca",
+      "웨비나",
+      "Tricentis"
+    ],
+    "type": "html",
+    "filename": "tosca-webinar-report-v2-2026-02-27.html",
+    "status": "final"
+  },
+  {
+    "id": "Tricentis-Roadmap-Report-2026-02-02",
+    "title": "Tricentis Roadmap 리포트 (PDF)",
+    "category": "리포트",
+    "date": "2026-02-02",
+    "tags": [
+      "Tricentis",
+      "로드맵",
+      "PDF"
+    ],
+    "type": "pdf",
+    "status": "final",
+    "note": "로컬 파일 (Telegram으로 전송됨)"
+  },
+  {
+    "id": "경쟁사-AI테스팅-동향-2026-02-20",
+    "title": "경쟁사 AI 테스팅 동향 분석",
+    "category": "분석",
+    "date": "2026-02-20",
+    "tags": [
+      "AI",
+      "테스팅",
+      "경쟁사",
+      "동향"
+    ],
+    "type": "html",
+    "filename": "경쟁사-AI테스팅-동향-2026-02-20.html",
+    "status": "final"
+  },
+  {
+    "id": "erp-ai-future-2026-02-25",
+    "title": "ERP AI 미래 전망",
+    "category": "분석",
+    "date": "2026-02-25",
+    "tags": [
+      "ERP",
+      "AI",
+      "미래",
+      "SAP"
+    ],
+    "type": "html",
+    "filename": "erp-ai-future-2026-02-25.html",
+    "status": "final"
+  },
+  {
+    "id": "erp-meeting-feedback-2026-02-26",
+    "title": "ERP 미팅 피드백 정리",
+    "category": "리포트",
+    "date": "2026-02-26",
+    "tags": [
+      "ERP",
+      "미팅",
+      "피드백"
+    ],
+    "type": "html",
+    "filename": "erp-meeting-feedback-2026-02-26.html",
+    "status": "final"
+  },
+  {
+    "id": "perfectwin-gtm-2026-02-25",
+    "title": "PerfecTwin GTM 전략 (Rise & Grow)",
+    "category": "리포트",
+    "date": "2026-02-25",
+    "tags": [
+      "PerfecTwin",
+      "GTM",
+      "전략",
+      "ERP"
+    ],
+    "type": "html",
+    "filename": "perfectwin-gtm-rise-grow-2026-02-25.html",
+    "status": "final"
+  },
+  {
+    "id": "optapex-interview-prep-2026-02-25",
+    "title": "Optapex 인터뷰 준비 자료",
+    "category": "리포트",
+    "date": "2026-02-25",
+    "tags": [
+      "Optapex",
+      "인터뷰",
+      "준비"
+    ],
+    "type": "html",
+    "filename": "optapex-interview-prep-2026-02-25.html",
+    "status": "final"
+  },
+  {
+    "id": "WAS-reverse-connection-2026-02-24",
+    "title": "WAS 역방향 연결 분석",
+    "category": "분석",
+    "date": "2026-02-24",
+    "tags": [
+      "WAS",
+      "아키텍처",
+      "기술"
+    ],
+    "type": "html",
+    "filename": "WAS-reverse-connection-2026-02-24.html",
+    "status": "final"
+  },
+  {
+    "id": "mokdong-reconstruction-2026-02-23",
+    "title": "목동 재건축 분석",
+    "category": "분석",
+    "date": "2026-02-23",
+    "tags": [
+      "목동",
+      "재건축",
+      "부동산"
+    ],
+    "type": "html",
+    "filename": "mokdong-reconstruction-2026-02-23.html",
+    "status": "final"
+  },
+  {
+    "id": "sap-korea-partners-2026-02-26",
+    "title": "SAP 한국 파트너사 현황",
+    "category": "분석",
+    "date": "2026-02-26",
+    "tags": [
+      "SAP",
+      "파트너",
+      "한국"
+    ],
+    "type": "html",
+    "filename": "sap-korea-partners-2026-02-26.html",
+    "status": "final"
+  },
+  {
+    "id": "sap-public-cloud-configuration-2026-02-26",
+    "title": "SAP Public Cloud 설정 가이드",
+    "category": "분석",
+    "date": "2026-02-26",
+    "tags": [
+      "SAP",
+      "Public Cloud",
+      "설정"
+    ],
+    "type": "html",
+    "filename": "sap-public-cloud-configuration-2026-02-26.html",
+    "status": "final"
+  },
+  {
+    "id": "stock-pro-analysis-2026-02-27",
+    "title": "주식 프로 분석 리포트",
+    "category": "분석",
+    "date": "2026-02-27",
+    "tags": [
+      "주식",
+      "투자",
+      "분석"
+    ],
+    "type": "html",
+    "filename": "stock-pro-analysis-2026-02-27.html",
+    "status": "final"
+  },
+  {
+    "id": "stock-sell-strategy-2026-02-27",
+    "title": "주식 매도 전략",
+    "category": "분석",
+    "date": "2026-02-27",
+    "tags": [
+      "주식",
+      "투자",
+      "매도전략"
+    ],
+    "type": "html",
+    "filename": "stock-sell-strategy-2026-02-27.html",
+    "status": "final"
+  },
+  {
+    "id": "stock-signal-dashboard",
+    "title": "주식 시그널 대시보드",
+    "category": "링크",
+    "date": "2026-02-08",
+    "tags": [
+      "주식",
+      "대시보드",
+      "GitHub"
+    ],
+    "type": "link",
+    "url": "https://spring7day.github.io/stock-signal-dashboard/",
     "status": "final"
   }
 ]
