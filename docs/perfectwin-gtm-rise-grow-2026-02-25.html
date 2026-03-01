@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PerfecTwin × RISE/GROW with SAP GTM 전략</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f4f8; color: #1a202c; font-size: 15px; line-height: 1.6; }
+
+  .hero { background: linear-gradient(135deg, #0066b2 0%, #003d6b 100%); color: white; padding: 32px 20px 24px; text-align: center; }
+  .hero h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+  .hero .subtitle { font-size: 13px; opacity: 0.85; }
+  .hero .meta { margin-top: 12px; font-size: 12px; opacity: 0.7; }
+
+  .container { max-width: 780px; margin: 0 auto; padding: 16px; }
+
+  /* Summary Cards */
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  .summary-card { background: white; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .summary-card .icon { font-size: 24px; margin-bottom: 8px; }
+  .summary-card h3 { font-size: 13px; color: #4a5568; margin-bottom: 4px; }
+  .summary-card .value { font-size: 18px; font-weight: 700; color: #0066b2; }
+  .summary-card .desc { font-size: 12px; color: #718096; margin-top: 4px; }
+
+  /* Section */
+  .section { background: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .section-title { font-size: 17px; font-weight: 700; color: #0066b2; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0; display: flex; align-items: center; gap: 8px; }
+
+  /* SAP Program Comparison */
+  .compare-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+  .compare-table th { background: #0066b2; color: white; padding: 10px 12px; text-align: left; }
+  .compare-table th:first-child { border-radius: 8px 0 0 0; }
+  .compare-table th:last-child { border-radius: 0 8px 0 0; }
+  .compare-table td { padding: 10px 12px; border-bottom: 1px solid #edf2f7; vertical-align: top; }
+  .compare-table tr:nth-child(even) td { background: #f7fafc; }
+  .compare-table .label { font-weight: 600; color: #4a5568; }
+
+  /* Segment Cards */
+  .segment { border-left: 4px solid #0066b2; background: #f7fafc; border-radius: 0 10px 10px 0; padding: 16px; margin-bottom: 12px; }
+  .segment.grow { border-left-color: #38a169; }
+  .segment.alm { border-left-color: #805ad5; }
+  .segment-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; margin-bottom: 8px; }
+  .badge-rise { background: #bee3f8; color: #2b6cb0; }
+  .badge-grow { background: #c6f6d5; color: #276749; }
+  .badge-alm { background: #e9d8fd; color: #553c9a; }
+  .segment h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .segment p { font-size: 13px; color: #4a5568; margin-bottom: 4px; }
+
+  /* Pain Points & Value */
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .tag { font-size: 12px; padding: 4px 10px; border-radius: 20px; }
+  .tag-pain { background: #fed7d7; color: #c53030; }
+  .tag-value { background: #c6f6d5; color: #276749; }
+
+  /* Flow Diagram */
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 12px 0; }
+  .flow-row { display: flex; align-items: stretch; gap: 0; }
+  .flow-box { flex: 1; background: #ebf8ff; border: 2px solid #bee3f8; border-radius: 8px; padding: 12px; text-align: center; font-size: 13px; font-weight: 600; color: #2b6cb0; }
+  .flow-box.green { background: #f0fff4; border-color: #9ae6b4; color: #276749; }
+  .flow-box.purple { background: #faf5ff; border-color: #d6bcfa; color: #553c9a; }
+  .flow-box.gold { background: #fffff0; border-color: #faf089; color: #744210; }
+  .flow-arrow { display: flex; align-items: center; justify-content: center; font-size: 20px; color: #a0aec0; padding: 0 6px; }
+  .flow-arrow.down { padding: 4px 0; justify-content: center; font-size: 16px; color: #a0aec0; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; }
+  .tl-item { position: relative; margin-bottom: 20px; }
+  .tl-item::before { content: ''; position: absolute; left: -20px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #0066b2; border: 2px solid white; box-shadow: 0 0 0 2px #0066b2; }
+  .tl-item.green::before { background: #38a169; box-shadow: 0 0 0 2px #38a169; }
+  .tl-item.purple::before { background: #805ad5; box-shadow: 0 0 0 2px #805ad5; }
+  .tl-date { font-size: 12px; font-weight: 700; color: #0066b2; margin-bottom: 4px; }
+  .tl-item.green .tl-date { color: #38a169; }
+  .tl-item.purple .tl-date { color: #805ad5; }
+  .tl-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .tl-desc { font-size: 13px; color: #4a5568; }
+
+  /* KPI */
+  .kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px; }
+  .kpi-card { background: #f7fafc; border-radius: 8px; padding: 12px; text-align: center; border: 1px solid #e2e8f0; }
+  .kpi-label { font-size: 11px; color: #718096; margin-bottom: 4px; }
+  .kpi-value { font-size: 20px; font-weight: 800; color: #0066b2; }
+  .kpi-desc { font-size: 11px; color: #a0aec0; margin-top: 2px; }
+
+  /* Action Items */
+  .action-list { list-style: none; }
+  .action-list li { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid #edf2f7; font-size: 13px; }
+  .action-list li:last-child { border-bottom: none; }
+  .action-num { flex-shrink: 0; width: 24px; height: 24px; background: #0066b2; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+  .action-content strong { display: block; font-weight: 700; margin-bottom: 2px; }
+  .action-content span { color: #718096; }
+
+  /* Risk Table */
+  .risk-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+  .risk-table th { background: #2d3748; color: white; padding: 8px 12px; text-align: left; }
+  .risk-table td { padding: 10px 12px; border-bottom: 1px solid #edf2f7; vertical-align: top; }
+  .risk-high { color: #c53030; font-weight: 600; }
+  .risk-med { color: #c05621; font-weight: 600; }
+  .risk-low { color: #276749; font-weight: 600; }
+
+  /* Customer list */
+  .customer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .customer-pill { background: #edf2f7; border-radius: 8px; padding: 8px 12px; font-size: 13px; font-weight: 600; color: #2d3748; }
+
+  .highlight-box { background: #ebf8ff; border: 1px solid #bee3f8; border-radius: 10px; padding: 14px; margin: 12px 0; font-size: 13px; }
+  .highlight-box strong { color: #0066b2; display: block; margin-bottom: 4px; font-size: 14px; }
+
+  .footer { text-align: center; font-size: 12px; color: #a0aec0; padding: 24px 16px; }
+
+  /* Stats Section */
+  .stat-section { background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 100%); border-radius: 12px; padding: 20px; margin-bottom: 16px; color: white; }
+  .stat-section-title { font-size: 17px; font-weight: 700; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 8px; }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-card { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 14px; border: 1px solid rgba(255,255,255,0.15); }
+  .stat-number { font-size: 28px; font-weight: 800; color: #63b3ed; line-height: 1; }
+  .stat-unit { font-size: 14px; font-weight: 600; color: #90cdf4; margin-left: 2px; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.8); margin-top: 6px; }
+  .stat-source { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+  .stat-divider { height: 1px; background: rgba(255,255,255,0.1); margin: 14px 0; }
+  .stat-highlight { background: rgba(99,179,237,0.15); border: 1px solid rgba(99,179,237,0.3); border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 13px; }
+  .stat-highlight strong { color: #63b3ed; display: block; margin-bottom: 4px; }
+
+  /* Urgency Banner */
+  .urgency-banner { background: linear-gradient(135deg, #c53030 0%, #9b2c2c 100%); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; color: white; display: flex; align-items: center; gap: 12px; }
+  .urgency-icon { font-size: 28px; flex-shrink: 0; }
+  .urgency-text strong { font-size: 15px; display: block; margin-bottom: 2px; }
+  .urgency-text span { font-size: 12px; opacity: 0.85; }
+
+  /* Source badge */
+  .source-badge { display: inline-block; font-size: 10px; background: #edf2f7; color: #718096; padding: 2px 6px; border-radius: 4px; margin-left: 4px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🚀 PerfecTwin ERP Edition</h1>
+  <div class="subtitle">RISE with SAP · GROW with SAP · Cloud ALM 연계 GTM 전략</div>
+  <div class="meta">2026년 2월 25일 기준 · LG CNS 엔터프라이즈 솔루션 개발팀 · v2 (시장 통계 추가)</div>
+</div>
+
+<div class="container">
+
+  <!-- Summary Cards -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="icon">🎯</div>
+      <h3>4월 SaaS 런칭</h3>
+      <div class="value">2026.04</div>
+      <div class="desc">PerfecTwin ERP Edition SaaS 정식 운영 시작</div>
+    </div>
+    <div class="summary-card">
+      <div class="icon">🏢</div>
+      <h3>현재 레퍼런스</h3>
+      <div class="value">8개사</div>
+      <div class="desc">LG에너지솔루션, 한전KDN, LG화학 등</div>
+    </div>
+    <div class="summary-card">
+      <div class="icon">📡</div>
+      <h3>핵심 연동 타겟</h3>
+      <div class="value">Cloud ALM</div>
+      <div class="desc">RISE/GROW 고객 무상 제공 ALM 도구</div>
+    </div>
+    <div class="summary-card">
+      <div class="icon">🌐</div>
+      <h3>시장 기회</h3>
+      <div class="value">2종 세그먼트</div>
+      <div class="desc">대기업(RISE) + 중견기업(GROW)</div>
+    </div>
+  </div>
+
+  <!-- Urgency Banner -->
+  <div class="urgency-banner">
+    <div class="urgency-icon">⏰</div>
+    <div class="urgency-text">
+      <strong>SAP ECC 메인스트림 지원 종료: 2027년 12월 31일</strong>
+      <span>전 세계 약 40,000개 SAP ECC 고객사가 S/4HANA로 전환해야 하는 데드라인 — RISE with SAP 수요의 핵심 드라이버</span>
+    </div>
+  </div>
+
+  <!-- Market Statistics Section -->
+  <div class="stat-section">
+    <div class="stat-section-title">📈 시장 현황 & 근거 통계</div>
+
+    <div style="font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:12px;">※ 각 수치 출처는 하단 source 표기 참조</div>
+
+    <!-- SAP Global Stats -->
+    <div style="font-size:13px; font-weight:700; color:#90cdf4; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.05em;">① SAP 글로벌 현황</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">400<span class="stat-unit">K+</span></div>
+        <div class="stat-label">전 세계 SAP 고객사 수</div>
+        <div class="stat-source">Source: SAP SE 공식 발표</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">€36.8<span class="stat-unit">B</span></div>
+        <div class="stat-label">SAP FY2025 총 매출 (non-IFRS)</div>
+        <div class="stat-source">Source: SAP About Company, 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">300<span class="stat-unit">M+</span></div>
+        <div class="stat-label">SAP 클라우드 구독자 수</div>
+        <div class="stat-source">Source: SAP About Company, 2025</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">26<span class="stat-unit">개</span></div>
+        <div class="stat-label">GROW with SAP 지원 산업 분야</div>
+        <div class="stat-source">Source: SAP GROW 공식 페이지</div>
+      </div>
+    </div>
+
+    <div class="stat-divider"></div>
+
+    <!-- RISE Stats -->
+    <div style="font-size:13px; font-weight:700; color:#90cdf4; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.05em;">② RISE with SAP 채택 현황</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">4,300<span class="stat-unit">+</span></div>
+        <div class="stat-label">RISE with SAP 고객사 수 (2023년 기준)</div>
+        <div class="stat-source">Source: SAPinsider Research Report, 2023</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">93<span class="stat-unit">%</span></div>
+        <div class="stat-label">RISE 인지도 (어느 정도 이상 인지)</div>
+        <div class="stat-source">Source: SAPinsider RISE 설문, 2023 (n=229)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">#1</div>
+        <div class="stat-label">RISE 도입 이유: 단일 계약(Single Contract)</div>
+        <div class="stat-source">Source: SAPinsider Research, 2023</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2027<span class="stat-unit">년</span></div>
+        <div class="stat-label">SAP ECC 메인스트림 지원 종료 (Extended: 2030)</div>
+        <div class="stat-source">Source: SAP 공식 발표</div>
+      </div>
+    </div>
+
+    <div class="stat-highlight">
+      <strong>🔑 RISE 시장 인사이트 (SAPinsider, 2023)</strong>
+      연매출 $2B 이상 대기업일수록 기존 라이선스의 클라우드 크레딧 전환에 높은 관심 → PerfecTwin의 주력 타겟(대기업 제조·화학·에너지)과 정확히 일치. 또한 GenAI·지속가능성 신기능이 RISE 고객에게만 제공됨으로써 전환 압박 지속 증가 중.
+    </div>
+
+    <div class="stat-divider"></div>
+
+    <!-- Testing Market Stats -->
+    <div style="font-size:13px; font-weight:700; color:#90cdf4; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.05em;">③ ERP 테스트 자동화 시장 기회</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">20<span class="stat-unit">~30%</span></div>
+        <div class="stat-label">ERP 전환 프로젝트 총 비용 중 테스트 비용 비중</div>
+        <div class="stat-source">Source: Gartner ERP Implementation Study</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">80<span class="stat-unit">%↓</span></div>
+        <div class="stat-label">PerfecTwin 적용 시 테스트 공수 절감률 (레퍼런스 기준)</div>
+        <div class="stat-source">Source: PerfecTwin 내부 레퍼런스 데이터</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">연 4<span class="stat-unit">회</span></div>
+        <div class="stat-label">GROW(Public Cloud) 자동 업데이트 주기 → 회귀 테스트 의무화</div>
+        <div class="stat-source">Source: SAP GROW with SAP 공식 페이지</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$28<span class="stat-unit">B</span></div>
+        <div class="stat-label">글로벌 테스트 자동화 시장 규모 (2024년)</div>
+        <div class="stat-source">Source: Markets and Markets, 2024</div>
+      </div>
+    </div>
+
+    <div class="stat-divider"></div>
+
+    <!-- Cloud ALM Stats -->
+    <div style="font-size:13px; font-weight:700; color:#90cdf4; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.05em;">④ SAP Cloud ALM 현황</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-number">무상<span class="stat-unit">포함</span></div>
+        <div class="stat-label">RISE·GROW 고객 전원 Cloud ALM 기본 제공</div>
+        <div class="stat-source">Source: SAP 공식 발표</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2021<span class="stat-unit">~</span></div>
+        <div class="stat-label">Cloud ALM 출시 → RISE 확장과 함께 테넌트 급증</div>
+        <div class="stat-source">Source: SAP Cloud ALM 출시 공고</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0개</div>
+        <div class="stat-label">Cloud ALM 내장 자동 실행 엔진 (= PerfecTwin 기회)</div>
+        <div class="stat-source">Source: SAP Cloud ALM 기능 스펙</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">SAP<span class="stat-unit"> Store</span></div>
+        <div class="stat-label">Cloud ALM 연동 ISV → SAP Store 등록 가능 (채널 확장)</div>
+        <div class="stat-source">Source: SAP PartnerEdge ISV 프로그램</div>
+      </div>
+    </div>
+
+    <div class="stat-highlight">
+      <strong>🎯 PerfecTwin의 포지셔닝 근거</strong>
+      전 세계 40,000+ SAP ECC 고객이 2027~2030년까지 S/4HANA로 전환해야 하며, 이 중 상당수가 RISE with SAP를 선택. 전환 프로젝트 비용의 20~30%가 테스트 → 자동화 솔루션의 ROI가 명확. Cloud ALM이 무상 제공되지만 자동 실행 기능이 없어 PerfecTwin이 완벽한 보완재 역할.
+    </div>
+  </div>
+
+  <!-- SAP Programs Comparison -->
+  <div class="section">
+    <div class="section-title">📊 RISE vs GROW with SAP — 핵심 비교</div>
+    <table class="compare-table">
+      <tr>
+        <th>구분</th>
+        <th>🔵 RISE with SAP</th>
+        <th>🟢 GROW with SAP</th>
+      </tr>
+      <tr>
+        <td class="label">대상 고객</td>
+        <td>기존 SAP ECC 사용 <b>대기업</b><br>온프레미스 → 클라우드 전환</td>
+        <td>SAP 신규 도입 <b>중견기업</b><br>처음부터 클라우드로 시작</td>
+      </tr>
+      <tr>
+        <td class="label">제품</td>
+        <td>S/4HANA Cloud, Private Edition<br>(전용 인프라, 커스터마이징 허용)</td>
+        <td>S/4HANA Cloud, Public Edition<br>(멀티테넌트, SAP 표준 프로세스)</td>
+      </tr>
+      <tr>
+        <td class="label">업데이트 주기</td>
+        <td>연 1~2회 (고객 통제 가능)</td>
+        <td><b>연 2~4회 자동 업데이트</b><br>→ 회귀 테스트 부담 ↑↑</td>
+      </tr>
+      <tr>
+        <td class="label">Cloud ALM 포함</td>
+        <td>✅ 포함 (구현 · 운영 관리)</td>
+        <td>✅ 포함 (테스트 관리 포함)</td>
+      </tr>
+      <tr>
+        <td class="label">PerfecTwin 포지션</td>
+        <td>마이그레이션 테스트 자동화<br>포스트 고라이브 회귀 테스트</td>
+        <td><b>분기별 자동 업데이트 회귀 테스트</b><br>빠른 SaaS 온보딩</td>
+      </tr>
+      <tr>
+        <td class="label">주요 파트너</td>
+        <td>SI (딜로이트, Accenture, LG CNS 등)</td>
+        <td>GROW Fast 인증 파트너</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- GTM Segments -->
+  <div class="section">
+    <div class="section-title">🎯 3대 GTM 세그먼트 전략</div>
+
+    <!-- Segment 1: RISE Migration -->
+    <div class="segment">
+      <span class="segment-badge badge-rise">SEGMENT 1 · RISE Migration</span>
+      <h3>대기업 마이그레이션 번들링</h3>
+      <p><strong>타겟:</strong> ECC → S/4HANA 전환 중인 대기업 (제조·화학·에너지 중심)</p>
+      <p><strong>진입 시점:</strong> SAP RISE 계약 직후 ~ Go-Live 전 (6~18개월 프로젝트 기간)</p>
+      <p><strong>채널:</strong> LG CNS 포함 RISE 구현 SI 파트너와 번들링 제안</p>
+      <div class="tag-list">
+        <span class="tag tag-pain">😰 마이그레이션 테스트 공수 폭증</span>
+        <span class="tag tag-pain">😰 병행 운영(병렬 테스트) 부담</span>
+        <span class="tag tag-value">✅ 실거래 기반 시나리오 자동 생성</span>
+        <span class="tag tag-value">✅ 마이그레이션 전/후 비교 검증</span>
+        <span class="tag tag-value">✅ 테스트 공수 80% 절감</span>
+      </div>
+      <div class="highlight-box" style="margin-top:12px">
+        <strong>💡 핵심 메시지</strong>
+        "RISE 전환의 가장 큰 리스크는 테스트 공백입니다. PerfecTwin이 실운영 데이터로 자동 회귀 테스트를 구성해, 안전하고 빠른 Go-Live를 보장합니다."
+      </div>
+    </div>
+
+    <!-- Segment 2: RISE AMS -->
+    <div class="segment">
+      <span class="segment-badge badge-rise">SEGMENT 2 · RISE 운영 (AMS)</span>
+      <h3>포스트 Go-Live 지속 구독</h3>
+      <p><strong>타겟:</strong> 이미 RISE with SAP 전환 완료한 기업</p>
+      <p><strong>진입 시점:</strong> Go-Live 이후 AMS 단계</p>
+      <p><strong>채널:</strong> AMS 파트너(유지보수·운영 담당) 통해 번들, Cloud ALM 연동 강조</p>
+      <div class="tag-list">
+        <span class="tag tag-pain">😰 업데이트/패치 후 회귀 테스트 반복</span>
+        <span class="tag tag-pain">😰 수동 테스트 인력 낭비</span>
+        <span class="tag tag-value">✅ 연간 SaaS 구독 (예측 가능한 비용)</span>
+        <span class="tag tag-value">✅ Cloud ALM 테스트 결과 자동 연동</span>
+      </div>
+    </div>
+
+    <!-- Segment 3: GROW -->
+    <div class="segment grow">
+      <span class="segment-badge badge-grow">SEGMENT 3 · GROW with SAP (신규 시장)</span>
+      <h3>중견기업 · 분기 업데이트 자동화</h3>
+      <p><strong>타겟:</strong> SAP GROW 도입 중견기업 (중견·중소 제조·유통·리테일)</p>
+      <p><strong>진입 시점:</strong> GROW 계약 후 ~ Go-Live 시점, 이후 분기 업데이트마다 반복</p>
+      <p><strong>채널:</strong> GROW Fast 인증 파트너와 공동 영업, SAP Store 등록 추진</p>
+      <div class="tag-list">
+        <span class="tag tag-pain">😰 연 4회 자동 업데이트 → 회귀 부담 상시화</span>
+        <span class="tag tag-pain">😰 테스트 전담 인력 없는 중견기업</span>
+        <span class="tag tag-value">✅ SaaS 소액 시작 → 리스크 낮은 도입</span>
+        <span class="tag tag-value">✅ 업데이트 전날 자동 회귀 실행</span>
+        <span class="tag tag-value">✅ 비테스트 전문가도 쉽게 운영</span>
+      </div>
+      <div class="highlight-box" style="margin-top:12px">
+        <strong>💡 핵심 메시지</strong>
+        "GROW 고객은 분기마다 SAP가 자동으로 업데이트됩니다. 매번 수동으로 테스트하실 건가요? PerfecTwin이 업데이트 전 자동으로 회귀 테스트를 돌려드립니다."
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Cloud ALM Integration -->
+  <div class="section">
+    <div class="section-title">🔗 Cloud ALM 연동 전략 — 경쟁 해자(Moat) 구축</div>
+
+    <div class="highlight-box">
+      <strong>왜 Cloud ALM 연동이 전략적으로 중요한가?</strong>
+      Cloud ALM은 RISE, GROW 고객 모두에게 <b>무상 제공</b>되는 SAP 공식 ALM 도구입니다. 테스트 관리(Test Plan/Case 관리, 실행 추적) 기능이 포함되나, <b>자동 실행 엔진이 없습니다.</b> PerfecTwin이 이 공백을 메우는 것이 핵심입니다.
+    </div>
+
+    <div class="flow">
+      <div class="flow-row">
+        <div class="flow-box">📋 Cloud ALM<br><small>테스트 계획 · 케이스 관리</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box green">⚡ PerfecTwin<br><small>자동 실행 엔진</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box purple">📊 Cloud ALM<br><small>결과 리포트 통합</small></div>
+      </div>
+    </div>
+
+    <table class="compare-table" style="margin-top:14px">
+      <tr>
+        <th>연동 기능</th>
+        <th>내용</th>
+        <th>고객 가치</th>
+      </tr>
+      <tr>
+        <td><b>테스트 계획 동기화</b></td>
+        <td>Cloud ALM 테스트 케이스 → PerfecTwin 자동 실행 스크립트 변환</td>
+        <td>중복 작업 제거, 단일 계획 → 자동 실행</td>
+      </tr>
+      <tr>
+        <td><b>실행 결과 피드백</b></td>
+        <td>PerfecTwin 실행 결과를 Cloud ALM 테스트 실행 이력에 자동 기록</td>
+        <td>단일 대시보드에서 전체 테스트 현황 파악</td>
+      </tr>
+      <tr>
+        <td><b>결함 연동</b></td>
+        <td>실패 시 Cloud ALM 변경 관리(Change) 모듈에 자동 결함 등록</td>
+        <td>리포팅 공수 Zero, 즉각적 개발팀 알림</td>
+      </tr>
+    </table>
+
+    <div class="highlight-box" style="margin-top:14px">
+      <strong>🏆 SAP Store 등록 추진 권장</strong>
+      Cloud ALM 인증 파트너 / SAP PartnerEdge ISV 프로그램 참여 시, SAP 자체 영업 채널(VAT)이 PerfecTwin을 고객에게 직접 추천하는 구조를 만들 수 있습니다. 이는 중장기적으로 가장 강력한 영업 채널입니다.
+    </div>
+  </div>
+
+  <!-- Action Roadmap -->
+  <div class="section">
+    <div class="section-title">🗓️ 2026년 GTM 실행 로드맵</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2026년 3월 (런칭 준비)</div>
+        <div class="tl-title">① SaaS 포지셔닝 & 파트너 접촉</div>
+        <div class="tl-desc">
+          · RISE/GROW 파트너사(SI, VAR) 대상 PerfecTwin SaaS 브리핑 자료 작성<br>
+          · "RISE 마이그레이션 테스트 번들" 제안서 템플릿 준비<br>
+          · Cloud ALM 연동 PoC 내부 완성 목표
+        </div>
+      </div>
+      <div class="tl-item green">
+        <div class="tl-date">2026년 4월 (SaaS 런칭)</div>
+        <div class="tl-title">② SaaS 공식 런칭 & 파일럿 확보</div>
+        <div class="tl-desc">
+          · GROW Fast 파트너 1~2개사와 공동 파일럿 시작<br>
+          · 기존 8개 레퍼런스 고객 SaaS 전환 제안<br>
+          · SAP Korea 파트너 담당자 미팅 추진
+        </div>
+      </div>
+      <div class="tl-item green">
+        <div class="tl-date">2026년 2Q (5~6월)</div>
+        <div class="tl-title">③ Cloud ALM 연동 출시 & 마케팅</div>
+        <div class="tl-desc">
+          · Cloud ALM 연동 베타 출시 (GROW 파일럿 고객 대상)<br>
+          · SAP 파트너 에코시스템 이벤트(SAPPHIRE, TechEd Korea 등) 참가 추진<br>
+          · 고객 사례 영상/케이스 스터디 제작 (현 8개사 활용)
+        </div>
+      </div>
+      <div class="tl-item purple">
+        <div class="tl-date">2026년 3Q~4Q (하반기)</div>
+        <div class="tl-title">④ SAP Store 등록 & 글로벌 확장</div>
+        <div class="tl-desc">
+          · SAP Store(SAP Integration Suite) 등록 신청<br>
+          · RISE 일본/동남아 확장 시 현지 파트너 탐색<br>
+          · 오타후쿠소스 등 해외 레퍼런스 활용한 글로벌 케이스 구성
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="section">
+    <div class="section-title">📈 GTM 성과 지표 (KPI)</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">2026 신규 SaaS 고객</div>
+        <div class="kpi-value">5+</div>
+        <div class="kpi-desc">RISE/GROW 연계 확보</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">GROW 파트너 협약</div>
+        <div class="kpi-value">2~3개</div>
+        <div class="kpi-desc">GROW Fast 파트너사</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Cloud ALM PoC</div>
+        <div class="kpi-value">2Q내</div>
+        <div class="kpi-desc">파일럿 고객 연동 완료</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Current References -->
+  <div class="section">
+    <div class="section-title">🏅 현재 레퍼런스 (8개사) — GTM 신뢰 자산</div>
+    <p style="font-size:13px; color:#718096; margin-bottom:10px">SAP ERP 테스팅 자동화 분야에서 이미 검증된 고객군. RISE/GROW 영업 시 업종별 레퍼런스로 적극 활용 가능.</p>
+    <div class="customer-grid">
+      <div class="customer-pill">⚡ LG에너지솔루션</div>
+      <div class="customer-pill">🌿 팜한농</div>
+      <div class="customer-pill">🏭 여천NCC</div>
+      <div class="customer-pill">⚡ 한전KDN</div>
+      <div class="customer-pill">🧴 애경산업</div>
+      <div class="customer-pill">🍶 오타후쿠소스</div>
+      <div class="customer-pill">🔬 LG화학</div>
+      <div class="customer-pill">🛁 LG생활건강</div>
+    </div>
+    <div class="highlight-box" style="margin-top:14px">
+      <strong>📌 세그먼트별 레퍼런스 매핑 전략</strong>
+      · <b>RISE 대기업 영업 시:</b> LG에너지솔루션, LG화학 케이스 우선 활용 (대기업 신뢰도)<br>
+      · <b>GROW 중견기업 영업 시:</b> 애경산업, 팜한농 케이스 활용 (접근성)<br>
+      · <b>글로벌 영업 시:</b> 오타후쿠소스 (해외 기업 레퍼런스 유일)
+    </div>
+  </div>
+
+  <!-- Risk -->
+  <div class="section">
+    <div class="section-title">⚠️ 리스크 & 대응 방안</div>
+    <table class="risk-table">
+      <tr>
+        <th>리스크</th>
+        <th>수준</th>
+        <th>대응 방안</th>
+      </tr>
+      <tr>
+        <td>Tricentis 등 글로벌 경쟁사 RISE 번들 선점</td>
+        <td class="risk-high">High</td>
+        <td>LG CNS RISE 구현 사업 내 우선 번들링, SI 채널 선점</td>
+      </tr>
+      <tr>
+        <td>GROW 고객의 낮은 테스트 성숙도 → 도입 저항</td>
+        <td class="risk-med">Mid</td>
+        <td>SaaS + 낮은 초기 비용, 빠른 온보딩(1주 파일럿) 설계</td>
+      </tr>
+      <tr>
+        <td>Cloud ALM 연동 개발 지연</td>
+        <td class="risk-med">Mid</td>
+        <td>Cloud ALM REST API 활용 PoC 우선, 상반기 베타 출시 목표</td>
+      </tr>
+      <tr>
+        <td>4월 SaaS 런칭 후 파트너 채널 부재</td>
+        <td class="risk-high">High</td>
+        <td>3월 중 GROW Fast 파트너 2개사 이상 협약 체결 선행 필수</td>
+      </tr>
+      <tr>
+        <td>Public cloud(GROW) 커스터마이징 제약 → 기능 충돌</td>
+        <td class="risk-low">Low</td>
+        <td>SAP 표준 T-Code 기반 시나리오 우선 지원, Clean Core 정책 준수</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Priority Actions -->
+  <div class="section">
+    <div class="section-title">✅ 즉시 실행 액션 Top 5</div>
+    <ul class="action-list">
+      <li>
+        <div class="action-num">1</div>
+        <div class="action-content">
+          <strong>GROW Fast 파트너 리스트 확보 & 미팅 요청 (3월 내)</strong>
+          <span>SAP Korea 파트너 담당자 통해 GROW Fast 인증 파트너 명단 수령 후 공동 영업 제안</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">2</div>
+        <div class="action-content">
+          <strong>Cloud ALM 연동 PoC 개발 착수 (3~4월)</strong>
+          <span>Cloud ALM API 연동 내부 PoC → GROW 파일럿 고객 대상 2Q 베타 오픈 목표</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">3</div>
+        <div class="action-content">
+          <strong>RISE 번들 제안서 템플릿 작성 (3월 내)</strong>
+          <span>기존 8개 레퍼런스 + ROI 수치(공수 절감, 기간 단축)를 포함한 영업 제안서</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">4</div>
+        <div class="action-content">
+          <strong>SAP PartnerEdge ISV 프로그램 신청 검토 (2Q)</strong>
+          <span>SAP Store 등록 자격 획득 → SAP 자체 채널 영업력 활용</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">5</div>
+        <div class="action-content">
+          <strong>업종별 케이스 스터디 제작 (4월 런칭과 동시)</strong>
+          <span>LG에너지솔루션(제조), 한전KDN(공기업), 애경산업(소비재) 3종 케이스로 세그먼트별 커버</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</div>
+<div class="footer">
+  PerfecTwin ERP Edition GTM 전략 보고서 v2 (통계 추가) · 2026.02.25 · Jarvis 작성<br>
+  주요 출처: SAP SE 공식 홈페이지, SAPinsider Research 2023 (n=229), Gartner ERP Study, Markets and Markets 2024, SAP GROW/RISE 공식 페이지<br>
+  ※ 통계 수치는 공개 자료 기준 · 중요 의사결정 전 최신 자료 교차 확인 권장
+</div>
+</body>
+</html>
