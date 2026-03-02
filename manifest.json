@@ -1,5 +1,22 @@
 [
   {
+    "id": "iran-war-news-live",
+    "title": "🔴 이란 전쟁 속보 (실시간)",
+    "category": "뉴스",
+    "date": "2026-03-02",
+    "tags": [
+      "이란",
+      "전쟁",
+      "속보",
+      "실시간",
+      "중동"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/iran-war-news/",
+    "status": "final",
+    "description": "1시간마다 자동 업데이트되는 이란 전쟁 속보 타임라인"
+  },
+  {
     "id": "홍천-마곡-드라이브-2026-03-01",
     "title": "홍천→마곡 드라이브 코스 (반려견+아이)",
     "category": "드라이브",
