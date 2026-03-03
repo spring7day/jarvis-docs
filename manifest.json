@@ -1,5 +1,20 @@
 [
   {
+    "id": "tricentis-agentic-sap-webinar-2025",
+    "title": "Tricentis 웨비나: 테스팅의 미래는 Agentic (SAP 편)",
+    "description": "The future of testing is AGENTIC — SAP 팀을 위한 AI 전략, MCP, AI Workspace 라이브 데모 포함. 한글 자막 + Jarvis 기술 분석",
+    "date": "2026-03-04",
+    "tags": [
+      "Tricentis",
+      "SAP",
+      "Agentic AI",
+      "MCP",
+      "AI Workspace",
+      "웨비나"
+    ],
+    "url": "https://spring7day.github.io/jarvis-media/agentic.html"
+  },
+  {
     "id": "tricentis-tm-webinar-2026",
     "title": "Tricentis 웨비나: AI 시대 테스트 관리의 미래",
     "description": "The future of test management in an AI-driven world — 한글 자막 + Jarvis 기술 분석",
