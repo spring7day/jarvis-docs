@@ -1,5 +1,19 @@
 [
   {
+    "id": "tricentis-tm-webinar-2026",
+    "title": "Tricentis 웨비나: AI 시대 테스트 관리의 미래",
+    "description": "The future of test management in an AI-driven world — 한글 자막 + Jarvis 기술 분석",
+    "date": "2026-03-04",
+    "tags": [
+      "Tricentis",
+      "Test Management",
+      "Agentic AI",
+      "QA",
+      "웨비나"
+    ],
+    "url": "https://spring7day.github.io/jarvis-media/tm.html"
+  },
+  {
     "id": "iran-war-news-live",
     "title": "🔴 이란 전쟁 속보 (실시간)",
     "category": "뉴스",
