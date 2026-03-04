@@ -1,5 +1,293 @@
 [
   {
+    "id": "tricentis-webinars-index",
+    "title": "Tricentis 웨비나 전체 인덱스 (2025-2026)",
+    "description": "Tricentis 웨비나 전체 인덱스 (2025-2026)",
+    "category": "웨비나",
+    "date": "2026-03-04",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/webinars.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-neoload-ai-workflows-2025",
+    "title": "Tricentis 웨비나: NeoLoad AI Workflows & Core Web Vitals",
+    "description": "Tricentis 웨비나: NeoLoad AI Workflows & Core Web Vitals",
+    "category": "웨비나",
+    "date": "2025-12-15",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/neoload-ai-workflows.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-utilities-sap-2025",
+    "title": "Tricentis 웨비나: SAP & Tricentis로 유틸리티 현대화",
+    "description": "Tricentis 웨비나: SAP & Tricentis로 유틸리티 현대화",
+    "category": "웨비나",
+    "date": "2025-12-08",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/utilities-sap-modernization.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-sealights-abap-2025",
+    "title": "Tricentis 웨비나: SeaLights for ABAP",
+    "description": "Tricentis 웨비나: SeaLights for ABAP",
+    "category": "웨비나",
+    "date": "2025-12-04",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/sealights-abap.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-tester-dev-collab-2025",
+    "title": "Tricentis 웨비나: 테스터-개발자 협업 팁",
+    "description": "Tricentis 웨비나: 테스터-개발자 협업 팁",
+    "category": "웨비나",
+    "date": "2025-11-05",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/tester-dev-collab.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-sap-bdc-integrity-2025",
+    "title": "Tricentis 웨비나: SAP BDC 전략에 데이터 무결성 내재화",
+    "description": "Tricentis 웨비나: SAP BDC 전략에 데이터 무결성 내재화",
+    "category": "웨비나",
+    "date": "2025-11-10",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/sap-bdc-integrity.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-data-integrity-tosca-2025",
+    "title": "Tricentis 웨비나: Tosca + Data Integrity 엔드투엔드 검증",
+    "description": "Tricentis 웨비나: Tosca + Data Integrity 엔드투엔드 검증",
+    "category": "웨비나",
+    "date": "2025-11-24",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/data-integrity-tosca.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-qtest-mcp-2025",
+    "title": "Tricentis 웨비나: qTest MCP로 테스트 관리 간소화",
+    "description": "Tricentis 웨비나: qTest MCP로 테스트 관리 간소화",
+    "category": "웨비나",
+    "date": "2025-12-04",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/qtest-mcp.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-qa-metrics-ai-2025",
+    "title": "Tricentis 웨비나: AI 시대 중요한 QA 메트릭",
+    "description": "Tricentis 웨비나: AI 시대 중요한 QA 메트릭",
+    "category": "웨비나",
+    "date": "2025-12-08",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/qa-metrics-ai.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-oracle-quarterly-risks-2025",
+    "title": "Tricentis 웨비나: Oracle 분기 업데이트 운영 리스크 감소",
+    "description": "Tricentis 웨비나: Oracle 분기 업데이트 운영 리스크 감소",
+    "category": "웨비나",
+    "date": "2025-12-15",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/oracle-quarterly-risks.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-prevent-bad-data-2026",
+    "title": "Tricentis 웨비나: AI 구현에서 나쁜 데이터 방지",
+    "description": "Tricentis 웨비나: AI 구현에서 나쁜 데이터 방지",
+    "category": "웨비나",
+    "date": "2026-01-08",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/prevent-bad-data.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-ai-testing-business-2026",
+    "title": "Tricentis 웨비나: AI 테스팅 비즈니스 가치",
+    "description": "Tricentis 웨비나: AI 테스팅 비즈니스 가치",
+    "category": "웨비나",
+    "date": "2026-01-22",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/ai-testing-business.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-bad-data-agentic-ai-2026",
+    "title": "Tricentis 웨비나: Agentic AI의 나쁜 데이터 리스크",
+    "description": "Tricentis 웨비나: Agentic AI의 나쁜 데이터 리스크",
+    "category": "웨비나",
+    "date": "2026-01-27",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/bad-data-agentic-ai.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-neoload-2026",
+    "title": "Tricentis 웨비나: NeoLoad 2026 로드맵",
+    "description": "Tricentis 웨비나: NeoLoad 2026 로드맵",
+    "category": "웨비나",
+    "date": "2026-01-29",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/neoload-2026.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-qtest-sealights-2025",
+    "title": "Tricentis 웨비나: qTest & SeaLights 통합",
+    "description": "Tricentis 웨비나: qTest & SeaLights 통합",
+    "category": "웨비나",
+    "date": "2026-02-05",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/qtest-sealights.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-ai-test-optimization-2025",
+    "title": "Tricentis 웨비나: AI 기반 테스트 최적화",
+    "description": "Tricentis 웨비나: AI 기반 테스트 최적화",
+    "category": "웨비나",
+    "date": "2025-11-24",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/ai-test-optimization.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-tosca-future-2025",
+    "title": "Tricentis 웨비나: Tosca 차세대 기능 미리보기",
+    "description": "Tricentis 웨비나: Tosca 차세대 기능 미리보기",
+    "category": "웨비나",
+    "date": "2025-11-10",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/tosca-future-features.html",
+    "status": "final"
+  },
+  {
+    "id": "tricentis-observability-performance-2025",
+    "title": "Tricentis 웨비나: Observability & Performance Testing 통합",
+    "description": "Tricentis 웨비나: Observability & Performance Testing 통합",
+    "category": "웨비나",
+    "date": "2025-11-05",
+    "tags": [
+      "Tricentis",
+      "웨비나",
+      "테스트자동화",
+      "한글자막"
+    ],
+    "type": "external",
+    "url": "https://spring7day.github.io/jarvis-media/observability-performance.html",
+    "status": "final"
+  },
+  {
     "id": "tricentis-agentic-sap-webinar-2025",
     "title": "Tricentis 웨비나: 테스팅의 미래는 Agentic (SAP 편)",
     "description": "The future of testing is AGENTIC — SAP 팀을 위한 AI 전략, MCP, AI Workspace 라이브 데모 포함. 한글 자막 + Jarvis 기술 분석",
