@@ -1,5 +1,150 @@
 [
   {
+    "id": "webinars",
+    "title": "Tricentis 웨비나 인덱스",
+    "description": "Tricentis 2025-2026 웨비나 20건 모음 (한글 자막/요약)",
+    "url": "https://spring7day.github.io/jarvis-media/webinars.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-observability",
+    "title": "관찰가능성 + 성능테스트 통합",
+    "url": "https://spring7day.github.io/jarvis-media/observability-performance.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-tosca-future",
+    "title": "Tosca 미래 기능",
+    "url": "https://spring7day.github.io/jarvis-media/tosca-future-features.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-ai-test-opt",
+    "title": "AI 기반 테스트 최적화",
+    "url": "https://spring7day.github.io/jarvis-media/ai-test-optimization.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-qtest-sealights",
+    "title": "qTest + SeaLights 통합",
+    "url": "https://spring7day.github.io/jarvis-media/qtest-sealights.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-neoload-2026",
+    "title": "NeoLoad 2026 로드맵",
+    "url": "https://spring7day.github.io/jarvis-media/neoload-2026.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-bad-data-ai",
+    "title": "AI 에이전트의 데이터 리스크",
+    "url": "https://spring7day.github.io/jarvis-media/bad-data-agentic-ai.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-ai-business",
+    "title": "AI 테스팅 비즈니스 케이스",
+    "url": "https://spring7day.github.io/jarvis-media/ai-testing-business.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-prevent-bad-data",
+    "title": "AI 구현에서 불량 데이터 방지",
+    "url": "https://spring7day.github.io/jarvis-media/prevent-bad-data.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-oracle-risks",
+    "title": "Oracle 분기 업데이트 운영 리스크",
+    "url": "https://spring7day.github.io/jarvis-media/oracle-quarterly-risks.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-qa-metrics",
+    "title": "AI 시대 QA 핵심 지표",
+    "url": "https://spring7day.github.io/jarvis-media/qa-metrics-ai.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-qtest-mcp",
+    "title": "qTest MCP 테스트 관리",
+    "url": "https://spring7day.github.io/jarvis-media/qtest-mcp.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-data-integrity-tosca",
+    "title": "Tosca + 데이터 무결성",
+    "url": "https://spring7day.github.io/jarvis-media/data-integrity-tosca.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-sap-bdc",
+    "title": "SAP BDC 데이터 무결성 전략",
+    "url": "https://spring7day.github.io/jarvis-media/sap-bdc-integrity.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-tester-dev",
+    "title": "테스터-개발자 협업",
+    "url": "https://spring7day.github.io/jarvis-media/tester-dev-collab.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-sealights-abap",
+    "title": "SeaLights for ABAP",
+    "url": "https://spring7day.github.io/jarvis-media/sealights-abap.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-utilities-sap",
+    "title": "유틸리티 SAP 현대화",
+    "url": "https://spring7day.github.io/jarvis-media/utilities-sap-modernization.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
+    "id": "tw-neoload-ai",
+    "title": "NeoLoad AI 워크플로우",
+    "url": "https://spring7day.github.io/jarvis-media/neoload-ai-workflows.html",
+    "date": "2026-03-04",
+    "category": "웨비나",
+    "status": "final"
+  },
+  {
     "id": "tricentis-webinars-index",
     "title": "Tricentis 웨비나 전체 인덱스 (2025-2026)",
     "description": "Tricentis 웨비나 전체 인덱스 (2025-2026)",
