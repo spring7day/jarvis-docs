@@ -1,5 +1,14 @@
 [
   {
+    "id": "osaka-travel-guide",
+    "title": "오사카 여행 완벽 가이드",
+    "description": "간사이 공항 교통 안내부터 3박4일 일정, 먹거리, 관광지, 실용 꿀팁까지 총정리",
+    "url": "https://spring7day.github.io/jarvis-docs/docs/osaka-travel-guide-2026-03-09.html",
+    "date": "2026-03-09",
+    "category": "여행",
+    "status": "final"
+  },
+  {
     "id": "webinars",
     "title": "Tricentis 웨비나 인덱스",
     "description": "Tricentis 2025-2026 웨비나 20건 모음 (한글 자막/요약)",

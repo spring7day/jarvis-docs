@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오사카 여행 완벽 가이드</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+      background: #ffffff;
+      color: #1d1d1f;
+      line-height: 1.6;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: white;
+      padding: 60px 24px 50px;
+      text-align: center;
+    }
+    .hero-emoji { font-size: 56px; margin-bottom: 16px; }
+    .hero h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .hero p { font-size: 16px; opacity: 0.75; }
+    .hero-badges { display: flex; justify-content: center; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Container */
+    .container { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+    /* Section */
+    .section { padding: 36px 0 16px; }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1d1d1f;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    .section-title .icon { margin-right: 8px; }
+
+    /* Transport cards */
+    .transport-grid { display: flex; flex-direction: column; gap: 14px; }
+    .transport-card {
+      border-radius: 14px;
+      padding: 18px 20px;
+      border: 1px solid #e5e5ea;
+      background: #fafafa;
+    }
+    .transport-card.highlight { background: #f0f7ff; border-color: #b3d4f5; }
+    .transport-card.warning { background: #fff8f0; border-color: #ffd699; }
+    .transport-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .transport-name { font-size: 16px; font-weight: 700; color: #1d1d1f; }
+    .transport-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 10px;
+      background: #007aff;
+      color: white;
+    }
+    .transport-tag.green { background: #34c759; }
+    .transport-tag.orange { background: #ff9500; }
+    .transport-tag.red { background: #ff3b30; }
+    .transport-info { font-size: 14px; color: #555; }
+    .transport-info span { display: block; margin: 3px 0; }
+
+    /* Step Flow */
+    .step-flow { display: flex; flex-direction: column; gap: 0; }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .step-item:last-child { border-bottom: none; }
+    .step-num {
+      min-width: 30px;
+      height: 30px;
+      background: #1d1d1f;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .step-content { flex: 1; }
+    .step-title { font-size: 15px; font-weight: 600; color: #1d1d1f; margin-bottom: 3px; }
+    .step-desc { font-size: 13px; color: #666; }
+
+    /* Day Itinerary */
+    .day-card {
+      border-radius: 14px;
+      border: 1px solid #e5e5ea;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .day-header {
+      padding: 14px 18px;
+      background: #1d1d1f;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .day-num { font-size: 13px; font-weight: 600; opacity: 0.7; }
+    .day-title { font-size: 17px; font-weight: 700; }
+    .day-body { padding: 0; }
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 14px 18px;
+      border-bottom: 1px solid #f5f5f7;
+      gap: 14px;
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-time {
+      min-width: 55px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #007aff;
+      margin-top: 2px;
+    }
+    .timeline-content { flex: 1; }
+    .timeline-place { font-size: 15px; font-weight: 600; color: #1d1d1f; margin-bottom: 3px; }
+    .timeline-note { font-size: 13px; color: #888; }
+    .timeline-emoji { font-size: 18px; margin-right: 6px; }
+
+    /* Food grid */
+    .food-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 400px) { .food-grid { grid-template-columns: 1fr; } }
+    .food-card {
+      border: 1px solid #e5e5ea;
+      border-radius: 12px;
+      padding: 16px;
+      background: #fafafa;
+    }
+    .food-emoji { font-size: 28px; margin-bottom: 8px; }
+    .food-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .food-desc { font-size: 13px; color: #666; }
+    .food-place { font-size: 12px; color: #007aff; font-weight: 600; margin-top: 6px; }
+
+    /* Tip box */
+    .tip-box {
+      background: #f0f7ff;
+      border-left: 4px solid #007aff;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin: 12px 0;
+    }
+    .tip-box.warning { background: #fff8f0; border-left-color: #ff9500; }
+    .tip-box.success { background: #f0fff4; border-left-color: #34c759; }
+    .tip-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #1d1d1f; }
+    .tip-text { font-size: 13px; color: #555; }
+
+    /* Comparison table */
+    .table-wrap { overflow-x: auto; margin: 4px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th {
+      background: #1d1d1f;
+      color: white;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #333;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    /* Info pill */
+    .info-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #f5f5f7;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      margin: 4px 4px 4px 0;
+    }
+
+    /* Checklist */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #f5f5f7;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check-icon { color: #34c759; font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+    /* Footer */
+    .footer {
+      background: #f5f5f7;
+      padding: 30px 24px;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 13px;
+      color: #888;
+    }
+    .footer strong { color: #1d1d1f; }
+
+    /* Divider */
+    .divider { height: 1px; background: #f0f0f0; margin: 6px 0; }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-emoji">🇯🇵</div>
+  <h1>오사카 여행 완벽 가이드</h1>
+  <p>간사이 공항 도착부터 맛집·관광까지 한 번에</p>
+  <div class="hero-badges">
+    <span class="badge">✈️ 간사이 공항</span>
+    <span class="badge">🗼 주요 명소</span>
+    <span class="badge">🍜 오사카 먹거리</span>
+    <span class="badge">📅 3박 4일 일정</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 1. 공항 → 시내 교통 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🛬</span>간사이 공항 → 시내 이동</div>
+
+    <div class="tip-box warning">
+      <div class="tip-title">⚠️ 터미널 확인 먼저!</div>
+      <div class="tip-text">
+        <strong>제1터미널</strong>: 대부분의 항공사 (대한항공, 아시아나 등)<br>
+        <strong>제2터미널</strong>: 제주항공 등 일부 LCC → 셔틀버스 타고 제1터미널 이동 필요
+      </div>
+    </div>
+
+    <div style="height:14px"></div>
+
+    <div class="transport-grid">
+
+      <div class="transport-card highlight">
+        <div class="transport-header">
+          <div class="transport-name">🔴 난카이 라피트 (Rapi:t)</div>
+          <div class="transport-tag orange">난바행 추천</div>
+        </div>
+        <div class="transport-info">
+          <span>🎯 <strong>목적지:</strong> 난바역 (오사카 시내 중심)</span>
+          <span>⏱️ <strong>소요시간:</strong> 약 35~40분</span>
+          <span>💴 <strong>요금:</strong> 약 1,400엔 (일반 특급 920엔)</span>
+          <span>🎫 <strong>발권:</strong> 난카이 티켓 오피스(빨간 창구) 또는 자동발권기</span>
+          <span>💡 <strong>팁:</strong> 미리 인터넷에서 할인 구매 가능</span>
+        </div>
+      </div>
+
+      <div class="transport-card highlight">
+        <div class="transport-header">
+          <div class="transport-name">🟢 JR 하루카 (Haruka)</div>
+          <div class="transport-tag green">교토·신오사카</div>
+        </div>
+        <div class="transport-info">
+          <span>🎯 <strong>목적지:</strong> 텐노지·신오사카·교토 방면</span>
+          <span>⏱️ <strong>소요시간:</strong> 텐노지 약 29분, 교토 약 75분</span>
+          <span>💴 <strong>요금:</strong> 텐노지 ~1,740엔, 교토 ~3,490엔</span>
+          <span>🎫 <strong>발권:</strong> JR 티켓 오피스(초록 창구) 또는 JR 발권기</span>
+          <span>💡 <strong>팁:</strong> JR패스 소지자는 패스로 탑승 가능</span>
+        </div>
+      </div>
+
+      <div class="transport-card">
+        <div class="transport-header">
+          <div class="transport-name">🚌 리무진 버스</div>
+          <div class="transport-tag">짐 많을 때</div>
+        </div>
+        <div class="transport-info">
+          <span>🎯 <strong>목적지:</strong> 오사카·교토·고베 각지 호텔 인근</span>
+          <span>⏱️ <strong>소요시간:</strong> 약 60~90분 (교통 상황 따라 다름)</span>
+          <span>💴 <strong>요금:</strong> 1,600~2,550엔</span>
+          <span>💡 <strong>팁:</strong> 짐을 버스에 실어주므로 편함. 단, 시간이 더 걸림</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="height:20px"></div>
+
+    <!-- 발권 스텝 -->
+    <div style="font-size:15px; font-weight:700; margin-bottom:12px;">📍 공항 도착 후 발권 절차</div>
+    <div class="step-flow">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">짐 찾기 & 입국심사</div>
+          <div class="step-desc">국제선 도착층으로 나오기</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">환전 & ATM (필요 시)</div>
+          <div class="step-desc">도착 출구 바로 앞에 ATM 기기 위치. 7-Eleven ATM 또는 Japan Post ATM 이용 권장</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">2층 간사이 공항역으로 이동</div>
+          <div class="step-desc">다리를 건너면 간사이 공항역. 무빙워크 이용 가능</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">창구 선택</div>
+          <div class="step-desc">
+            🔴 난카이 티켓 오피스 → 난바행<br>
+            🟢 JR 티켓 오피스 → 교토·신오사카·텐노지행<br>
+            💡 인터넷 사전구매 시 실물 티켓 교환 필수!
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">개찰구 통과 & 탑승</div>
+          <div class="step-desc">난카이/JR 각 개찰구 이용. 지정석 티켓은 발권 시 좌석 선택 가능</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box success">
+      <div class="tip-title">💡 인터넷 사전 구매 꿀팁</div>
+      <div class="tip-text">
+        KKday, Klook 등에서 하루카·라피트 티켓 미리 구매하면 10~20% 할인 가능.<br>
+        구매 시 바우처 → 공항 현장 창구에서 실물 티켓으로 반드시 교환!
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 교통 카드 & 패스 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💳</span>교통 카드 & 관광 패스</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>패스명</th>
+          <th>이용 범위</th>
+          <th>가격(참고)</th>
+          <th>추천 대상</th>
+        </tr>
+        <tr>
+          <td><strong>Suica / ICOCA</strong></td>
+          <td>전철·버스·편의점 등 충전식</td>
+          <td>충전식</td>
+          <td>일반 이동 전체</td>
+        </tr>
+        <tr>
+          <td><strong>오사카 주유패스</strong></td>
+          <td>지하철·오사카 시내 관광지 무료입장</td>
+          <td>1일 2,800엔~</td>
+          <td>관광지 많이 갈 때</td>
+        </tr>
+        <tr>
+          <td><strong>간사이 레일웨이패스</strong></td>
+          <td>오사카·교토·고베·나라 전철</td>
+          <td>2일 4,000엔~</td>
+          <td>오사카+근교 여행</td>
+        </tr>
+        <tr>
+          <td><strong>JR 간사이 패스</strong></td>
+          <td>JR 전 노선</td>
+          <td>1일 2,400엔~</td>
+          <td>JR 위주 이동</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-title">📱 eSIM 추천</div>
+      <div class="tip-text">일본 도착 전 eSIM 미리 구매하면 데이터 걱정 없이 구글 맵 사용 가능. IIJmio, Docomo 계열 추천.</div>
+    </div>
+  </div>
+
+  <!-- 3. 3박 4일 추천 일정 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📅</span>3박 4일 추천 일정</div>
+
+    <!-- Day 1 -->
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-num">DAY 1</span>
+        <span class="day-title">도착 + 도톤보리 & 난바</span>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <div class="timeline-time">오후</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">✈️</span>간사이 공항 도착</div>
+            <div class="timeline-note">난카이 라피트로 난바역 이동 (~35분)</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">저녁 전</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🏨</span>호텔 체크인 & 짐 풀기</div>
+            <div class="timeline-note">난바·신사이바시 근처 숙소 권장</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">저녁</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🎡</span>도톤보리 야경 & 글리코상</div>
+            <div class="timeline-note">오사카 최고 야경 스팟. 에비스바시에서 기념사진 필수!</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">야식</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🐙</span>타코야키 & 오코노미야키</div>
+            <div class="timeline-note">도톤보리 상점가에서 오사카 소울푸드 체험</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-num">DAY 2</span>
+        <span class="day-title">오사카성 & 우메다 & 신세카이</span>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <div class="timeline-time">오전</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🏯</span>오사카성 & 니노마루 정원</div>
+            <div class="timeline-note">오전 일찍 방문 권장 (사람 적음). 오사카 주유패스로 무료 입장 가능</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">점심</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🍱</span>텐마 시장 or 구로몬 시장</div>
+            <div class="timeline-note">현지인 맛집 골목. 신선한 해산물, 꼬치, 달걀말이 등</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">오후</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🗼</span>신세카이 & 쓰텐카쿠 타워</div>
+            <div class="timeline-note">오사카 레트로 느낌. 구시가지 분위기 + 쿠시카츠 골목</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">저녁</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🏙️</span>우메다 스카이빌딩 야경</div>
+            <div class="timeline-note">공중정원 전망대에서 오사카 360도 야경. 일몰 시간 맞춰 방문 강추</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-num">DAY 3</span>
+        <span class="day-title">당일치기 교토 or USJ</span>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <div class="timeline-time">선택 A</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">⛩️</span>교토 당일치기</div>
+            <div class="timeline-note">기온 거리 → 후시미 이나리 신사 → 아라시야마 대나무 숲.<br>JR 하루카로 약 75분, 당일치기로 충분</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">선택 B</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🎢</span>유니버셜 스튜디오 재팬 (USJ)</div>
+            <div class="timeline-note">해리포터 구역, 슈퍼닌텐도 월드 필수. 최소 1일 소요. 익스프레스 패스 미리 구매 강추</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">저녁</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🛍️</span>신사이바시 쇼핑</div>
+            <div class="timeline-note">애플스토어, 돈키호테, 드럭스토어. 기념품 쇼핑 최적</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 4 -->
+    <div class="day-card">
+      <div class="day-header">
+        <span class="day-num">DAY 4</span>
+        <span class="day-title">마지막 산책 & 귀국</span>
+      </div>
+      <div class="day-body">
+        <div class="timeline-item">
+          <div class="timeline-time">오전</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🌅</span>아메리카무라 or 호젠지 요코초</div>
+            <div class="timeline-note">젊음의 거리 아메리카무라 or 석등 골목 호젠지 요코초에서 마지막 산책</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">점심</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">🍣</span>마지막 맛있는 식사</div>
+            <div class="timeline-note">회전 스시 또는 정식 라멘으로 마무리</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">오후</div>
+          <div class="timeline-content">
+            <div class="timeline-place"><span class="timeline-emoji">✈️</span>간사이 공항으로 이동</div>
+            <div class="timeline-note">출발 2.5시간 전까지 도착 권장. 난카이 급행(920엔) 또는 라피트 이용</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 오사카 먹거리 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🍜</span>오사카 필수 먹거리</div>
+
+    <div class="food-grid">
+      <div class="food-card">
+        <div class="food-emoji">🐙</div>
+        <div class="food-name">타코야키</div>
+        <div class="food-desc">문어 넣은 동그란 밀가루 볼. 오사카 국민 간식</div>
+        <div class="food-place">📍 도톤보리, 아메리카무라</div>
+      </div>
+      <div class="food-card">
+        <div class="food-emoji">🥞</div>
+        <div class="food-name">오코노미야키</div>
+        <div class="food-desc">각종 재료 넣은 오사카식 부침개. 철판에 직접 구워 먹기</div>
+        <div class="food-place">📍 후쿠시마, 도톤보리</div>
+      </div>
+      <div class="food-card">
+        <div class="food-emoji">🍢</div>
+        <div class="food-name">쿠시카츠</div>
+        <div class="food-desc">꼬치 튀김 요리. 소스 2번 찍으면 안 됨 (규칙!)</div>
+        <div class="food-place">📍 신세카이 전문 골목</div>
+      </div>
+      <div class="food-card">
+        <div class="food-emoji">🍣</div>
+        <div class="food-name">스시 & 해산물</div>
+        <div class="food-desc">구로몬 시장, 텐마 시장에서 신선한 해산물 저렴하게</div>
+        <div class="food-place">📍 구로몬 시장, 텐마</div>
+      </div>
+      <div class="food-card">
+        <div class="food-emoji">🍜</div>
+        <div class="food-name">라멘</div>
+        <div class="food-desc">오사카는 쇼유(간장) 기반 라멘이 특색. 입소문 난 가게 많음</div>
+        <div class="food-place">📍 나카자키초, 우메다</div>
+      </div>
+      <div class="food-card">
+        <div class="food-emoji">🍡</div>
+        <div class="food-name">말차 디저트</div>
+        <div class="food-desc">나라·교토 영향으로 말차 아이스크림, 다이후쿠 등 디저트 풍성</div>
+        <div class="food-place">📍 신사이바시, 교토 거리</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 주요 관광지 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🗺️</span>주요 관광지 요약</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>관광지</th>
+          <th>특징</th>
+          <th>소요시간</th>
+          <th>입장료</th>
+        </tr>
+        <tr>
+          <td><strong>🏯 오사카성</strong></td>
+          <td>역사적 랜드마크, 전망대</td>
+          <td>1.5~2시간</td>
+          <td>600엔</td>
+        </tr>
+        <tr>
+          <td><strong>🎡 도톤보리</strong></td>
+          <td>야경, 먹거리, 글리코상</td>
+          <td>2~3시간</td>
+          <td>무료</td>
+        </tr>
+        <tr>
+          <td><strong>🗼 쓰텐카쿠</strong></td>
+          <td>오사카 레트로 타워</td>
+          <td>1시간</td>
+          <td>800엔</td>
+        </tr>
+        <tr>
+          <td><strong>🏙️ 우메다 스카이빌딩</strong></td>
+          <td>공중정원 야경 명소</td>
+          <td>1.5시간</td>
+          <td>1,500엔</td>
+        </tr>
+        <tr>
+          <td><strong>🎢 USJ</strong></td>
+          <td>유니버셜 스튜디오</td>
+          <td>종일</td>
+          <td>8,600엔~</td>
+        </tr>
+        <tr>
+          <td><strong>🌊 카이유칸 수족관</strong></td>
+          <td>세계 최대급 수족관</td>
+          <td>2~3시간</td>
+          <td>2,700엔</td>
+        </tr>
+        <tr>
+          <td><strong>🛍️ 신사이바시</strong></td>
+          <td>쇼핑 메인 스트리트</td>
+          <td>2~4시간</td>
+          <td>무료</td>
+        </tr>
+        <tr>
+          <td><strong>⛩️ 스미요시 타이샤</strong></td>
+          <td>오사카 대표 신사</td>
+          <td>1시간</td>
+          <td>무료</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 6. 실용 정보 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💡</span>실용 정보 & 꿀팁</div>
+
+    <div class="tip-box warning">
+      <div class="tip-title">💴 환율 & 현금 준비</div>
+      <div class="tip-text">
+        일본은 현금 중심 문화. <strong>1박당 1~2만엔</strong> 정도 현금 준비 권장.<br>
+        ATM: 7-Eleven ATM, 우체국 ATM이 한국 카드 인식률 높음. 수수료는 약 100~200엔.
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-title">📡 통신 & 인터넷</div>
+      <div class="tip-text">
+        <strong>eSIM 추천</strong>: 출발 전 KKday나 Airalo에서 구매. 3GB ~3,000원 수준.<br>
+        포켓와이파이도 방법이지만 eSIM이 더 편리.
+      </div>
+    </div>
+
+    <div class="tip-box success">
+      <div class="tip-title">🚇 오사카 지하철 이용</div>
+      <div class="tip-text">
+        미도스지선(빨간선) 이 가장 핵심 노선. 신오사카→우메다→신사이바시→난바→텐노지 연결.<br>
+        기본 요금 230엔~. ICOCA 카드 충전 후 사용이 편리.
+      </div>
+    </div>
+
+    <div class="tip-box warning">
+      <div class="tip-title">🗣️ 언어 &amp; 매너</div>
+      <div class="tip-text">
+        구글 번역 앱 미리 다운로드 (카메라 번역 기능 유용).<br>
+        전철 내 통화 자제, 에스컬레이터 왼쪽 서기 (오사카는 오른쪽 서기 문화!).<br>
+        음식점 입장 시 큰 소리로 "스미마셍~" 하면 OK.
+      </div>
+    </div>
+
+    <ul class="checklist" style="margin-top:16px;">
+      <li><span class="check-icon">✓</span><span>여권 유효기간 6개월 이상 확인</span></li>
+      <li><span class="check-icon">✓</span><span>엔화 현금 준비 (1인당 10만~15만엔 기준)</span></li>
+      <li><span class="check-icon">✓</span><span>eSIM 또는 포켓와이파이 사전 예약</span></li>
+      <li><span class="check-icon">✓</span><span>JR/난카이 티켓 사전 구매 (할인 혜택)</span></li>
+      <li><span class="check-icon">✓</span><span>USJ 방문 예정이면 익스프레스 패스 미리 구매</span></li>
+      <li><span class="check-icon">✓</span><span>오사카 주유패스 필요 여부 체크</span></li>
+      <li><span class="check-icon">✓</span><span>구글맵 오프라인 지도 다운로드</span></li>
+      <li><span class="check-icon">✓</span><span>여행자보험 가입</span></li>
+    </ul>
+  </div>
+
+  <!-- 7. 오사카 기본 정보 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">ℹ️</span>오사카 기본 정보</div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+      <span class="info-pill">🇯🇵 시차: 한국과 동일 (KST)</span>
+      <span class="info-pill">💴 통화: 엔 (¥, JPY)</span>
+      <span class="info-pill">🌡️ 봄/가을: 15~25°C 최적</span>
+      <span class="info-pill">🛫 비행시간: 약 1시간 25분</span>
+      <span class="info-pill">🔌 콘센트: A타입 (110V)</span>
+      <span class="info-pill">📞 긴급전화: 110 (경찰), 119 (구급)</span>
+      <span class="info-pill">🕐 관광지 영업: 주로 09:00~17:00</span>
+      <span class="info-pill">🚬 흡연: 지정 흡연구역 외 금지</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p><strong>오사카 여행 완벽 가이드</strong></p>
+  <p style="margin-top:6px;">참고 영상: 간사이 공항에서 시내 가는 법 (YouTube) · 작성: Jarvis</p>
+  <p style="margin-top:4px;">즐거운 오사카 여행 되세요! 🍜🗼🎡</p>
+</div>
+
+</body>
+</html>
