@@ -20,27 +20,39 @@
     padding: 40px 24px 60px;
   }
 
+  /* Language toggle */
+  .lang-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 32px;
+  }
+  .lang-btn {
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1.5px solid #d1d1d6;
+    background: #fff;
+    color: #86868b;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-btn:first-child { border-radius: 8px 0 0 8px; border-right: none; }
+  .lang-btn:last-child { border-radius: 0 8px 8px 0; }
+  .lang-btn.active {
+    background: #0071e3;
+    border-color: #0071e3;
+    color: #fff;
+  }
+
   /* Header */
   .header {
     text-align: center;
     margin-bottom: 48px;
   }
-  .header .icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-  }
-  .header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
-  }
-  .header p {
-    font-size: 15px;
-    color: #86868b;
-    max-width: 420px;
-    margin: 0 auto;
-  }
+  .header .icon { font-size: 48px; margin-bottom: 16px; }
+  .header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+  .header p { font-size: 15px; color: #86868b; max-width: 420px; margin: 0 auto; }
   .header .badge {
     display: inline-block;
     background: #0071e3;
@@ -64,25 +76,9 @@
     z-index: 100;
     margin-bottom: 32px;
   }
-  .progress-bar {
-    height: 4px;
-    background: #e5e5ea;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: #0071e3;
-    border-radius: 2px;
-    transition: width 0.4s ease;
-    width: 0%;
-  }
-  .progress-text {
-    font-size: 12px;
-    color: #86868b;
-    text-align: right;
-    margin-top: 4px;
-  }
+  .progress-bar { height: 4px; background: #e5e5ea; border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: #0071e3; border-radius: 2px; transition: width 0.4s ease; width: 0%; }
+  .progress-text { font-size: 12px; color: #86868b; text-align: right; margin-top: 4px; }
 
   /* Question card */
   .question {
@@ -92,231 +88,83 @@
     margin-bottom: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
-  .question .q-num {
-    font-size: 12px;
-    font-weight: 600;
-    color: #0071e3;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
-  }
-  .question h3 {
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-  .question .hint {
-    font-size: 13px;
-    color: #86868b;
-    margin-bottom: 16px;
-  }
-  .question .required {
-    color: #ff3b30;
-  }
+  .question .q-num { font-size: 12px; font-weight: 600; color: #0071e3; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .question h3 { font-size: 17px; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.01em; }
+  .question .hint { font-size: 13px; color: #86868b; margin-bottom: 16px; }
+  .required { color: #ff3b30; }
 
-  /* Radio / Checkbox options */
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  /* Options */
+  .options { display: flex; flex-direction: column; gap: 8px; }
   .option-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    border-radius: 10px;
-    border: 1.5px solid #e5e5ea;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 15px;
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; border-radius: 10px; border: 1.5px solid #e5e5ea;
+    cursor: pointer; transition: all 0.2s ease; font-size: 15px;
   }
-  .option-label:hover {
-    border-color: #0071e3;
-    background: rgba(0,113,227,0.04);
-  }
-  .option-label input {
-    accent-color: #0071e3;
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-  }
-  .option-label.selected {
-    border-color: #0071e3;
-    background: rgba(0,113,227,0.06);
-  }
+  .option-label:hover { border-color: #0071e3; background: rgba(0,113,227,0.04); }
+  .option-label input { accent-color: #0071e3; width: 18px; height: 18px; flex-shrink: 0; }
+  .option-label.selected { border-color: #0071e3; background: rgba(0,113,227,0.06); }
 
-  /* Likert scale */
-  .likert {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    margin-top: 4px;
-  }
-  .likert label {
-    flex: 1;
-    text-align: center;
-    cursor: pointer;
-  }
+  /* Likert */
+  .likert { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; }
+  .likert label { flex: 1; text-align: center; cursor: pointer; }
   .likert .scale-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    padding: 14px 8px;
-    border-radius: 10px;
-    border: 1.5px solid #e5e5ea;
-    transition: all 0.2s ease;
-    font-size: 20px;
-    font-weight: 600;
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 14px 8px; border-radius: 10px; border: 1.5px solid #e5e5ea;
+    transition: all 0.2s ease; font-size: 20px; font-weight: 600;
   }
-  .likert .scale-btn:hover {
-    border-color: #0071e3;
-    background: rgba(0,113,227,0.04);
-  }
-  .likert .scale-btn.selected {
-    border-color: #0071e3;
-    background: rgba(0,113,227,0.08);
-    color: #0071e3;
-  }
-  .likert .scale-label {
-    font-size: 10px;
-    color: #86868b;
-    font-weight: 400;
-  }
+  .likert .scale-btn:hover { border-color: #0071e3; background: rgba(0,113,227,0.04); }
+  .likert .scale-btn.selected { border-color: #0071e3; background: rgba(0,113,227,0.08); color: #0071e3; }
+  .likert .scale-label { font-size: 10px; color: #86868b; font-weight: 400; }
   .likert input { display: none; }
 
-  /* Rank select (top 3) */
-  .rank-options {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  /* Rank */
+  .rank-options { display: flex; flex-direction: column; gap: 8px; }
   .rank-option {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    border-radius: 10px;
-    border: 1.5px solid #e5e5ea;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 15px;
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; border-radius: 10px; border: 1.5px solid #e5e5ea;
+    cursor: pointer; transition: all 0.2s ease; font-size: 15px;
   }
-  .rank-option:hover {
-    border-color: #0071e3;
-    background: rgba(0,113,227,0.04);
-  }
-  .rank-option.selected {
-    border-color: #0071e3;
-    background: rgba(0,113,227,0.06);
-  }
+  .rank-option:hover { border-color: #0071e3; background: rgba(0,113,227,0.04); }
+  .rank-option.selected { border-color: #0071e3; background: rgba(0,113,227,0.06); }
   .rank-badge {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: #e5e5ea;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    color: #86868b;
-    flex-shrink: 0;
-    transition: all 0.2s;
+    width: 24px; height: 24px; border-radius: 50%; background: #e5e5ea;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #86868b; flex-shrink: 0; transition: all 0.2s;
   }
-  .rank-option.selected .rank-badge {
-    background: #0071e3;
-    color: #fff;
-  }
+  .rank-option.selected .rank-badge { background: #0071e3; color: #fff; }
 
   /* Textarea */
   textarea {
-    width: 100%;
-    border: 1.5px solid #e5e5ea;
-    border-radius: 10px;
-    padding: 14px 16px;
-    font-size: 15px;
-    font-family: inherit;
-    resize: vertical;
-    min-height: 100px;
-    transition: border-color 0.2s;
-    outline: none;
+    width: 100%; border: 1.5px solid #e5e5ea; border-radius: 10px;
+    padding: 14px 16px; font-size: 15px; font-family: inherit;
+    resize: vertical; min-height: 100px; transition: border-color 0.2s; outline: none;
   }
-  textarea:focus {
-    border-color: #0071e3;
-  }
-  textarea::placeholder {
-    color: #c7c7cc;
-  }
-
-  /* Other input */
-  .other-input {
-    margin-top: 8px;
-    width: 100%;
-    border: 1.5px solid #e5e5ea;
-    border-radius: 10px;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-family: inherit;
-    outline: none;
-    display: none;
-  }
-  .other-input:focus { border-color: #0071e3; }
+  textarea:focus { border-color: #0071e3; }
+  textarea::placeholder { color: #c7c7cc; }
 
   /* Submit */
-  .submit-wrap {
-    text-align: center;
-    margin-top: 32px;
-  }
+  .submit-wrap { text-align: center; margin-top: 32px; }
   .submit-btn {
-    background: #0071e3;
-    color: #fff;
-    border: none;
-    padding: 14px 48px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    letter-spacing: 0.01em;
+    background: #0071e3; color: #fff; border: none;
+    padding: 14px 48px; border-radius: 12px; font-size: 16px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; letter-spacing: 0.01em;
   }
   .submit-btn:hover { background: #0077ed; transform: scale(1.02); }
   .submit-btn:active { transform: scale(0.98); }
   .submit-btn:disabled { background: #c7c7cc; cursor: not-allowed; transform: none; }
 
   /* Thank you */
-  .thank-you {
-    display: none;
-    text-align: center;
-    padding: 80px 24px;
-  }
+  .thank-you { display: none; text-align: center; padding: 80px 24px; }
   .thank-you .icon { font-size: 64px; margin-bottom: 20px; }
   .thank-you h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
   .thank-you p { font-size: 15px; color: #86868b; }
 
   /* Validation */
-  .question.error {
-    box-shadow: 0 0 0 2px #ff3b30;
-  }
-  .error-msg {
-    font-size: 12px;
-    color: #ff3b30;
-    margin-top: 8px;
-    display: none;
-  }
-  .question.error .error-msg {
-    display: block;
-  }
+  .question.error { box-shadow: 0 0 0 2px #ff3b30; }
+  .error-msg { font-size: 12px; color: #ff3b30; margin-top: 8px; display: none; }
+  .question.error .error-msg { display: block; }
 
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 24px;
-    font-size: 12px;
-    color: #c7c7cc;
-  }
+  .footer { text-align: center; padding: 24px; font-size: 12px; color: #c7c7cc; }
 
   @media (max-width: 480px) {
     .container { padding: 24px 16px 40px; }
@@ -329,11 +177,19 @@
 <body>
 
 <div class="container">
+
+  <!-- Language Toggle -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">🇬🇧 English</button>
+    <button class="lang-btn" onclick="setLang('vi')">🇻🇳 Tiếng Việt</button>
+  </div>
+
   <!-- Header -->
   <div class="header">
     <div class="icon">🤖</div>
-    <h1>AI in Software Development</h1>
-    <p>Help us understand how you use AI tools in your development workflow. Your feedback will shape our tooling strategy.</p>
+    <h1 data-en="AI in Software Development" data-vi="AI trong Phát triển Phần mềm"></h1>
+    <p data-en="Help us understand how you use AI tools in your development workflow. Your feedback will shape our tooling strategy."
+       data-vi="Giúp chúng tôi hiểu cách bạn sử dụng các công cụ AI trong quy trình phát triển. Phản hồi của bạn sẽ định hình chiến lược công cụ của chúng tôi."></p>
     <div class="badge">VNB Development Team · March 2026</div>
   </div>
 
@@ -347,269 +203,281 @@
 
     <!-- Q1 -->
     <div class="question" data-required="true" data-type="radio" id="q1">
-      <div class="q-num">Question 1 <span class="required">*</span></div>
-      <h3>How often do you use AI coding tools in your development work?</h3>
-      <div class="hint">Select one</div>
+      <div class="q-num"><span data-en="Question 1" data-vi="Câu hỏi 1"></span> <span class="required">*</span></div>
+      <h3 data-en="How often do you use AI coding tools in your development work?"
+          data-vi="Bạn sử dụng các công cụ AI trong công việc phát triển thường xuyên như thế nào?"></h3>
+      <div class="hint" data-en="Select one" data-vi="Chọn một"></div>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q1" value="Daily"> Daily</label>
-        <label class="option-label"><input type="radio" name="q1" value="Several times a week"> Several times a week</label>
-        <label class="option-label"><input type="radio" name="q1" value="Occasionally (a few times a month)"> Occasionally (a few times a month)</label>
-        <label class="option-label"><input type="radio" name="q1" value="Rarely"> Rarely</label>
-        <label class="option-label"><input type="radio" name="q1" value="Never"> Never</label>
+        <label class="option-label"><input type="radio" name="q1" value="Daily"><span data-en="Daily" data-vi="Hàng ngày"></span></label>
+        <label class="option-label"><input type="radio" name="q1" value="Several times a week"><span data-en="Several times a week" data-vi="Vài lần một tuần"></span></label>
+        <label class="option-label"><input type="radio" name="q1" value="Occasionally"><span data-en="Occasionally (a few times a month)" data-vi="Thỉnh thoảng (vài lần một tháng)"></span></label>
+        <label class="option-label"><input type="radio" name="q1" value="Rarely"><span data-en="Rarely" data-vi="Hiếm khi"></span></label>
+        <label class="option-label"><input type="radio" name="q1" value="Never"><span data-en="Never" data-vi="Chưa bao giờ"></span></label>
       </div>
-      <div class="error-msg">Please select an option</div>
+      <div class="error-msg" data-en="Please select an option" data-vi="Vui lòng chọn một tùy chọn"></div>
     </div>
 
     <!-- Q2 -->
     <div class="question" data-required="true" data-type="checkbox" id="q2">
-      <div class="q-num">Question 2 <span class="required">*</span></div>
-      <h3>Which AI tools are you currently using?</h3>
-      <div class="hint">Select all that apply</div>
+      <div class="q-num"><span data-en="Question 2" data-vi="Câu hỏi 2"></span> <span class="required">*</span></div>
+      <h3 data-en="Which AI tools are you currently using?"
+          data-vi="Bạn đang sử dụng những công cụ AI nào?"></h3>
+      <div class="hint" data-en="Select all that apply" data-vi="Chọn tất cả các mục phù hợp"></div>
       <div class="options">
         <label class="option-label"><input type="checkbox" name="q2" value="GitHub Copilot"> GitHub Copilot</label>
-        <label class="option-label"><input type="checkbox" name="q2" value="ChatGPT / Claude / Gemini (chat)"> ChatGPT / Claude / Gemini (chat)</label>
+        <label class="option-label"><input type="checkbox" name="q2" value="ChatGPT / Claude / Gemini"> ChatGPT / Claude / Gemini (chat)</label>
         <label class="option-label"><input type="checkbox" name="q2" value="Cursor IDE"> Cursor IDE</label>
         <label class="option-label"><input type="checkbox" name="q2" value="Tabnine"> Tabnine</label>
-        <label class="option-label"><input type="checkbox" name="q2" value="Windsurf / Cline / Other IDE AI"> Windsurf / Cline / Other IDE AI</label>
-        <label class="option-label"><input type="checkbox" name="q2" value="None" data-exclusive="true"> None — I don't use any AI tools</label>
+        <label class="option-label"><input type="checkbox" name="q2" value="Windsurf / Cline / Other"> Windsurf / Cline / Other IDE AI</label>
+        <label class="option-label"><input type="checkbox" name="q2" value="None" data-exclusive="true"><span data-en="None — I don't use any AI tools" data-vi="Không — Tôi không sử dụng công cụ AI nào"></span></label>
       </div>
-      <div class="error-msg">Please select at least one option</div>
+      <div class="error-msg" data-en="Please select at least one option" data-vi="Vui lòng chọn ít nhất một tùy chọn"></div>
     </div>
 
     <!-- Q3 -->
     <div class="question" data-required="true" data-type="checkbox" id="q3">
-      <div class="q-num">Question 3 <span class="required">*</span></div>
-      <h3>In which development phases do you use AI assistance?</h3>
-      <div class="hint">Select all that apply</div>
+      <div class="q-num"><span data-en="Question 3" data-vi="Câu hỏi 3"></span> <span class="required">*</span></div>
+      <h3 data-en="In which development phases do you use AI assistance?"
+          data-vi="Bạn sử dụng AI hỗ trợ trong giai đoạn phát triển nào?"></h3>
+      <div class="hint" data-en="Select all that apply" data-vi="Chọn tất cả các mục phù hợp"></div>
       <div class="options">
-        <label class="option-label"><input type="checkbox" name="q3" value="PRD / Requirements analysis"> PRD / Requirements analysis</label>
-        <label class="option-label"><input type="checkbox" name="q3" value="Design & Architecture"> Design & Architecture</label>
-        <label class="option-label"><input type="checkbox" name="q3" value="Coding / Implementation"> Coding / Implementation</label>
-        <label class="option-label"><input type="checkbox" name="q3" value="Code Review"> Code Review</label>
-        <label class="option-label"><input type="checkbox" name="q3" value="Writing Tests"> Writing Tests</label>
-        <label class="option-label"><input type="checkbox" name="q3" value="Debugging"> Debugging</label>
-        <label class="option-label"><input type="checkbox" name="q3" value="Documentation"> Documentation</label>
-        <label class="option-label"><input type="checkbox" name="q3" value="I don't use AI in development" data-exclusive="true"> I don't use AI in development</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="PRD / Requirements analysis"><span data-en="PRD / Requirements analysis" data-vi="Phân tích PRD / Yêu cầu"></span></label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Design & Architecture"><span data-en="Design & Architecture" data-vi="Thiết kế & Kiến trúc"></span></label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Coding / Implementation"><span data-en="Coding / Implementation" data-vi="Lập trình / Triển khai"></span></label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Code Review"><span data-en="Code Review" data-vi="Đánh giá mã nguồn (Code Review)"></span></label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Writing Tests"><span data-en="Writing Tests" data-vi="Viết kiểm thử (Test)"></span></label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Debugging"><span data-en="Debugging" data-vi="Gỡ lỗi (Debugging)"></span></label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Documentation"><span data-en="Documentation" data-vi="Tài liệu"></span></label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Not using AI" data-exclusive="true"><span data-en="I don't use AI in development" data-vi="Tôi không sử dụng AI trong phát triển"></span></label>
       </div>
-      <div class="error-msg">Please select at least one option</div>
+      <div class="error-msg" data-en="Please select at least one option" data-vi="Vui lòng chọn ít nhất một tùy chọn"></div>
     </div>
 
     <!-- Q4 -->
     <div class="question" data-required="true" data-type="likert" id="q4">
-      <div class="q-num">Question 4 <span class="required">*</span></div>
-      <h3>How much do AI tools help you maintain code quality and conventions?</h3>
-      <div class="hint">Rate from 1 (not at all) to 5 (very helpful)</div>
+      <div class="q-num"><span data-en="Question 4" data-vi="Câu hỏi 4"></span> <span class="required">*</span></div>
+      <h3 data-en="How much do AI tools help you maintain code quality and conventions?"
+          data-vi="Các công cụ AI giúp bạn duy trì chất lượng mã và quy ước ở mức nào?"></h3>
+      <div class="hint" data-en="Rate from 1 (not at all) to 5 (very helpful)"
+           data-vi="Đánh giá từ 1 (hoàn toàn không) đến 5 (rất hữu ích)"></div>
       <div class="likert">
-        <label><input type="radio" name="q4" value="1"><div class="scale-btn">1<span class="scale-label">Not at all</span></div></label>
-        <label><input type="radio" name="q4" value="2"><div class="scale-btn">2<span class="scale-label">Slightly</span></div></label>
-        <label><input type="radio" name="q4" value="3"><div class="scale-btn">3<span class="scale-label">Moderate</span></div></label>
-        <label><input type="radio" name="q4" value="4"><div class="scale-btn">4<span class="scale-label">Helpful</span></div></label>
-        <label><input type="radio" name="q4" value="5"><div class="scale-btn">5<span class="scale-label">Very helpful</span></div></label>
+        <label><input type="radio" name="q4" value="1"><div class="scale-btn">1<span class="scale-label" data-en="Not at all" data-vi="Không hề"></span></div></label>
+        <label><input type="radio" name="q4" value="2"><div class="scale-btn">2<span class="scale-label" data-en="Slightly" data-vi="Ít"></span></div></label>
+        <label><input type="radio" name="q4" value="3"><div class="scale-btn">3<span class="scale-label" data-en="Moderate" data-vi="Vừa phải"></span></div></label>
+        <label><input type="radio" name="q4" value="4"><div class="scale-btn">4<span class="scale-label" data-en="Helpful" data-vi="Hữu ích"></span></div></label>
+        <label><input type="radio" name="q4" value="5"><div class="scale-btn">5<span class="scale-label" data-en="Very helpful" data-vi="Rất hữu ích"></span></div></label>
       </div>
-      <div class="error-msg">Please select a rating</div>
+      <div class="error-msg" data-en="Please select a rating" data-vi="Vui lòng chọn mức đánh giá"></div>
     </div>
 
     <!-- Q5 -->
     <div class="question" data-required="true" data-type="checkbox" id="q5">
-      <div class="q-num">Question 5 <span class="required">*</span></div>
-      <h3>What difficulties do you face when understanding PRD (requirements)?</h3>
-      <div class="hint">Select all that apply</div>
+      <div class="q-num"><span data-en="Question 5" data-vi="Câu hỏi 5"></span> <span class="required">*</span></div>
+      <h3 data-en="What difficulties do you face when understanding PRD (requirements)?"
+          data-vi="Bạn gặp khó khăn gì khi hiểu PRD (yêu cầu)?"></h3>
+      <div class="hint" data-en="Select all that apply" data-vi="Chọn tất cả các mục phù hợp"></div>
       <div class="options">
-        <label class="option-label"><input type="checkbox" name="q5" value="Korean language barrier"> Korean language barrier</label>
-        <label class="option-label"><input type="checkbox" name="q5" value="Lack of business context"> Lack of business context</label>
-        <label class="option-label"><input type="checkbox" name="q5" value="Edge cases not covered"> Edge cases not covered</label>
-        <label class="option-label"><input type="checkbox" name="q5" value="Ambiguous or unclear requirements"> Ambiguous or unclear requirements</label>
-        <label class="option-label"><input type="checkbox" name="q5" value="Difficulty estimating effort/scope"> Difficulty estimating effort/scope</label>
-        <label class="option-label"><input type="checkbox" name="q5" value="No significant difficulty" data-exclusive="true"> No significant difficulty</label>
+        <label class="option-label"><input type="checkbox" name="q5" value="Korean language barrier"><span data-en="Korean language barrier" data-vi="Rào cản ngôn ngữ tiếng Hàn"></span></label>
+        <label class="option-label"><input type="checkbox" name="q5" value="Lack of business context"><span data-en="Lack of business context" data-vi="Thiếu bối cảnh nghiệp vụ"></span></label>
+        <label class="option-label"><input type="checkbox" name="q5" value="Edge cases not covered"><span data-en="Edge cases not covered" data-vi="Các trường hợp biên không được đề cập"></span></label>
+        <label class="option-label"><input type="checkbox" name="q5" value="Ambiguous requirements"><span data-en="Ambiguous or unclear requirements" data-vi="Yêu cầu mơ hồ hoặc không rõ ràng"></span></label>
+        <label class="option-label"><input type="checkbox" name="q5" value="Difficulty estimating effort"><span data-en="Difficulty estimating effort/scope" data-vi="Khó ước lượng công sức / phạm vi"></span></label>
+        <label class="option-label"><input type="checkbox" name="q5" value="No significant difficulty" data-exclusive="true"><span data-en="No significant difficulty" data-vi="Không có khó khăn đáng kể"></span></label>
       </div>
-      <div class="error-msg">Please select at least one option</div>
+      <div class="error-msg" data-en="Please select at least one option" data-vi="Vui lòng chọn ít nhất một tùy chọn"></div>
     </div>
 
     <!-- Q6 -->
     <div class="question" data-required="true" data-type="checkbox" id="q6">
-      <div class="q-num">Question 6 <span class="required">*</span></div>
-      <h3>What types of feedback do you commonly receive in code reviews?</h3>
-      <div class="hint">Select all that apply</div>
+      <div class="q-num"><span data-en="Question 6" data-vi="Câu hỏi 6"></span> <span class="required">*</span></div>
+      <h3 data-en="What types of feedback do you commonly receive in code reviews?"
+          data-vi="Bạn thường nhận phản hồi gì khi code review?"></h3>
+      <div class="hint" data-en="Select all that apply" data-vi="Chọn tất cả các mục phù hợp"></div>
       <div class="options">
-        <label class="option-label"><input type="checkbox" name="q6" value="Naming conventions"> Naming conventions</label>
-        <label class="option-label"><input type="checkbox" name="q6" value="Error handling"> Error handling</label>
-        <label class="option-label"><input type="checkbox" name="q6" value="Logging practices"> Logging practices</label>
-        <label class="option-label"><input type="checkbox" name="q6" value="Test coverage"> Test coverage</label>
-        <label class="option-label"><input type="checkbox" name="q6" value="Architecture / Design patterns"> Architecture / Design patterns</label>
-        <label class="option-label"><input type="checkbox" name="q6" value="Performance concerns"> Performance concerns</label>
-        <label class="option-label"><input type="checkbox" name="q6" value="No recurring feedback" data-exclusive="true"> No recurring feedback</label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Naming conventions"><span data-en="Naming conventions" data-vi="Quy ước đặt tên"></span></label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Error handling"><span data-en="Error handling" data-vi="Xử lý lỗi"></span></label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Logging practices"><span data-en="Logging practices" data-vi="Cách ghi log"></span></label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Test coverage"><span data-en="Test coverage" data-vi="Độ phủ kiểm thử"></span></label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Architecture / Design patterns"><span data-en="Architecture / Design patterns" data-vi="Kiến trúc / Mẫu thiết kế"></span></label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Performance concerns"><span data-en="Performance concerns" data-vi="Vấn đề hiệu suất"></span></label>
+        <label class="option-label"><input type="checkbox" name="q6" value="No recurring feedback" data-exclusive="true"><span data-en="No recurring feedback" data-vi="Không có phản hồi lặp lại"></span></label>
       </div>
-      <div class="error-msg">Please select at least one option</div>
+      <div class="error-msg" data-en="Please select at least one option" data-vi="Vui lòng chọn ít nhất một tùy chọn"></div>
     </div>
 
     <!-- Q7 -->
     <div class="question" data-required="true" data-type="rank" data-max="3" id="q7">
-      <div class="q-num">Question 7 <span class="required">*</span></div>
-      <h3>Where do you expect AI to help the most?</h3>
-      <div class="hint">Select your top 3 (click to select/deselect)</div>
+      <div class="q-num"><span data-en="Question 7" data-vi="Câu hỏi 7"></span> <span class="required">*</span></div>
+      <h3 data-en="Where do you expect AI to help the most?"
+          data-vi="Bạn kỳ vọng AI hỗ trợ nhiều nhất ở đâu?"></h3>
+      <div class="hint" data-en="Select your top 3 (click to select/deselect)"
+           data-vi="Chọn 3 mục hàng đầu (nhấp để chọn/bỏ chọn)"></div>
       <div class="rank-options">
-        <div class="rank-option" data-value="Code auto-completion"><div class="rank-badge">–</div> Code auto-completion</div>
-        <div class="rank-option" data-value="Convention enforcement (shared rules)"><div class="rank-badge">–</div> Convention enforcement (shared rules)</div>
-        <div class="rank-option" data-value="PRD translation & analysis"><div class="rank-badge">–</div> PRD translation & analysis</div>
-        <div class="rank-option" data-value="Effort estimation"><div class="rank-badge">–</div> Effort estimation</div>
-        <div class="rank-option" data-value="Test code generation"><div class="rank-badge">–</div> Test code generation</div>
-        <div class="rank-option" data-value="Automated code review"><div class="rank-badge">–</div> Automated code review</div>
-        <div class="rank-option" data-value="Refactoring suggestions"><div class="rank-badge">–</div> Refactoring suggestions</div>
-        <div class="rank-option" data-value="Debugging assistance"><div class="rank-badge">–</div> Debugging assistance</div>
+        <div class="rank-option" data-value="Code auto-completion"><div class="rank-badge">–</div><span data-en="Code auto-completion" data-vi="Tự động hoàn thành mã"></span></div>
+        <div class="rank-option" data-value="Convention enforcement"><div class="rank-badge">–</div><span data-en="Convention enforcement (shared rules)" data-vi="Tuân thủ quy ước (shared rules)"></span></div>
+        <div class="rank-option" data-value="PRD translation & analysis"><div class="rank-badge">–</div><span data-en="PRD translation & analysis" data-vi="Dịch & phân tích PRD"></span></div>
+        <div class="rank-option" data-value="Effort estimation"><div class="rank-badge">–</div><span data-en="Effort estimation" data-vi="Ước lượng công sức"></span></div>
+        <div class="rank-option" data-value="Test code generation"><div class="rank-badge">–</div><span data-en="Test code generation" data-vi="Tạo mã kiểm thử"></span></div>
+        <div class="rank-option" data-value="Automated code review"><div class="rank-badge">–</div><span data-en="Automated code review" data-vi="Đánh giá mã tự động"></span></div>
+        <div class="rank-option" data-value="Refactoring suggestions"><div class="rank-badge">–</div><span data-en="Refactoring suggestions" data-vi="Gợi ý tái cấu trúc"></span></div>
+        <div class="rank-option" data-value="Debugging assistance"><div class="rank-badge">–</div><span data-en="Debugging assistance" data-vi="Hỗ trợ gỡ lỗi"></span></div>
       </div>
-      <div class="error-msg">Please select exactly 3 options</div>
+      <div class="error-msg" data-en="Please select exactly 3 options" data-vi="Vui lòng chọn đúng 3 mục"></div>
     </div>
 
     <!-- Q8 -->
     <div class="question" data-required="true" data-type="checkbox" id="q8">
-      <div class="q-num">Question 8 <span class="required">*</span></div>
-      <h3>What concerns do you have about adopting AI coding tools?</h3>
-      <div class="hint">Select all that apply</div>
+      <div class="q-num"><span data-en="Question 8" data-vi="Câu hỏi 8"></span> <span class="required">*</span></div>
+      <h3 data-en="What concerns do you have about adopting AI coding tools?"
+          data-vi="Bạn có lo ngại gì về việc áp dụng công cụ AI trong lập trình?"></h3>
+      <div class="hint" data-en="Select all that apply" data-vi="Chọn tất cả các mục phù hợp"></div>
       <div class="options">
-        <label class="option-label"><input type="checkbox" name="q8" value="Learning curve / time investment"> Learning curve / time investment</label>
-        <label class="option-label"><input type="checkbox" name="q8" value="Replacing my current IDE (IntelliJ)"> Replacing my current IDE (IntelliJ)</label>
-        <label class="option-label"><input type="checkbox" name="q8" value="Reliability of AI-generated code"> Reliability of AI-generated code</label>
-        <label class="option-label"><input type="checkbox" name="q8" value="Security / code data privacy"> Security / code data privacy</label>
-        <label class="option-label"><input type="checkbox" name="q8" value="Over-dependence on AI"> Over-dependence on AI</label>
-        <label class="option-label"><input type="checkbox" name="q8" value="May reduce my own coding skills"> May reduce my own coding skills</label>
-        <label class="option-label"><input type="checkbox" name="q8" value="No concerns" data-exclusive="true"> No concerns</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="Learning curve"><span data-en="Learning curve / time investment" data-vi="Đường cong học tập / đầu tư thời gian"></span></label>
+        <label class="option-label"><input type="checkbox" name="q8" value="Replacing IDE"><span data-en="Replacing my current IDE (IntelliJ)" data-vi="Thay thế IDE hiện tại (IntelliJ)"></span></label>
+        <label class="option-label"><input type="checkbox" name="q8" value="AI code reliability"><span data-en="Reliability of AI-generated code" data-vi="Độ tin cậy của mã do AI tạo"></span></label>
+        <label class="option-label"><input type="checkbox" name="q8" value="Security / privacy"><span data-en="Security / code data privacy" data-vi="Bảo mật / quyền riêng tư dữ liệu mã"></span></label>
+        <label class="option-label"><input type="checkbox" name="q8" value="Over-dependence"><span data-en="Over-dependence on AI" data-vi="Phụ thuộc quá nhiều vào AI"></span></label>
+        <label class="option-label"><input type="checkbox" name="q8" value="Reduce skills"><span data-en="May reduce my own coding skills" data-vi="Có thể làm giảm kỹ năng lập trình của tôi"></span></label>
+        <label class="option-label"><input type="checkbox" name="q8" value="No concerns" data-exclusive="true"><span data-en="No concerns" data-vi="Không lo ngại"></span></label>
       </div>
-      <div class="error-msg">Please select at least one option</div>
+      <div class="error-msg" data-en="Please select at least one option" data-vi="Vui lòng chọn ít nhất một tùy chọn"></div>
     </div>
 
     <!-- Q9 -->
     <div class="question" data-required="true" data-type="radio" id="q9">
-      <div class="q-num">Question 9 <span class="required">*</span></div>
-      <h3>How familiar are you with Cursor IDE?</h3>
-      <div class="hint">Select one</div>
+      <div class="q-num"><span data-en="Question 9" data-vi="Câu hỏi 9"></span> <span class="required">*</span></div>
+      <h3 data-en="How familiar are you with Cursor IDE?"
+          data-vi="Bạn quen thuộc với Cursor IDE ở mức nào?"></h3>
+      <div class="hint" data-en="Select one" data-vi="Chọn một"></div>
       <div class="options">
-        <label class="option-label"><input type="radio" name="q9" value="Already using it"> Already using it</label>
-        <label class="option-label"><input type="radio" name="q9" value="Heard of it and interested"> Heard of it and interested</label>
-        <label class="option-label"><input type="radio" name="q9" value="Heard of it but not interested"> Heard of it but not interested</label>
-        <label class="option-label"><input type="radio" name="q9" value="Never heard of it"> Never heard of it</label>
+        <label class="option-label"><input type="radio" name="q9" value="Already using it"><span data-en="Already using it" data-vi="Đã sử dụng"></span></label>
+        <label class="option-label"><input type="radio" name="q9" value="Heard and interested"><span data-en="Heard of it and interested" data-vi="Đã nghe và quan tâm"></span></label>
+        <label class="option-label"><input type="radio" name="q9" value="Heard not interested"><span data-en="Heard of it but not interested" data-vi="Đã nghe nhưng không quan tâm"></span></label>
+        <label class="option-label"><input type="radio" name="q9" value="Never heard"><span data-en="Never heard of it" data-vi="Chưa bao giờ nghe"></span></label>
       </div>
-      <div class="error-msg">Please select an option</div>
+      <div class="error-msg" data-en="Please select an option" data-vi="Vui lòng chọn một tùy chọn"></div>
     </div>
 
     <!-- Q10 -->
     <div class="question" data-required="false" data-type="text" id="q10">
-      <div class="q-num">Question 10</div>
-      <h3>Any additional thoughts on AI in development?</h3>
-      <div class="hint">Share your expectations, concerns, or suggestions (optional)</div>
-      <textarea name="q10" placeholder="Type your thoughts here..."></textarea>
+      <div class="q-num"><span data-en="Question 10" data-vi="Câu hỏi 10"></span></div>
+      <h3 data-en="Any additional thoughts on AI in development?"
+          data-vi="Bạn có suy nghĩ gì thêm về AI trong phát triển phần mềm?"></h3>
+      <div class="hint" data-en="Share your expectations, concerns, or suggestions (optional)"
+           data-vi="Chia sẻ kỳ vọng, lo ngại hoặc đề xuất của bạn (không bắt buộc)"></div>
+      <textarea name="q10" data-placeholder-en="Type your thoughts here..." data-placeholder-vi="Nhập suy nghĩ của bạn ở đây..."></textarea>
     </div>
 
     <!-- Submit -->
     <div class="submit-wrap">
-      <button type="submit" class="submit-btn" id="submitBtn">Submit Survey</button>
+      <button type="submit" class="submit-btn" id="submitBtn"
+              data-en="Submit Survey" data-vi="Gửi khảo sát"></button>
     </div>
   </form>
 
-  <!-- Thank you screen -->
+  <!-- Thank you -->
   <div class="thank-you" id="thankYou">
     <div class="icon">🎉</div>
-    <h2>Thank you!</h2>
-    <p>Your response has been recorded.<br>We appreciate your feedback.</p>
+    <h2 data-en="Thank you!" data-vi="Cảm ơn bạn!"></h2>
+    <p data-en="Your response has been recorded. We appreciate your feedback."
+       data-vi="Phản hồi của bạn đã được ghi nhận. Chúng tôi đánh giá cao ý kiến của bạn."></p>
   </div>
 
   <div class="footer">PerfecTwin ERP Edition · HQ–VNB CoE</div>
 </div>
 
 <script>
+  let currentLang = 'en';
   const form = document.getElementById('surveyForm');
   const progressFill = document.getElementById('progressFill');
   const progressText = document.getElementById('progressText');
   const TOTAL = 10;
   const FORM_ENDPOINT = 'https://formsubmit.co/ajax/jimin.jarvis.mail.bot@gmail.com';
 
+  // ---- i18n ----
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (text) el.textContent = text;
+    });
+
+    // textarea placeholder
+    document.querySelectorAll('textarea[data-placeholder-en]').forEach(ta => {
+      ta.placeholder = ta.getAttribute('data-placeholder-' + lang) || ta.getAttribute('data-placeholder-en');
+    });
+
+    // submit button
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = btn.getAttribute('data-' + lang);
+  }
+
   // ---- Progress ----
   function updateProgress() {
     let answered = 0;
     for (let i = 1; i <= TOTAL; i++) {
-      const q = document.getElementById('q' + i);
-      if (isAnswered(q)) answered++;
+      if (isAnswered(document.getElementById('q' + i))) answered++;
     }
-    const pct = Math.round((answered / TOTAL) * 100);
-    progressFill.style.width = pct + '%';
+    progressFill.style.width = Math.round((answered / TOTAL) * 100) + '%';
     progressText.textContent = answered + ' / ' + TOTAL;
   }
 
   function isAnswered(q) {
     const type = q.dataset.type;
-    if (type === 'radio' || type === 'likert') {
-      return q.querySelector('input[type=radio]:checked') !== null;
-    }
-    if (type === 'checkbox') {
-      return q.querySelectorAll('input[type=checkbox]:checked').length > 0;
-    }
-    if (type === 'rank') {
-      return q.querySelectorAll('.rank-option.selected').length > 0;
-    }
-    if (type === 'text') {
-      return q.querySelector('textarea').value.trim().length > 0;
-    }
+    if (type === 'radio' || type === 'likert') return q.querySelector('input[type=radio]:checked') !== null;
+    if (type === 'checkbox') return q.querySelectorAll('input[type=checkbox]:checked').length > 0;
+    if (type === 'rank') return q.querySelectorAll('.rank-option.selected').length > 0;
+    if (type === 'text') return q.querySelector('textarea').value.trim().length > 0;
     return false;
   }
 
-  // ---- Option label highlight ----
+  // ---- Option highlight ----
   document.querySelectorAll('.option-label input').forEach(input => {
     input.addEventListener('change', () => {
       const parent = input.closest('.options');
-      const name = input.name;
-
-      // Handle exclusive options (like "None")
       if (input.type === 'checkbox') {
-        const isExclusive = input.closest('.option-label')?.querySelector('[data-exclusive]') || input.dataset.exclusive;
-        if (input.checked && input.closest('label').querySelector('[data-exclusive]')) {
-          // Uncheck all others
+        const isExclusive = input.dataset.exclusive || input.closest('label').querySelector('[data-exclusive]');
+        if (input.checked && isExclusive) {
           parent.querySelectorAll('input[type=checkbox]').forEach(cb => {
             if (cb !== input) { cb.checked = false; cb.closest('.option-label').classList.remove('selected'); }
           });
         } else if (input.checked) {
-          // Uncheck exclusive option
           parent.querySelectorAll('[data-exclusive]').forEach(ex => {
-            const cb = ex.closest('.option-label').querySelector('input');
-            if (cb) { cb.checked = false; cb.closest('.option-label').classList.remove('selected'); }
+            const lbl = ex.closest('.option-label') || ex.closest('label');
+            const cb = lbl ? lbl.querySelector('input') : null;
+            if (cb) { cb.checked = false; lbl.classList.remove('selected'); }
           });
         }
       }
-
-      // Update highlight
-      if (input.type === 'radio') {
-        parent.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
-      }
+      if (input.type === 'radio') parent.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
       parent.querySelectorAll('input').forEach(inp => {
         inp.closest('.option-label').classList.toggle('selected', inp.checked);
       });
-
       updateProgress();
     });
   });
 
-  // ---- Likert scale ----
+  // ---- Likert ----
   document.querySelectorAll('.likert label').forEach(label => {
     label.addEventListener('click', () => {
-      const likert = label.closest('.likert');
-      likert.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+      label.closest('.likert').querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
       label.querySelector('.scale-btn').classList.add('selected');
       setTimeout(updateProgress, 50);
     });
   });
 
-  // ---- Rank select (top 3) ----
+  // ---- Rank (top 3) ----
   document.querySelectorAll('.rank-option').forEach(opt => {
     opt.addEventListener('click', () => {
       const parent = opt.closest('.question');
       const max = parseInt(parent.dataset.max) || 3;
       const selected = parent.querySelectorAll('.rank-option.selected');
-
-      if (opt.classList.contains('selected')) {
-        opt.classList.remove('selected');
-        renumberRanks(parent);
-      } else if (selected.length < max) {
-        opt.classList.add('selected');
-        renumberRanks(parent);
-      }
+      if (opt.classList.contains('selected')) { opt.classList.remove('selected'); }
+      else if (selected.length < max) { opt.classList.add('selected'); }
+      renumberRanks(parent);
       updateProgress();
     });
   });
@@ -617,12 +485,7 @@
   function renumberRanks(parent) {
     let n = 1;
     parent.querySelectorAll('.rank-option').forEach(o => {
-      const badge = o.querySelector('.rank-badge');
-      if (o.classList.contains('selected')) {
-        badge.textContent = n++;
-      } else {
-        badge.textContent = '–';
-      }
+      o.querySelector('.rank-badge').textContent = o.classList.contains('selected') ? n++ : '–';
     });
   }
 
@@ -632,42 +495,36 @@
     for (let i = 1; i <= TOTAL; i++) {
       const q = document.getElementById('q' + i);
       q.classList.remove('error');
-      if (q.dataset.required === 'true') {
-        const type = q.dataset.type;
-        let ok = false;
-        if (type === 'radio' || type === 'likert') ok = q.querySelector('input[type=radio]:checked') !== null;
-        if (type === 'checkbox') ok = q.querySelectorAll('input[type=checkbox]:checked').length > 0;
-        if (type === 'rank') {
-          const sel = q.querySelectorAll('.rank-option.selected').length;
-          ok = sel === parseInt(q.dataset.max || 3);
-        }
-        if (!ok) {
-          q.classList.add('error');
-          if (valid) q.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          valid = false;
-        }
+      if (q.dataset.required !== 'true') continue;
+      const type = q.dataset.type;
+      let ok = false;
+      if (type === 'radio' || type === 'likert') ok = q.querySelector('input[type=radio]:checked') !== null;
+      if (type === 'checkbox') ok = q.querySelectorAll('input[type=checkbox]:checked').length > 0;
+      if (type === 'rank') ok = q.querySelectorAll('.rank-option.selected').length === parseInt(q.dataset.max || 3);
+      if (!ok) {
+        q.classList.add('error');
+        if (valid) q.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        valid = false;
       }
     }
     return valid;
   }
 
-  // ---- Collect data ----
+  // ---- Collect ----
   function collectData() {
-    const data = { _subject: 'VNB AI Survey Response' };
+    const data = { _subject: 'VNB AI Survey Response', language: currentLang };
     for (let i = 1; i <= TOTAL; i++) {
       const q = document.getElementById('q' + i);
       const type = q.dataset.type;
       if (type === 'radio' || type === 'likert') {
-        const checked = q.querySelector('input[type=radio]:checked');
-        data['Q' + i] = checked ? checked.value : '';
+        const c = q.querySelector('input[type=radio]:checked');
+        data['Q' + i] = c ? c.value : '';
       } else if (type === 'checkbox') {
-        const vals = [];
-        q.querySelectorAll('input[type=checkbox]:checked').forEach(c => vals.push(c.value));
-        data['Q' + i] = vals.join(', ');
+        const v = []; q.querySelectorAll('input[type=checkbox]:checked').forEach(c => v.push(c.value));
+        data['Q' + i] = v.join(', ');
       } else if (type === 'rank') {
-        const vals = [];
-        q.querySelectorAll('.rank-option.selected').forEach(o => vals.push(o.dataset.value));
-        data['Q' + i] = vals.join(', ');
+        const v = []; q.querySelectorAll('.rank-option.selected').forEach(o => v.push(o.dataset.value));
+        data['Q' + i] = v.join(', ');
       } else if (type === 'text') {
         data['Q' + i] = q.querySelector('textarea').value.trim();
       }
@@ -679,41 +536,31 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validate()) return;
-
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.textContent = 'Submitting...';
+    btn.textContent = currentLang === 'vi' ? 'Đang gửi...' : 'Submitting...';
 
     const data = collectData();
-
     try {
       const res = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(data)
       });
-
-      if (res.ok) {
-        form.style.display = 'none';
-        document.querySelector('.progress-wrap').style.display = 'none';
-        document.getElementById('thankYou').style.display = 'block';
-      } else {
-        throw new Error('Server error');
-      }
+      if (!res.ok) throw new Error('Server error');
     } catch (err) {
-      // Fallback: save locally
+      // Fallback: download JSON
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'survey-response.json';
-      a.click();
-
-      form.style.display = 'none';
-      document.querySelector('.progress-wrap').style.display = 'none';
-      document.getElementById('thankYou').style.display = 'block';
-      document.querySelector('.thank-you p').textContent = 'Your response has been saved as a file. Please send it to HQ.';
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+      a.download = 'survey-response.json'; a.click();
     }
+    form.style.display = 'none';
+    document.querySelector('.progress-wrap').style.display = 'none';
+    document.getElementById('thankYou').style.display = 'block';
   });
+
+  // Init
+  setLang('en');
 </script>
 
 </body>
