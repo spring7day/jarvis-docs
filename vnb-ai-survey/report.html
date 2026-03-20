@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VNB AI Survey — Results Report</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  .header { text-align: center; margin-bottom: 40px; }
+  .header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .header .sub { font-size: 14px; color: #86868b; }
+  .header .badge {
+    display: inline-block; background: #0071e3; color: #fff;
+    font-size: 11px; font-weight: 600; padding: 4px 14px;
+    border-radius: 20px; margin-top: 10px;
+  }
+
+  .stat-row { display: flex; gap: 12px; margin-bottom: 24px; }
+  .stat-card {
+    flex: 1; background: #fff; border-radius: 14px; padding: 20px;
+    text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .stat-card .num { font-size: 36px; font-weight: 800; color: #0071e3; }
+  .stat-card .label { font-size: 12px; color: #86868b; margin-top: 4px; }
+
+  .card {
+    background: #fff; border-radius: 14px; padding: 24px;
+    margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card h3 {
+    font-size: 14px; font-weight: 600; color: #0071e3;
+    text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px;
+  }
+  .card h4 { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
+
+  /* Bar chart */
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bar-label { font-size: 13px; width: 200px; flex-shrink: 0; color: #3a3a3c; }
+  .bar-track { flex: 1; height: 24px; background: #f0f0f5; border-radius: 6px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; border-radius: 6px; transition: width 0.6s ease; }
+  .bar-fill.blue { background: #0071e3; }
+  .bar-fill.green { background: #34c759; }
+  .bar-fill.orange { background: #ff9500; }
+  .bar-fill.purple { background: #af52de; }
+  .bar-fill.red { background: #ff3b30; }
+  .bar-fill.teal { background: #5ac8fa; }
+  .bar-count {
+    position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+    font-size: 11px; font-weight: 600; color: #fff;
+  }
+  .bar-count.dark { color: #3a3a3c; }
+
+  /* Pill tags */
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 500;
+  }
+  .pill.blue { background: rgba(0,113,227,0.1); color: #0071e3; }
+  .pill.green { background: rgba(52,199,89,0.1); color: #1b8a3d; }
+  .pill.orange { background: rgba(255,149,0,0.1); color: #c77700; }
+  .pill.red { background: rgba(255,59,48,0.1); color: #d70015; }
+  .pill .count { font-weight: 700; }
+
+  /* Response table */
+  .resp-table { width: 100%; font-size: 13px; border-collapse: collapse; }
+  .resp-table th {
+    text-align: left; padding: 8px 10px; background: #f5f5f7;
+    font-weight: 600; color: #86868b; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .resp-table td { padding: 10px; border-bottom: 1px solid #f0f0f5; vertical-align: top; }
+  .resp-table tr:last-child td { border-bottom: none; }
+
+  .likert-display {
+    display: flex; gap: 4px; align-items: center;
+  }
+  .likert-dot {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+  }
+  .likert-dot.filled { background: #0071e3; color: #fff; }
+  .likert-dot.empty { background: #f0f0f5; color: #c7c7cc; }
+
+  .quote {
+    font-style: italic; color: #6e6e73; font-size: 14px;
+    padding: 12px 16px; background: #f5f5f7; border-radius: 10px;
+    margin-top: 8px;
+  }
+
+  .note {
+    font-size: 12px; color: #86868b; text-align: center;
+    padding: 16px; margin-top: 8px;
+  }
+
+  .footer { text-align: center; padding: 24px; font-size: 11px; color: #c7c7cc; }
+
+  @media (max-width: 480px) {
+    .container { padding: 24px 16px 40px; }
+    .bar-label { width: 140px; font-size: 12px; }
+    .stat-card .num { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>📊 VNB AI Survey Results</h1>
+    <div class="sub">AI in Software Development — Perception Survey</div>
+    <div class="badge">2 Responses · March 20, 2026</div>
+  </div>
+
+  <!-- Summary stats -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">2</div>
+      <div class="label">Total Responses</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">4.0</div>
+      <div class="label">Avg. AI Helpfulness</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">100%</div>
+      <div class="label">Daily AI Users</div>
+    </div>
+  </div>
+
+  <!-- Q1: AI Usage Frequency -->
+  <div class="card">
+    <h3>Q1</h3>
+    <h4>How often do you use AI coding tools?</h4>
+    <div class="bar-row">
+      <div class="bar-label">Daily</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:100%"><span class="bar-count">2</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Several times/week</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:0%"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Occasionally</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:0%"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Rarely</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:0%"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Never</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <!-- Q2: Tools Used -->
+  <div class="card">
+    <h3>Q2</h3>
+    <h4>Which AI tools are you currently using?</h4>
+    <div class="pills">
+      <div class="pill blue">Cursor IDE <span class="count">1</span></div>
+      <div class="pill green">GitHub Copilot <span class="count">1</span></div>
+      <div class="pill orange">ChatGPT/Claude/Gemini <span class="count">1</span></div>
+    </div>
+  </div>
+
+  <!-- Q3: Development Phases -->
+  <div class="card">
+    <h3>Q3</h3>
+    <h4>In which development phases do you use AI?</h4>
+    <div class="bar-row">
+      <div class="bar-label">Coding / Implementation</div>
+      <div class="bar-track"><div class="bar-fill green" style="width:100%"><span class="bar-count">2</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">PRD / Requirements</div>
+      <div class="bar-track"><div class="bar-fill green" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Design & Architecture</div>
+      <div class="bar-track"><div class="bar-fill green" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+  </div>
+
+  <!-- Q4: Helpfulness -->
+  <div class="card">
+    <h3>Q4</h3>
+    <h4>AI tools help maintain code quality and conventions</h4>
+    <div style="text-align:center; margin: 16px 0 8px;">
+      <div class="likert-display" style="justify-content:center;">
+        <div class="likert-dot empty">1</div>
+        <div class="likert-dot empty">2</div>
+        <div class="likert-dot empty">3</div>
+        <div class="likert-dot filled">4</div>
+        <div class="likert-dot empty">5</div>
+      </div>
+      <div style="font-size:13px; color:#86868b; margin-top:8px;">Average: 4.0 / 5 — Both respondents rated "Helpful"</div>
+    </div>
+  </div>
+
+  <!-- Q5: PRD Difficulties -->
+  <div class="card">
+    <h3>Q5</h3>
+    <h4>Difficulties understanding PRD (requirements)</h4>
+    <div class="bar-row">
+      <div class="bar-label">Korean language barrier</div>
+      <div class="bar-track"><div class="bar-fill orange" style="width:100%"><span class="bar-count">2</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Edge cases not covered</div>
+      <div class="bar-track"><div class="bar-fill orange" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+  </div>
+
+  <!-- Q6: Code Review Feedback -->
+  <div class="card">
+    <h3>Q6</h3>
+    <h4>Common code review feedback</h4>
+    <div class="bar-row">
+      <div class="bar-label">Naming conventions</div>
+      <div class="bar-track"><div class="bar-fill purple" style="width:100%"><span class="bar-count">2</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Error handling</div>
+      <div class="bar-track"><div class="bar-fill purple" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Logging practices</div>
+      <div class="bar-track"><div class="bar-fill purple" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+  </div>
+
+  <!-- Q7: Expected AI Impact -->
+  <div class="card">
+    <h3>Q7</h3>
+    <h4>Where AI is expected to help the most (Top 3)</h4>
+    <div class="bar-row">
+      <div class="bar-label">Code auto-completion</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:100%"><span class="bar-count">2</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Convention enforcement</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Test code generation</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">PRD translation & analysis</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Debugging assistance</div>
+      <div class="bar-track"><div class="bar-fill blue" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+  </div>
+
+  <!-- Q8: Concerns -->
+  <div class="card">
+    <h3>Q8</h3>
+    <h4>Concerns about adopting AI coding tools</h4>
+    <div class="pills">
+      <div class="pill red">AI code reliability <span class="count">1</span></div>
+      <div class="pill red">May reduce own skills <span class="count">1</span></div>
+      <div class="pill green">No concerns <span class="count">1</span></div>
+    </div>
+  </div>
+
+  <!-- Q9: Cursor Familiarity -->
+  <div class="card">
+    <h3>Q9</h3>
+    <h4>Familiarity with Cursor IDE</h4>
+    <div class="bar-row">
+      <div class="bar-label">Already using it</div>
+      <div class="bar-track"><div class="bar-fill teal" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Heard of it & interested</div>
+      <div class="bar-track"><div class="bar-fill teal" style="width:50%"><span class="bar-count dark">1</span></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Heard but not interested</div>
+      <div class="bar-track"><div class="bar-fill teal" style="width:0%"></div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Never heard of it</div>
+      <div class="bar-track"><div class="bar-fill teal" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <!-- Q10: Open Feedback -->
+  <div class="card">
+    <h3>Q10</h3>
+    <h4>Additional Thoughts</h4>
+    <div class="quote">"response for testing"</div>
+    <div class="quote">"Test response"</div>
+  </div>
+
+  <div class="note">
+    ⚠️ This report is based on 2 test responses. Results will be updated as more VNB members respond.
+  </div>
+
+  <div class="footer">VNB AI Survey Report · Generated Mar 20, 2026 · PerfecTwin ERP Edition</div>
+</div>
+</body>
+</html>
