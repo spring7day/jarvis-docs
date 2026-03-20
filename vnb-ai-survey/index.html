@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI in Development — VNB Survey</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .header .icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .header p {
+    font-size: 15px;
+    color: #86868b;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .header .badge {
+    display: inline-block;
+    background: #0071e3;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-top: 12px;
+    letter-spacing: 0.03em;
+  }
+
+  /* Progress bar */
+  .progress-wrap {
+    position: sticky;
+    top: 0;
+    background: rgba(245,245,247,0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 12px 0;
+    z-index: 100;
+    margin-bottom: 32px;
+  }
+  .progress-bar {
+    height: 4px;
+    background: #e5e5ea;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: #0071e3;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-text {
+    font-size: 12px;
+    color: #86868b;
+    text-align: right;
+    margin-top: 4px;
+  }
+
+  /* Question card */
+  .question {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .question .q-num {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0071e3;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .question h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .question .hint {
+    font-size: 13px;
+    color: #86868b;
+    margin-bottom: 16px;
+  }
+  .question .required {
+    color: #ff3b30;
+  }
+
+  /* Radio / Checkbox options */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1.5px solid #e5e5ea;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 15px;
+  }
+  .option-label:hover {
+    border-color: #0071e3;
+    background: rgba(0,113,227,0.04);
+  }
+  .option-label input {
+    accent-color: #0071e3;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .option-label.selected {
+    border-color: #0071e3;
+    background: rgba(0,113,227,0.06);
+  }
+
+  /* Likert scale */
+  .likert {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .likert label {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+  }
+  .likert .scale-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 8px;
+    border-radius: 10px;
+    border: 1.5px solid #e5e5ea;
+    transition: all 0.2s ease;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .likert .scale-btn:hover {
+    border-color: #0071e3;
+    background: rgba(0,113,227,0.04);
+  }
+  .likert .scale-btn.selected {
+    border-color: #0071e3;
+    background: rgba(0,113,227,0.08);
+    color: #0071e3;
+  }
+  .likert .scale-label {
+    font-size: 10px;
+    color: #86868b;
+    font-weight: 400;
+  }
+  .likert input { display: none; }
+
+  /* Rank select (top 3) */
+  .rank-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .rank-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1.5px solid #e5e5ea;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 15px;
+  }
+  .rank-option:hover {
+    border-color: #0071e3;
+    background: rgba(0,113,227,0.04);
+  }
+  .rank-option.selected {
+    border-color: #0071e3;
+    background: rgba(0,113,227,0.06);
+  }
+  .rank-badge {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #e5e5ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #86868b;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .rank-option.selected .rank-badge {
+    background: #0071e3;
+    color: #fff;
+  }
+
+  /* Textarea */
+  textarea {
+    width: 100%;
+    border: 1.5px solid #e5e5ea;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 15px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  textarea:focus {
+    border-color: #0071e3;
+  }
+  textarea::placeholder {
+    color: #c7c7cc;
+  }
+
+  /* Other input */
+  .other-input {
+    margin-top: 8px;
+    width: 100%;
+    border: 1.5px solid #e5e5ea;
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    display: none;
+  }
+  .other-input:focus { border-color: #0071e3; }
+
+  /* Submit */
+  .submit-wrap {
+    text-align: center;
+    margin-top: 32px;
+  }
+  .submit-btn {
+    background: #0071e3;
+    color: #fff;
+    border: none;
+    padding: 14px 48px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .submit-btn:hover { background: #0077ed; transform: scale(1.02); }
+  .submit-btn:active { transform: scale(0.98); }
+  .submit-btn:disabled { background: #c7c7cc; cursor: not-allowed; transform: none; }
+
+  /* Thank you */
+  .thank-you {
+    display: none;
+    text-align: center;
+    padding: 80px 24px;
+  }
+  .thank-you .icon { font-size: 64px; margin-bottom: 20px; }
+  .thank-you h2 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .thank-you p { font-size: 15px; color: #86868b; }
+
+  /* Validation */
+  .question.error {
+    box-shadow: 0 0 0 2px #ff3b30;
+  }
+  .error-msg {
+    font-size: 12px;
+    color: #ff3b30;
+    margin-top: 8px;
+    display: none;
+  }
+  .question.error .error-msg {
+    display: block;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: #c7c7cc;
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 24px 16px 40px; }
+    .question { padding: 22px 18px; }
+    .header h1 { font-size: 24px; }
+    .likert .scale-btn { padding: 10px 4px; font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="icon">🤖</div>
+    <h1>AI in Software Development</h1>
+    <p>Help us understand how you use AI tools in your development workflow. Your feedback will shape our tooling strategy.</p>
+    <div class="badge">VNB Development Team · March 2026</div>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">0 / 10</div>
+  </div>
+
+  <form id="surveyForm">
+
+    <!-- Q1 -->
+    <div class="question" data-required="true" data-type="radio" id="q1">
+      <div class="q-num">Question 1 <span class="required">*</span></div>
+      <h3>How often do you use AI coding tools in your development work?</h3>
+      <div class="hint">Select one</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q1" value="Daily"> Daily</label>
+        <label class="option-label"><input type="radio" name="q1" value="Several times a week"> Several times a week</label>
+        <label class="option-label"><input type="radio" name="q1" value="Occasionally (a few times a month)"> Occasionally (a few times a month)</label>
+        <label class="option-label"><input type="radio" name="q1" value="Rarely"> Rarely</label>
+        <label class="option-label"><input type="radio" name="q1" value="Never"> Never</label>
+      </div>
+      <div class="error-msg">Please select an option</div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question" data-required="true" data-type="checkbox" id="q2">
+      <div class="q-num">Question 2 <span class="required">*</span></div>
+      <h3>Which AI tools are you currently using?</h3>
+      <div class="hint">Select all that apply</div>
+      <div class="options">
+        <label class="option-label"><input type="checkbox" name="q2" value="GitHub Copilot"> GitHub Copilot</label>
+        <label class="option-label"><input type="checkbox" name="q2" value="ChatGPT / Claude / Gemini (chat)"> ChatGPT / Claude / Gemini (chat)</label>
+        <label class="option-label"><input type="checkbox" name="q2" value="Cursor IDE"> Cursor IDE</label>
+        <label class="option-label"><input type="checkbox" name="q2" value="Tabnine"> Tabnine</label>
+        <label class="option-label"><input type="checkbox" name="q2" value="Windsurf / Cline / Other IDE AI"> Windsurf / Cline / Other IDE AI</label>
+        <label class="option-label"><input type="checkbox" name="q2" value="None" data-exclusive="true"> None — I don't use any AI tools</label>
+      </div>
+      <div class="error-msg">Please select at least one option</div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question" data-required="true" data-type="checkbox" id="q3">
+      <div class="q-num">Question 3 <span class="required">*</span></div>
+      <h3>In which development phases do you use AI assistance?</h3>
+      <div class="hint">Select all that apply</div>
+      <div class="options">
+        <label class="option-label"><input type="checkbox" name="q3" value="PRD / Requirements analysis"> PRD / Requirements analysis</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Design & Architecture"> Design & Architecture</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Coding / Implementation"> Coding / Implementation</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Code Review"> Code Review</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Writing Tests"> Writing Tests</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Debugging"> Debugging</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="Documentation"> Documentation</label>
+        <label class="option-label"><input type="checkbox" name="q3" value="I don't use AI in development" data-exclusive="true"> I don't use AI in development</label>
+      </div>
+      <div class="error-msg">Please select at least one option</div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question" data-required="true" data-type="likert" id="q4">
+      <div class="q-num">Question 4 <span class="required">*</span></div>
+      <h3>How much do AI tools help you maintain code quality and conventions?</h3>
+      <div class="hint">Rate from 1 (not at all) to 5 (very helpful)</div>
+      <div class="likert">
+        <label><input type="radio" name="q4" value="1"><div class="scale-btn">1<span class="scale-label">Not at all</span></div></label>
+        <label><input type="radio" name="q4" value="2"><div class="scale-btn">2<span class="scale-label">Slightly</span></div></label>
+        <label><input type="radio" name="q4" value="3"><div class="scale-btn">3<span class="scale-label">Moderate</span></div></label>
+        <label><input type="radio" name="q4" value="4"><div class="scale-btn">4<span class="scale-label">Helpful</span></div></label>
+        <label><input type="radio" name="q4" value="5"><div class="scale-btn">5<span class="scale-label">Very helpful</span></div></label>
+      </div>
+      <div class="error-msg">Please select a rating</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question" data-required="true" data-type="checkbox" id="q5">
+      <div class="q-num">Question 5 <span class="required">*</span></div>
+      <h3>What difficulties do you face when understanding PRD (requirements)?</h3>
+      <div class="hint">Select all that apply</div>
+      <div class="options">
+        <label class="option-label"><input type="checkbox" name="q5" value="Korean language barrier"> Korean language barrier</label>
+        <label class="option-label"><input type="checkbox" name="q5" value="Lack of business context"> Lack of business context</label>
+        <label class="option-label"><input type="checkbox" name="q5" value="Edge cases not covered"> Edge cases not covered</label>
+        <label class="option-label"><input type="checkbox" name="q5" value="Ambiguous or unclear requirements"> Ambiguous or unclear requirements</label>
+        <label class="option-label"><input type="checkbox" name="q5" value="Difficulty estimating effort/scope"> Difficulty estimating effort/scope</label>
+        <label class="option-label"><input type="checkbox" name="q5" value="No significant difficulty" data-exclusive="true"> No significant difficulty</label>
+      </div>
+      <div class="error-msg">Please select at least one option</div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question" data-required="true" data-type="checkbox" id="q6">
+      <div class="q-num">Question 6 <span class="required">*</span></div>
+      <h3>What types of feedback do you commonly receive in code reviews?</h3>
+      <div class="hint">Select all that apply</div>
+      <div class="options">
+        <label class="option-label"><input type="checkbox" name="q6" value="Naming conventions"> Naming conventions</label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Error handling"> Error handling</label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Logging practices"> Logging practices</label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Test coverage"> Test coverage</label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Architecture / Design patterns"> Architecture / Design patterns</label>
+        <label class="option-label"><input type="checkbox" name="q6" value="Performance concerns"> Performance concerns</label>
+        <label class="option-label"><input type="checkbox" name="q6" value="No recurring feedback" data-exclusive="true"> No recurring feedback</label>
+      </div>
+      <div class="error-msg">Please select at least one option</div>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question" data-required="true" data-type="rank" data-max="3" id="q7">
+      <div class="q-num">Question 7 <span class="required">*</span></div>
+      <h3>Where do you expect AI to help the most?</h3>
+      <div class="hint">Select your top 3 (click to select/deselect)</div>
+      <div class="rank-options">
+        <div class="rank-option" data-value="Code auto-completion"><div class="rank-badge">–</div> Code auto-completion</div>
+        <div class="rank-option" data-value="Convention enforcement (shared rules)"><div class="rank-badge">–</div> Convention enforcement (shared rules)</div>
+        <div class="rank-option" data-value="PRD translation & analysis"><div class="rank-badge">–</div> PRD translation & analysis</div>
+        <div class="rank-option" data-value="Effort estimation"><div class="rank-badge">–</div> Effort estimation</div>
+        <div class="rank-option" data-value="Test code generation"><div class="rank-badge">–</div> Test code generation</div>
+        <div class="rank-option" data-value="Automated code review"><div class="rank-badge">–</div> Automated code review</div>
+        <div class="rank-option" data-value="Refactoring suggestions"><div class="rank-badge">–</div> Refactoring suggestions</div>
+        <div class="rank-option" data-value="Debugging assistance"><div class="rank-badge">–</div> Debugging assistance</div>
+      </div>
+      <div class="error-msg">Please select exactly 3 options</div>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question" data-required="true" data-type="checkbox" id="q8">
+      <div class="q-num">Question 8 <span class="required">*</span></div>
+      <h3>What concerns do you have about adopting AI coding tools?</h3>
+      <div class="hint">Select all that apply</div>
+      <div class="options">
+        <label class="option-label"><input type="checkbox" name="q8" value="Learning curve / time investment"> Learning curve / time investment</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="Replacing my current IDE (IntelliJ)"> Replacing my current IDE (IntelliJ)</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="Reliability of AI-generated code"> Reliability of AI-generated code</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="Security / code data privacy"> Security / code data privacy</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="Over-dependence on AI"> Over-dependence on AI</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="May reduce my own coding skills"> May reduce my own coding skills</label>
+        <label class="option-label"><input type="checkbox" name="q8" value="No concerns" data-exclusive="true"> No concerns</label>
+      </div>
+      <div class="error-msg">Please select at least one option</div>
+    </div>
+
+    <!-- Q9 -->
+    <div class="question" data-required="true" data-type="radio" id="q9">
+      <div class="q-num">Question 9 <span class="required">*</span></div>
+      <h3>How familiar are you with Cursor IDE?</h3>
+      <div class="hint">Select one</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q9" value="Already using it"> Already using it</label>
+        <label class="option-label"><input type="radio" name="q9" value="Heard of it and interested"> Heard of it and interested</label>
+        <label class="option-label"><input type="radio" name="q9" value="Heard of it but not interested"> Heard of it but not interested</label>
+        <label class="option-label"><input type="radio" name="q9" value="Never heard of it"> Never heard of it</label>
+      </div>
+      <div class="error-msg">Please select an option</div>
+    </div>
+
+    <!-- Q10 -->
+    <div class="question" data-required="false" data-type="text" id="q10">
+      <div class="q-num">Question 10</div>
+      <h3>Any additional thoughts on AI in development?</h3>
+      <div class="hint">Share your expectations, concerns, or suggestions (optional)</div>
+      <textarea name="q10" placeholder="Type your thoughts here..."></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-wrap">
+      <button type="submit" class="submit-btn" id="submitBtn">Submit Survey</button>
+    </div>
+  </form>
+
+  <!-- Thank you screen -->
+  <div class="thank-you" id="thankYou">
+    <div class="icon">🎉</div>
+    <h2>Thank you!</h2>
+    <p>Your response has been recorded.<br>We appreciate your feedback.</p>
+  </div>
+
+  <div class="footer">PerfecTwin ERP Edition · HQ–VNB CoE</div>
+</div>
+
+<script>
+  const form = document.getElementById('surveyForm');
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+  const TOTAL = 10;
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/jimin.jarvis.mail.bot@gmail.com';
+
+  // ---- Progress ----
+  function updateProgress() {
+    let answered = 0;
+    for (let i = 1; i <= TOTAL; i++) {
+      const q = document.getElementById('q' + i);
+      if (isAnswered(q)) answered++;
+    }
+    const pct = Math.round((answered / TOTAL) * 100);
+    progressFill.style.width = pct + '%';
+    progressText.textContent = answered + ' / ' + TOTAL;
+  }
+
+  function isAnswered(q) {
+    const type = q.dataset.type;
+    if (type === 'radio' || type === 'likert') {
+      return q.querySelector('input[type=radio]:checked') !== null;
+    }
+    if (type === 'checkbox') {
+      return q.querySelectorAll('input[type=checkbox]:checked').length > 0;
+    }
+    if (type === 'rank') {
+      return q.querySelectorAll('.rank-option.selected').length > 0;
+    }
+    if (type === 'text') {
+      return q.querySelector('textarea').value.trim().length > 0;
+    }
+    return false;
+  }
+
+  // ---- Option label highlight ----
+  document.querySelectorAll('.option-label input').forEach(input => {
+    input.addEventListener('change', () => {
+      const parent = input.closest('.options');
+      const name = input.name;
+
+      // Handle exclusive options (like "None")
+      if (input.type === 'checkbox') {
+        const isExclusive = input.closest('.option-label')?.querySelector('[data-exclusive]') || input.dataset.exclusive;
+        if (input.checked && input.closest('label').querySelector('[data-exclusive]')) {
+          // Uncheck all others
+          parent.querySelectorAll('input[type=checkbox]').forEach(cb => {
+            if (cb !== input) { cb.checked = false; cb.closest('.option-label').classList.remove('selected'); }
+          });
+        } else if (input.checked) {
+          // Uncheck exclusive option
+          parent.querySelectorAll('[data-exclusive]').forEach(ex => {
+            const cb = ex.closest('.option-label').querySelector('input');
+            if (cb) { cb.checked = false; cb.closest('.option-label').classList.remove('selected'); }
+          });
+        }
+      }
+
+      // Update highlight
+      if (input.type === 'radio') {
+        parent.querySelectorAll('.option-label').forEach(l => l.classList.remove('selected'));
+      }
+      parent.querySelectorAll('input').forEach(inp => {
+        inp.closest('.option-label').classList.toggle('selected', inp.checked);
+      });
+
+      updateProgress();
+    });
+  });
+
+  // ---- Likert scale ----
+  document.querySelectorAll('.likert label').forEach(label => {
+    label.addEventListener('click', () => {
+      const likert = label.closest('.likert');
+      likert.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+      label.querySelector('.scale-btn').classList.add('selected');
+      setTimeout(updateProgress, 50);
+    });
+  });
+
+  // ---- Rank select (top 3) ----
+  document.querySelectorAll('.rank-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const parent = opt.closest('.question');
+      const max = parseInt(parent.dataset.max) || 3;
+      const selected = parent.querySelectorAll('.rank-option.selected');
+
+      if (opt.classList.contains('selected')) {
+        opt.classList.remove('selected');
+        renumberRanks(parent);
+      } else if (selected.length < max) {
+        opt.classList.add('selected');
+        renumberRanks(parent);
+      }
+      updateProgress();
+    });
+  });
+
+  function renumberRanks(parent) {
+    let n = 1;
+    parent.querySelectorAll('.rank-option').forEach(o => {
+      const badge = o.querySelector('.rank-badge');
+      if (o.classList.contains('selected')) {
+        badge.textContent = n++;
+      } else {
+        badge.textContent = '–';
+      }
+    });
+  }
+
+  // ---- Validation ----
+  function validate() {
+    let valid = true;
+    for (let i = 1; i <= TOTAL; i++) {
+      const q = document.getElementById('q' + i);
+      q.classList.remove('error');
+      if (q.dataset.required === 'true') {
+        const type = q.dataset.type;
+        let ok = false;
+        if (type === 'radio' || type === 'likert') ok = q.querySelector('input[type=radio]:checked') !== null;
+        if (type === 'checkbox') ok = q.querySelectorAll('input[type=checkbox]:checked').length > 0;
+        if (type === 'rank') {
+          const sel = q.querySelectorAll('.rank-option.selected').length;
+          ok = sel === parseInt(q.dataset.max || 3);
+        }
+        if (!ok) {
+          q.classList.add('error');
+          if (valid) q.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          valid = false;
+        }
+      }
+    }
+    return valid;
+  }
+
+  // ---- Collect data ----
+  function collectData() {
+    const data = { _subject: 'VNB AI Survey Response' };
+    for (let i = 1; i <= TOTAL; i++) {
+      const q = document.getElementById('q' + i);
+      const type = q.dataset.type;
+      if (type === 'radio' || type === 'likert') {
+        const checked = q.querySelector('input[type=radio]:checked');
+        data['Q' + i] = checked ? checked.value : '';
+      } else if (type === 'checkbox') {
+        const vals = [];
+        q.querySelectorAll('input[type=checkbox]:checked').forEach(c => vals.push(c.value));
+        data['Q' + i] = vals.join(', ');
+      } else if (type === 'rank') {
+        const vals = [];
+        q.querySelectorAll('.rank-option.selected').forEach(o => vals.push(o.dataset.value));
+        data['Q' + i] = vals.join(', ');
+      } else if (type === 'text') {
+        data['Q' + i] = q.querySelector('textarea').value.trim();
+      }
+    }
+    return data;
+  }
+
+  // ---- Submit ----
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    const data = collectData();
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        document.querySelector('.progress-wrap').style.display = 'none';
+        document.getElementById('thankYou').style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      // Fallback: save locally
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'survey-response.json';
+      a.click();
+
+      form.style.display = 'none';
+      document.querySelector('.progress-wrap').style.display = 'none';
+      document.getElementById('thankYou').style.display = 'block';
+      document.querySelector('.thank-you p').textContent = 'Your response has been saved as a file. Please send it to HQ.';
+    }
+  });
+</script>
+
+</body>
+</html>
