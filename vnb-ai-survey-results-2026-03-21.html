@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VNB AI Survey Results</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fff;
+    color: #1d1d1f;
+    line-height: 1.6;
+    padding: 40px 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 16px;
+    color: #86868b;
+    margin-bottom: 48px;
+  }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .summary-card {
+    background: #f5f5f7;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+  }
+  .summary-card .number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #0071e3;
+  }
+  .summary-card .label {
+    font-size: 13px;
+    color: #86868b;
+    margin-top: 4px;
+  }
+  .section {
+    margin-bottom: 40px;
+  }
+  .section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .question-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 12px;
+  }
+  .bar-chart {
+    margin-bottom: 28px;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .bar-label {
+    font-size: 13px;
+    color: #1d1d1f;
+    min-width: 180px;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    background: #f5f5f7;
+    border-radius: 6px;
+    height: 24px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.3s;
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+  }
+  .bar-fill span {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .c1 { background: #0071e3; }
+  .c2 { background: #34c759; }
+  .c3 { background: #ff9500; }
+  .c4 { background: #af52de; }
+  .c5 { background: #ff3b30; }
+  .c6 { background: #5ac8fa; }
+  .c7 { background: #ff6482; }
+  .c8 { background: #30b0c7; }
+
+  .insight-box {
+    background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 12px;
+    margin-bottom: 28px;
+  }
+  .insight-box h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .insight-box p {
+    font-size: 14px;
+    color: #424245;
+    line-height: 1.7;
+  }
+  .freetext {
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #424245;
+    border-left: 3px solid #0071e3;
+  }
+  .key-findings {
+    background: linear-gradient(135deg, #0071e3 0%, #0077ED 100%);
+    border-radius: 20px;
+    padding: 32px;
+    color: #fff;
+    margin-bottom: 48px;
+  }
+  .key-findings h2 {
+    color: #fff;
+    border: none;
+    margin-bottom: 20px;
+  }
+  .key-findings li {
+    font-size: 15px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    list-style: none;
+    padding-left: 24px;
+    position: relative;
+  }
+  .key-findings li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+  @media (max-width: 600px) {
+    body { padding: 24px 16px; }
+    h1 { font-size: 26px; }
+    .bar-label { min-width: 120px; font-size: 12px; }
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<h1>VNB AI Survey Results</h1>
+<p class="subtitle">AI in Software Development · 14 Responses · March 2026</p>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="number">14/14</div>
+    <div class="label">Response Rate</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">79%</div>
+    <div class="label">Daily AI Users</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">3.9</div>
+    <div class="label">Avg Satisfaction (5pt)</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">71%</div>
+    <div class="label">Want PRD Analysis</div>
+  </div>
+</div>
+
+<div class="key-findings">
+  <h2>📌 Key Findings</h2>
+  <ul>
+    <li>79%가 매일 AI를 사용하며, ChatGPT/Claude/Gemini가 가장 보편적 (93%)</li>
+    <li>가장 많이 활용하는 영역: 코딩/구현(79%), PRD 분석·문서화·테스트 작성(각 50%)</li>
+    <li>주요 어려움: 한국어 장벽(50%), 비즈니스 컨텍스트 부족(43%)</li>
+    <li>가장 원하는 기능: PRD 번역/분석(71%), 테스트 코드 생성·리팩토링 제안(각 50%)</li>
+    <li>주요 우려: 보안/프라이버시(50%), AI 의존도(36%)</li>
+    <li>57%가 이미 AI 코딩 도구를 사용 중이며, 21%가 관심 있음</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Q1. AI 사용 빈도</h2>
+  <div class="question-label">How often do you use AI tools in your development workflow?</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="bar-label">Daily</span>
+      <div class="bar-track"><div class="bar-fill c1" style="width:79%"><span>11 (79%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Several times a week</span>
+      <div class="bar-track"><div class="bar-fill c2" style="width:7%"><span>1</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Rarely</span>
+      <div class="bar-track"><div class="bar-fill c3" style="width:14%"><span>2</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Q2. 사용 중인 AI 도구</h2>
+  <div class="question-label">Which AI tools do you currently use? (복수 선택)</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="bar-label">ChatGPT / Claude / Gemini</span>
+      <div class="bar-track"><div class="bar-fill c1" style="width:93%"><span>13 (93%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">GitHub Copilot</span>
+      <div class="bar-track"><div class="bar-fill c2" style="width:36%"><span>5 (36%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Cursor IDE</span>
+      <div class="bar-track"><div class="bar-fill c4" style="width:29%"><span>4 (29%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">None</span>
+      <div class="bar-track"><div class="bar-fill c5" style="width:7%"><span>1</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Q3. AI 활용 영역</h2>
+  <div class="question-label">In which areas do you use AI? (복수 선택)</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="bar-label">Coding / Implementation</span>
+      <div class="bar-track"><div class="bar-fill c1" style="width:79%"><span>11 (79%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">PRD / Requirements</span>
+      <div class="bar-track"><div class="bar-fill c2" style="width:50%"><span>7 (50%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Documentation</span>
+      <div class="bar-track"><div class="bar-fill c3" style="width:50%"><span>7 (50%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Writing Tests</span>
+      <div class="bar-track"><div class="bar-fill c4" style="width:50%"><span>7 (50%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Code Review</span>
+      <div class="bar-track"><div class="bar-fill c6" style="width:43%"><span>6 (43%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Debugging</span>
+      <div class="bar-track"><div class="bar-fill c7" style="width:29%"><span>4 (29%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Design & Architecture</span>
+      <div class="bar-track"><div class="bar-fill c8" style="width:29%"><span>4 (29%)</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Q4. AI 도구 만족도</h2>
+  <div class="question-label">Satisfaction with current AI tools (1-5 scale)</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="bar-label">⭐⭐⭐⭐⭐ (5)</span>
+      <div class="bar-track"><div class="bar-fill c1" style="width:21%"><span>3</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">⭐⭐⭐⭐ (4)</span>
+      <div class="bar-track"><div class="bar-fill c2" style="width:50%"><span>7 (50%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">⭐⭐⭐ (3)</span>
+      <div class="bar-track"><div class="bar-fill c3" style="width:21%"><span>3</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">⭐⭐ (2)</span>
+      <div class="bar-track"><div class="bar-fill c5" style="width:7%"><span>1</span></div></div>
+    </div>
+  </div>
+  <div class="insight-box">
+    <h3>💡 Insight</h3>
+    <p>평균 만족도 3.9/5.0으로 전반적으로 긍정적. 71%가 4점 이상으로 AI 도구에 만족하고 있으나, 개선 여지가 있음을 시사합니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Q5. AI 활용 시 어려움</h2>
+  <div class="question-label">Difficulties when using AI tools (복수 선택)</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="bar-label">Korean language barrier</span>
+      <div class="bar-track"><div class="bar-fill c5" style="width:50%"><span>7 (50%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Lack of business context</span>
+      <div class="bar-track"><div class="bar-fill c3" style="width:43%"><span>6 (43%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Edge cases not covered</span>
+      <div class="bar-track"><div class="bar-fill c4" style="width:36%"><span>5 (36%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Difficulty estimating effort</span>
+      <div class="bar-track"><div class="bar-fill c6" style="width:21%"><span>3</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Ambiguous requirements</span>
+      <div class="bar-track"><div class="bar-fill c8" style="width:7%"><span>1</span></div></div>
+    </div>
+  </div>
+  <div class="insight-box">
+    <h3>💡 Insight</h3>
+    <p>한국어 장벽이 최대 과제 — 한국어 PRD/요구사항을 AI가 제대로 이해하지 못하는 문제. 비즈니스 컨텍스트 부족도 높아, 도메인 특화 커스터마이징 필요성을 보여줍니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Q6. 코드 리뷰 시 반복 피드백</h2>
+  <div class="question-label">Recurring feedback themes in code reviews (복수 선택)</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="bar-label">Error handling</span>
+      <div class="bar-track"><div class="bar-fill c5" style="width:43%"><span>6 (43%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Performance concerns</span>
+      <div class="bar-track"><div class="bar-fill c3" style="width:36%"><span>5 (36%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Naming conventions</span>
+      <div class="bar-track"><div class="bar-fill c4" style="width:29%"><span>4</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">No recurring feedback</span>
+      <div class="bar-track"><div class="bar-fill c2" style="width:29%"><span>4</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Architecture / Design</span>
+      <div class="bar-track"><div class="bar-fill c1" style="width:14%"><span>2</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Test coverage</span>
+      <div class="bar-track"><div class="bar-fill c6" style="width:14%"><span>2</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Q7. 원하는 AI 기능</h2>
+  <div class="question-label">Most wanted AI-assisted features (복수 선택)</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="bar-label">PRD translation & analysis</span>
+      <div class="bar-track"><div class="bar-fill c1" style="width:71%"><span>10 (71%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Test code generation</span>
+      <div class="bar-track"><div class="bar-fill c2" style="width:50%"><span>7 (50%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Refactoring suggestions</span>
+      <div class="bar-track"><div class="bar-fill c4" style="width:50%"><span>7 (50%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Convention enforcement</span>
+      <div class="bar-track"><div class="bar-fill c3" style="width:36%"><span>5 (36%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Code auto-completion</span>
+      <div class="bar-track"><div class="bar-fill c6" style="width:29%"><span>4</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Automated code review</span>
+      <div class="bar-track"><div class="bar-fill c7" style="width:29%"><span>4</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Debugging assistance</span>
+      <div class="bar-track"><div class="bar-fill c8" style="width:21%"><span>3</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Effort estimation</span>
+      <div class="bar-track"><div class="bar-fill c5" style="width:14%"><span>2</span></div></div>
+    </div>
+  </div>
+  <div class="insight-box">
+    <h3>💡 Insight</h3>
+    <p>PRD 번역/분석이 압도적 1위(71%) — 한국어 PRD를 영어 코드로 연결하는 브릿지가 가장 큰 니즈. 테스트 코드 생성과 리팩토링 제안도 높은 수요를 보입니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Q8. AI 도입 우려 사항</h2>
+  <div class="question-label">Concerns about adopting AI tools (복수 선택)</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="bar-label">Security / Privacy</span>
+      <div class="bar-track"><div class="bar-fill c5" style="width:50%"><span>7 (50%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Over-dependence</span>
+      <div class="bar-track"><div class="bar-fill c3" style="width:36%"><span>5 (36%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">AI code reliability</span>
+      <div class="bar-track"><div class="bar-fill c4" style="width:29%"><span>4</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">No concerns</span>
+      <div class="bar-track"><div class="bar-fill c2" style="width:29%"><span>4</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Reduce skills</span>
+      <div class="bar-track"><div class="bar-fill c6" style="width:14%"><span>2</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Q9. AI 코딩 도구 인지도</h2>
+  <div class="question-label">Awareness of AI coding tools (Copilot, Cursor, etc.)</div>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <span class="bar-label">Already using it</span>
+      <div class="bar-track"><div class="bar-fill c2" style="width:57%"><span>8 (57%)</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Heard and interested</span>
+      <div class="bar-track"><div class="bar-fill c1" style="width:21%"><span>3</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Never heard</span>
+      <div class="bar-track"><div class="bar-fill c3" style="width:14%"><span>2</span></div></div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Heard, not interested</span>
+      <div class="bar-track"><div class="bar-fill c5" style="width:7%"><span>1</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>Q10. 자유 의견</h2>
+  <div class="question-label">Open-ended comments</div>
+  <div class="freetext">"AI accelerates software development, but a developer's true value still lies in system design thinking and the ability to ensure code quality."</div>
+  <div class="freetext">"I think using AI in software development is a major trend in IT. It can improve developers' productivity and performance. However, developers should use it responsibly rather than relying on it too heavily."</div>
+  <div class="freetext">"Khá hữu ích" (꽤 유용하다)</div>
+</div>
+
+<div class="section" style="margin-top: 48px; padding-top: 32px; border-top: 1px solid #e5e5e5;">
+  <h2>📋 Recommendations</h2>
+  <div class="insight-box">
+    <h3>1. PRD 번역/분석 도구 우선 도입</h3>
+    <p>71%가 원하는 최우선 기능. 한국어 PRD → 영어 코드 브릿지 역할의 AI 워크플로우를 먼저 구축하면 가장 큰 임팩트를 낼 수 있습니다.</p>
+  </div>
+  <div class="insight-box">
+    <h3>2. 보안 가이드라인 사전 수립</h3>
+    <p>50%가 보안/프라이버시를 우려. AI 도구 도입 전 코드 외부 전송 정책, 사내 데이터 처리 규정을 명확히 해야 합니다.</p>
+  </div>
+  <div class="insight-box">
+    <h3>3. 테스트 자동화에 AI 적용</h3>
+    <p>50%가 테스트 코드 생성을 원하고, 코드 리뷰 시 error handling·test coverage가 반복 이슈 — AI 기반 테스트 생성이 두 문제를 동시에 해결할 수 있습니다.</p>
+  </div>
+  <div class="insight-box">
+    <h3>4. 팀 내 AI 활용 교육</h3>
+    <p>14%가 AI 코딩 도구를 모르고, 14%가 관심 없음 — 실질적인 활용 사례 공유와 핸즈온 세션으로 저항감을 줄일 수 있습니다.</p>
+  </div>
+</div>
+
+<p style="text-align: center; color: #86868b; font-size: 12px; margin-top: 48px;">
+  Generated by Jarvis · March 21, 2026 · 14 responses collected via FormSubmit
+</p>
+
+</body>
+</html>
